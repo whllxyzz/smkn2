@@ -103,12 +103,9 @@
 
     <!-- Konfigurasi URL Gambar GitHub -->
     <script>
-        /**
-         * PENTING: Ganti 'username' dan 'nama-repo' di bawah ini sesuai dengan akun GitHub Anda.
-         * Pastikan file smk.jpg ada di root atau folder yang sesuai.
-         */
-        const GITHUB_USERNAME = "username"; // Ganti dengan username github anda
-        const GITHUB_REPO = "nama-repo";    // Ganti dengan nama repositori anda
+        // Menggunakan data dari github.com/whllxyzz/smk.jpg
+        const GITHUB_USERNAME = "whllxyzz";
+        const GITHUB_REPO = "smk.jpg"; 
         const IMAGE_BASE_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/main/`;
         
         // Fungsi helper untuk mendapatkan link gambar
@@ -124,7 +121,7 @@
     <nav class="fixed w-full z-[60] glass-nav mt-8">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-3 md:py-4 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-3">
-                <!-- LOGO UTAMA (Merujuk ke GitHub) -->
+                <!-- LOGO UTAMA -->
                 <img id="main-logo" src="" 
                      onerror="this.src='https://ui-avatars.com/api/?name=SMK+2&background=1e40af&color=fff&bold=true'" 
                      alt="Logo SMKN 2 Tembilahan" 
@@ -167,7 +164,7 @@
             <div class="relative fade-in mt-8 lg:mt-0">
                 <div class="absolute -inset-4 bg-orange-400/15 rounded-[3rem] blur-3xl -z-10"></div>
                 <div class="slider-container shadow-2xl border-4 md:border-8 border-white bg-slate-200 overflow-hidden">
-                    <!-- SLIDE UTAMA (Merujuk ke GitHub smk.jpg) -->
+                    <!-- SLIDE UTAMA -->
                     <div class="slide active">
                         <img id="hero-image-1" src="" 
                              onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80'" 
