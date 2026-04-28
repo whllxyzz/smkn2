@@ -20,18 +20,8 @@
             background: radial-gradient(circle at top right, rgba(30, 64, 175, 0.05), transparent),
                         radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.05), transparent);
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(4px);
-        }
-        .modal.active {
-            display: flex;
-        }
         
+        /* Gaya Slider */
         .slider-container {
             position: relative;
             width: 100%;
@@ -88,6 +78,7 @@
         </div>
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
+                <!-- Logo SMK Tetap smk.jpg -->
                 <img src="smk.jpg" alt="Logo SMKN 2" class="w-10 h-10 object-cover rounded-lg" onerror="this.src='https://placehold.co/400x400?text=Logo'">
                 <div class="flex flex-col">
                     <span class="text-lg font-black text-blue-900 leading-none">SMKN 2</span>
@@ -97,58 +88,67 @@
             <div class="hidden md:flex items-center gap-8 font-bold text-sm text-slate-600">
                 <a href="#beranda" class="hover:text-blue-900 transition-colors">Beranda</a>
                 <a href="#jurusan" class="hover:text-blue-900 transition-colors">Jurusan</a>
-                <button onclick="openDaftar()" class="px-6 py-2.5 bg-blue-800 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all">Daftar</button>
+                <button class="px-6 py-2.5 bg-blue-800 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all">Daftar</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Section Beranda -->
     <section id="beranda" class="pt-44 pb-20 px-6 md:px-12 hero-gradient">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <div class="fade-in">
-                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-black mb-6 uppercase tracking-widest">Pendaftaran 2026</span>
+                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-black mb-6 uppercase tracking-widest">Dokumentasi Sekolah</span>
                 <h1 class="text-5xl md:text-6xl font-black text-blue-950 leading-tight mb-6">Cerita Sukses <br><span class="text-blue-600">Dimulai</span> <br> Dari Sini.</h1>
                 <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed font-medium">
-                    Selamat datang di Portal Pendaftaran SMKN 2 Tembilahan. Jadilah bagian dari sejarah besar sekolah kami dan persiapkan diri untuk masa depan gemilang.
+                    Lihat keseruan dan fasilitas kami melalui galeri beranda. Kami siap membimbing Anda menjadi tenaga kerja profesional di masa depan.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <button onclick="openDaftar()" class="bg-blue-800 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-900 transition-all shadow-xl shadow-blue-200">Daftar Sekarang</button>
-                    <button onclick="openAI()" class="bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2">✨ Konsultasi Jurusan</button>
+                    <button class="bg-blue-800 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-900 transition-all shadow-xl shadow-blue-200">Daftar Sekarang</button>
+                    <button class="bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2">✨ Konsultasi Jurusan</button>
                 </div>
             </div>
             
+            <!-- Kontainer Slider - MENYUNTIKKAN FOTO DARI GITHUB -->
             <div class="fade-in relative">
                 <div class="slider-container" id="hero-slider">
+                    <!-- Slide 1 -->
                     <div class="slide active">
-                        <img src="WhatsApp Image 2026-04-28 at 20.28.39(1).jpeg" alt="Slide 1" onerror="this.src='https://placehold.co/1200x800?text=Slide+1+Gagal+Load'">
+                        <img src="mpls1.jpg.jpeg" alt="MPLS Dokumentasi 1" onerror="this.src='https://placehold.co/1200x800?text=Cek+Nama+File+GitHub'">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent flex flex-col justify-end p-8">
-                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Beranda Utama</span>
-                            <h3 class="text-white text-2xl font-bold">Gedung Utama SMKN 2 Tembilahan</h3>
+                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Beranda</span>
+                            <h3 class="text-white text-2xl font-bold">Kegiatan MPLS SMKN 2</h3>
                         </div>
                     </div>
+                    
+                    <!-- Slide 2 -->
                     <div class="slide">
-                        <img src="WhatsApp Image 2026-04-28 at 20.28.39.jpeg" alt="Slide 2" onerror="this.src='https://placehold.co/1200x800?text=Slide+2+Gagal+Load'">
+                        <img src="mpls2.jpg.jpeg" alt="MPLS Dokumentasi 2" onerror="this.src='https://placehold.co/1200x800?text=Cek+Nama+File+GitHub'">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent flex flex-col justify-end p-8">
-                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Kegiatan</span>
-                            <h3 class="text-white text-2xl font-bold">Semangat Belajar Mengajar</h3>
+                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Beranda</span>
+                            <h3 class="text-white text-2xl font-bold">Fasilitas Sekolah</h3>
                         </div>
                     </div>
+                    
+                    <!-- Slide 3 -->
                     <div class="slide">
-                        <img src="WhatsApp Image 2026-04-28 at 20.28.40.jpeg" alt="Slide 3" onerror="this.src='https://placehold.co/1200x800?text=Slide+3+Gagal+Load'">
+                        <img src="mpls3.jpg.jpeg" alt="MPLS Dokumentasi 3" onerror="this.src='https://placehold.co/1200x800?text=Cek+Nama+File+GitHub'">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent flex flex-col justify-end p-8">
-                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Fasilitas</span>
-                            <h3 class="text-white text-2xl font-bold">Laboratorium Praktik Modern</h3>
+                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Beranda</span>
+                            <h3 class="text-white text-2xl font-bold">Lingkungan Belajar</h3>
                         </div>
                     </div>
+
+                    <!-- Slide 4 -->
                     <div class="slide">
-                        <img src="WhatsApp Image 2026-04-28 at 20.28.43.jpeg" alt="Slide 4" onerror="this.src='https://placehold.co/1200x800?text=Slide+4+Gagal+Load'">
+                        <img src="mpls4.jpg.jpeg" alt="MPLS Dokumentasi 4" onerror="this.src='https://placehold.co/1200x800?text=Cek+Nama+File+GitHub'">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 to-transparent flex flex-col justify-end p-8">
-                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Prestasi</span>
-                            <h3 class="text-white text-2xl font-bold">Mencetak Generasi Unggul</h3>
+                            <span class="text-orange-400 text-[10px] font-black uppercase tracking-widest mb-1">Beranda</span>
+                            <h3 class="text-white text-2xl font-bold">Siswa Berprestasi</h3>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Indikator Dot -->
                 <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                     <div class="w-6 h-2 rounded-full bg-blue-900 slider-dot transition-all"></div>
                     <div class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition-all"></div>
@@ -161,48 +161,23 @@
 
     <!-- Bagian Jurusan -->
     <section id="jurusan" class="py-20 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-black text-blue-900 mb-12 text-center uppercase tracking-tight italic underline decoration-orange-500 underline-offset-8">Jurusan Kami</h2>
-            <div id="jurusan-container" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Data dari Firestore -->
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-black text-blue-900 mb-12 uppercase tracking-tight italic underline decoration-orange-500 underline-offset-8">Jurusan Kami</h2>
+            <div id="jurusan-container" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-left">
+                <!-- Konten akan dimuat di sini -->
             </div>
         </div>
     </section>
 
-    <!-- Modals -->
-    <div id="daftar-modal" class="modal items-center justify-center p-4">
-        <div class="bg-white rounded-[2rem] p-8 w-full max-w-lg shadow-2xl fade-in overflow-y-auto max-h-[90vh]">
-            <h2 class="text-2xl font-black text-blue-950 mb-6">Form Pendaftaran</h2>
-            <div class="space-y-4">
-                <input type="text" placeholder="Nama Lengkap" class="w-full p-4 bg-slate-50 border rounded-2xl outline-none">
-                <button onclick="closeModals()" class="w-full bg-blue-800 text-white py-4 rounded-2xl font-bold">Tutup</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <footer class="bg-blue-950 text-white py-12 px-6 text-center">
         <img src="smk.jpg" class="w-12 h-12 object-cover rounded-xl mx-auto mb-4 grayscale brightness-200" onerror="this.style.display='none'">
         <p class="font-black text-sm tracking-widest uppercase mb-1">SMKN 2 Tembilahan</p>
         <p class="text-slate-500 text-[10px] font-bold uppercase tracking-tighter">Sistem Informasi Pendaftaran 2026/2027</p>
     </footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, onSnapshot, collection, initializeFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const db = initializeFirestore(app, { experimentalForceLongPolling: true });
-        const auth = getAuth(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'spmb-smkn2-2026';
-
-        // Modal Controls
-        window.openDaftar = () => document.getElementById('daftar-modal').classList.add('active');
-        window.openAI = () => alert("Asisten AI akan segera hadir.");
-        window.closeModals = () => document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-
-        // Slider Logic
+    <script>
+        // Logika Slider Otomatis
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
@@ -219,43 +194,9 @@
             });
             currentSlide = (currentSlide + 1) % slides.length;
         }
+
+        // Jalankan slider setiap 5 detik
         setInterval(updateSlider, 5000);
-
-        // Auth & Firestore Initialization
-        const startApp = async () => {
-            try {
-                // RULE 3: Auth Before Queries
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Auth error:", error);
-            }
-        };
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // Mulai listener hanya setelah user terautentikasi
-                const jurCol = collection(db, 'artifacts', appId, 'public', 'data', 'jurusan');
-                onSnapshot(jurCol, (snap) => {
-                    const container = document.getElementById('jurusan-container');
-                    container.innerHTML = '';
-                    snap.forEach(d => {
-                        const data = d.data();
-                        container.innerHTML += `<div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-md transition-all">
-                            <h4 class="text-xl font-black text-blue-900 mb-3">${data.nama}</h4>
-                            <p class="text-sm text-slate-500 italic leading-relaxed">${data.desc || 'Deskripsi jurusan segera tersedia.'}</p>
-                        </div>`;
-                    });
-                }, (error) => {
-                    console.error("Firestore Listener Error:", error);
-                });
-            }
-        });
-
-        startApp();
     </script>
 </body>
 </html>
