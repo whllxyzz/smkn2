@@ -54,21 +54,21 @@
 
     <nav class="fixed w-full z-[70] glass-nav">
         <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4 md:gap-2">
-            <!-- Bagian Identitas Sekolah dengan penyesuaian lebar agar tidak menabrak -->
-            <div class="flex items-center gap-2 flex-shrink-0 max-w-[45%] md:max-w-none">
-                <img src="smk.jpg" alt="Logo" class="w-7 h-7 md:w-9 md:h-9 object-cover rounded-lg flex-shrink-0" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+            <!-- Bagian Identitas Sekolah dengan ukuran yang lebih proporsional -->
+            <div class="flex items-center gap-3 flex-shrink-0 max-w-[55%] md:max-w-none">
+                <img src="smk.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-lg flex-shrink-0 shadow-sm" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                 <div class="flex flex-col overflow-hidden">
-                    <span class="text-xs md:text-base font-black text-blue-900 leading-none truncate">SMKN 2</span>
-                    <span class="text-[7px] md:text-[9px] font-bold text-orange-600 uppercase tracking-tighter truncate">Tembilahan</span>
+                    <span class="text-sm md:text-lg font-extrabold text-blue-900 leading-none truncate tracking-tight">SMKN 2</span>
+                    <span class="text-[9px] md:text-xs font-bold text-orange-600 uppercase tracking-wide truncate">Tembilahan</span>
                 </div>
             </div>
             
             <!-- Bagian Menu Navigasi dengan penanganan overflow yang lebih baik -->
-            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[9px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar py-1">
+            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar py-1">
                 <a href="#beranda" class="hover:text-blue-900 py-1 whitespace-nowrap">Beranda</a>
                 <a href="#lokasi" class="hover:text-blue-900 py-1 whitespace-nowrap">Lokasi</a>
                 <a href="#jurusan" class="hover:text-blue-900 py-1 whitespace-nowrap">Jurusan</a>
-                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-[8px] md:text-xs whitespace-nowrap flex-shrink-0">ADMIN</button>
+                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-5 py-1.5 md:py-2.5 rounded-full shadow-md text-[9px] md:text-xs whitespace-nowrap flex-shrink-0 hover:bg-blue-800 transition-colors">ADMIN</button>
             </div>
         </div>
     </nav>
