@@ -40,120 +40,58 @@
         }
         .modal.active { display: flex; }
         
-        /* IKLAN POPUP STYLISH */
         #ads-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
+            align-items: center; justify-content: center; padding: 20px;
+            opacity: 0; transition: opacity 0.4s ease;
         }
         #ads-overlay.show { display: flex; opacity: 1; }
 
         .ads-card {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
+            background: white; width: 100%; max-width: 420px; border-radius: 32px;
+            overflow: hidden; position: relative;
             box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.3);
             transform: scale(0.8) translateY(40px);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         #ads-overlay.show .ads-card { transform: scale(1) translateY(0); }
-        #ads-overlay.closing .ads-card { transform: scale(0.9) translateY(20px); opacity: 0; }
-        #ads-overlay.closing { opacity: 0; }
 
-        .ads-gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        }
+        .ads-gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
 
         .close-ads-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .close-ads-btn:hover { background: rgba(255, 255, 255, 0.3); transform: rotate(90deg); }
-
-        .ads-glow {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: rgba(59, 130, 246, 0.5);
-            filter: blur(60px);
-            border-radius: 50%;
-            top: -50px;
-            left: -50px;
-            pointer-events: none;
+            position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+            background: rgba(255, 255, 255, 0.2); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; backdrop-filter: blur(4px); transition: all 0.3s ease; z-index: 10;
         }
 
-        /* Utils */
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .btn-mobile { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+        
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .countdown-box {
-            background: rgba(30, 58, 138, 0.05);
-            border: 1px solid rgba(30, 58, 138, 0.1);
-            backdrop-filter: blur(4px);
-        }
+        
         .jurusan-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .jurusan-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
-    <!-- IKLAN POPUP MODERN -->
+    <!-- IKLAN POPUP -->
     <div id="ads-overlay">
         <div class="ads-card">
             <button onclick="closeAds()" class="close-ads-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
             </button>
             <div class="ads-gradient-bg p-8 text-center relative overflow-hidden">
-                <div class="ads-glow"></div>
-                <div class="relative z-10">
-                    <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mx-auto mb-4 border border-white/30 shadow-inner">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                        </svg>
-                    </div>
-                    <span class="inline-block px-3 py-1 bg-orange-500 text-white text-[10px] font-black rounded-full uppercase tracking-widest mb-2">Pemberitahuan</span>
-                    <h4 class="text-white font-extrabold text-2xl tracking-tight leading-tight">Tahap Pengembangan</h4>
+                <div class="relative z-10 text-white">
+                    <h4 class="font-extrabold text-2xl mb-2">Informasi Update</h4>
+                    <p class="text-sm opacity-90">Daftar Jurusan Telah Diperbarui Sesuai Kurikulum Terbaru.</p>
                 </div>
             </div>
             <div class="p-8 text-center">
-                <p class="text-slate-500 text-sm font-medium leading-relaxed mb-8">
-                    Halo Calon Siswa! Website ini masih dalam proses penyempurnaan. Punya ide fitur keren? Hubungi admin ya!
-                </p>
-                <a href="https://wa.me/6282293786539" target="_blank" class="flex items-center justify-center gap-3 bg-slate-900 text-white w-full py-4 rounded-2xl font-black text-sm hover:bg-blue-600 transition-all shadow-xl shadow-slate-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-emerald-400" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Kirim Saran via WhatsApp
-                </a>
-                <div class="mt-6 flex items-center justify-center gap-2">
-                    <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Menutup dalam <span id="ads-timer" class="text-blue-500">3</span> detik</span>
-                </div>
+                <button onclick="closeAds()" class="bg-slate-900 text-white w-full py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl">Mengerti</button>
             </div>
         </div>
     </div>
@@ -161,68 +99,36 @@
     <!-- NAVBAR -->
     <nav class="fixed w-full z-[70] glass-nav">
         <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
-            <div class="flex items-center gap-3 flex-shrink-0">
-                <img src="smk.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-lg flex-shrink-0 shadow-sm" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+            <div class="flex items-center gap-3">
+                <img src="smk.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-lg shadow-sm" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                 <div class="flex flex-col">
-                    <span class="text-sm md:text-lg font-extrabold text-blue-900 leading-none tracking-tight">SMKN 2</span>
-                    <span class="text-[9px] md:text-xs font-bold text-orange-600 uppercase tracking-wide">Tembilahan</span>
+                    <span class="text-sm md:text-lg font-extrabold text-blue-900 leading-none">SMKN 2</span>
+                    <span class="text-[9px] md:text-xs font-bold text-orange-600 uppercase">Tembilahan</span>
                 </div>
             </div>
-            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar py-1">
-                <a href="#beranda" class="hover:text-blue-900 whitespace-nowrap">Beranda</a>
-                <a href="#jurusan" class="hover:text-blue-900 whitespace-nowrap">Jurusan</a>
-                <a href="#lokasi" class="hover:text-blue-900 whitespace-nowrap">Lokasi</a>
-                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-5 py-1.5 rounded-full shadow-md text-[9px] md:text-xs hover:bg-blue-800 transition-colors">ADMIN</button>
+            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase no-scrollbar overflow-x-auto">
+                <a href="#beranda" class="hover:text-blue-900">Beranda</a>
+                <a href="#jurusan" class="hover:text-blue-900">Jurusan</a>
+                <a href="#lokasi" class="hover:text-blue-900">Lokasi</a>
+                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-4 py-1.5 rounded-full text-[9px] md:text-xs">ADMIN</button>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="beranda" class="pt-24 md:pt-44 pb-16 px-4 md:px-12 hero-gradient min-h-[90vh] flex flex-col justify-center">
+    <section id="beranda" class="pt-24 md:pt-44 pb-16 px-4 md:px-12 hero-gradient min-h-[80vh] flex flex-col justify-center">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
             <div class="fade-in text-center lg:text-left order-2 lg:order-1">
-                <h1 class="text-3xl md:text-7xl font-black text-blue-950 leading-tight mb-4">Masa Depan <br><span class="text-blue-600">Gemilang</span>.</h1>
-                <p class="text-slate-600 font-medium mb-6 text-xs md:text-lg max-w-xs md:max-w-md mx-auto lg:mx-0">Sistem Pendaftaran Siswa Baru SMKN 2 Tembilahan 2026. Aman, Cepat, dan Terintegrasi.</p>
-                
-                <div id="countdown-container" class="mb-8 hidden">
-                    <p class="text-blue-900 font-bold text-[10px] md:text-xs uppercase tracking-widest mb-3">Pendaftaran Dibuka Dalam:</p>
-                    <div class="flex justify-center lg:justify-start gap-2 md:gap-4">
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="days" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Hari</span>
-                        </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="hours" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Jam</span>
-                        </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="minutes" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Menit</span>
-                        </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="seconds" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Detik</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="status-pendaftaran" class="flex justify-center lg:justify-start">
-                    <button id="btn-daftar" disabled class="btn-mobile opacity-50 cursor-not-allowed bg-blue-800 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-black shadow-xl text-sm md:text-base">PENDAFTARAN BELUM DIBUKA</button>
+                <h1 class="text-3xl md:text-7xl font-black text-blue-950 leading-tight mb-4">Pilih Jurusan <br><span class="text-blue-600">Impianmu</span>.</h1>
+                <p class="text-slate-600 font-medium mb-6 text-xs md:text-lg max-w-md mx-auto lg:mx-0">Jelajahi 10 Program Keahlian unggulan di SMKN 2 Tembilahan yang siap mencetak tenaga kerja profesional.</p>
+                <div class="flex justify-center lg:justify-start">
+                    <a href="#jurusan" class="bg-blue-800 text-white px-8 py-4 rounded-xl font-black shadow-xl text-sm transition-transform hover:scale-105">LIHAT JURUSAN</a>
                 </div>
             </div>
-            
-            <div class="fade-in order-1 lg:order-2 relative">
+            <div class="fade-in order-1 lg:order-2">
                 <div class="slider-container" id="hero-slider">
-                    <div class="slide active"><img src="mpls1.jpg.jpeg" alt="Siswa 1" onerror="this.src='https://placehold.co/800x450?text=SMKN2+1'"></div>
-                    <div class="slide"><img src="mpls2.jpg.jpeg" alt="Siswa 2" onerror="this.src='https://placehold.co/800x450?text=SMKN2+2'"></div>
-                    <div class="slide"><img src="mpls3.jpg.jpeg" alt="Siswa 3" onerror="this.src='https://placehold.co/800x450?text=SMKN2+3'"></div>
-                    <div class="slide"><img src="mpls4.jpg.jpeg" alt="Siswa 4" onerror="this.src='https://placehold.co/800x450?text=SMKN2+4'"></div>
-                </div>
-                <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-                    <button onclick="goToSlide(0)" class="w-6 h-1.5 rounded-full bg-blue-900 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(1)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(2)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(3)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
+                    <div class="slide active"><img src="mpls1.jpg.jpeg" alt="Slide 1" onerror="this.src='https://placehold.co/800x450?text=SMKN2+1'"></div>
+                    <div class="slide"><img src="mpls2.jpg.jpeg" alt="Slide 2" onerror="this.src='https://placehold.co/800x450?text=SMKN2+2'"></div>
                 </div>
             </div>
         </div>
@@ -232,180 +138,128 @@
     <section id="jurusan" class="py-20 px-4 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black text-blue-950 mb-4">Program Keahlian</h2>
+                <h2 class="text-3xl md:text-5xl font-black text-blue-950 mb-4">Daftar Jurusan</h2>
                 <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 font-medium text-sm md:text-lg max-w-2xl mx-auto">Tersedia berbagai pilihan jurusan unggulan untuk masa depanmu.</p>
+                <p class="text-slate-600 font-medium text-sm md:text-lg">Klik "Baca Detail" untuk mempelajari lebih lanjut tentang setiap jurusan.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- TJKJ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- 1. TAV -->
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">💻</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TJKJ</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Jaringan Komputer & Telekomunikasi</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing terkini.</p>
-                    <button onclick="showDetail('TJKJ', 'Mempelajari cara membangun dan mengelola jaringan komputer, perbaikan perangkat keras, hingga konfigurasi server skala industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TKR -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🚗</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TKR</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Kendaraan Ringan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Fokus pada pemeliharaan mesin otomotif, sistem kelistrikan mobil, dan teknologi kendaraan modern.</p>
-                    <button onclick="showDetail('TKR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan sesuai standar industri global.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TBSM -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏍️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TBSM</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Bisnis Sepeda Motor</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Spesialisasi perawatan sepeda motor, teknologi injeksi, dan manajemen bengkel profesional.</p>
-                    <button onclick="showDetail('TBSM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor modern.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TP -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-slate-200 text-slate-700 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚙️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TP</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Pemesinan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Menguasai pengoperasian mesin bubut, milling, dan teknologi CNC untuk produksi manufaktur.</p>
-                    <button onclick="showDetail('TP', 'Belajar menggunakan mesin perkakas presisi untuk membuat komponen mesin yang digunakan di berbagai sektor industri manufaktur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TAV -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🔊</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TAV</h3>
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4">🔊</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">TAV</h3>
                     <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Audio Video</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari elektronika dasar, sistem audio profesional, perbaikan TV, dan perangkat video.</p>
-                    <button onclick="showDetail('TAV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga, sistem audio, hingga pemrosesan sinyal digital.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari sistem elektronika hiburan, perakitan audio, dan teknologi penyiaran video.</p>
+                    <button onclick="showDetail('TAV AUDIO VIDEO', 'Jurusan ini berfokus pada penguasaan teknologi elektronika khusus audio dan video. Siswa akan belajar memperbaiki perangkat rumah tangga, sistem suara panggung (sound system), hingga teknik broadcasting dan editing video.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
-                <!-- DPIB -->
+
+                <!-- 2. TJKJ -->
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏗️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">DPIB</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Desain Pemodelan & Informasi Bangunan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Belajar menggambar arsitektur 2D/3D menggunakan AutoCAD dan Revit untuk konstruksi modern.</p>
-                    <button onclick="showDetail('DPIB', 'Fokus pada pembuatan desain bangunan yang fungsional dan estetis menggunakan perangkat lunak standar industri arsitektur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-4">💻</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">TJKJ</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Jaringan Komputer & Telekomunikasi</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Membangun infrastruktur jaringan internet, keamanan siber, dan manajemen server cloud.</p>
+                    <button onclick="showDetail('TJKJ', 'Program ini membekali siswa dengan keahlian dalam merancang, menginstal, dan memperbaiki jaringan komputer berbasis kabel maupun nirkabel, serta pengelolaan administrasi server dan keamanan data.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
-                <!-- TITL -->
+
+                <!-- 3. TET -->
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚡</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TITL</h3>
+                    <div class="w-14 h-14 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center text-2xl mb-4">🦾</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">TET</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Elektronika Terapan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Implementasi sistem robotika, sensor cerdas, dan pemrograman mikrokontroler industri.</p>
+                    <button onclick="showDetail('TET', 'Siswa akan mempelajari aplikasi elektronika pada sistem otomasi industri 4.0, termasuk penggunaan sensor, robotika sederhana, dan integrasi perangkat lunak dengan perangkat keras elektronik.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
+                <!-- 4. ITL LISTRIK -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-4">⚡</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">ITL</h3>
                     <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Instalasi Tenaga Listrik</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi listrik rumah, industri, dan kontrol motor listrik berbasis PLC.</p>
-                    <button onclick="showDetail('TITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung serta pemeliharaan panel kontrol listrik industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Instalasi listrik gedung, kontrol motor industri, dan pengelolaan energi listrik.</p>
+                    <button onclick="showDetail('ITL LISTRIK', 'Mempelajari perencanaan dan pemasangan instalasi penerangan serta daya, kontrol motor listrik berbasis PLC, dan pemeliharaan panel distribusi listrik skala industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
-                <!-- TE -->
+
+                <!-- 5. TKR -->
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🦾</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TE</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Elektronika</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mendalami sistem kontrol otomatis, robotika dasar, dan mikroprosesor dalam industri 4.0.</p>
-                    <button onclick="showDetail('TE', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas untuk masa depan industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                    <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-4">🚗</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">TKR</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Kendaraan Ringan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Perawatan mesin otomotif mobil, sistem transmisi, dan teknologi kelistrikan kendaraan.</p>
+                    <button onclick="showDetail('TKR', 'Siswa dididik menjadi mekanik profesional yang mampu melakukan diagnosa, perbaikan, dan perawatan rutin pada mobil bensin maupun diesel dengan standar bengkel resmi.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
+
+                <!-- 6. PM PEMESINAN -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-slate-200 text-slate-700 rounded-2xl flex items-center justify-center text-2xl mb-4">⚙️</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">PM</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Pemesinan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Operasional mesin bubut, milling, dan CNC untuk pembuatan komponen presisi.</p>
+                    <button onclick="showDetail('PM PEMESINAN', 'Fokus pada teknik pembubutan, pengefraisan, dan pengoperasian mesin CNC (Computer Numerical Control) untuk menghasilkan produk logam berkualitas tinggi sesuai spesifikasi teknis.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
+                <!-- 7. GEO -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl mb-4">🌍</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">GEO</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Geomatika</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Ilmu pemetaan lahan, survei terestris, dan penggunaan GPS untuk konstruksi.</p>
+                    <button onclick="showDetail('GEO', 'Mempelajari teknik pengukuran tanah (survei), pemetaan wilayah, sistem informasi geografis (SIG), dan penggunaan alat ukur modern untuk kebutuhan perencanaan pembangunan.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
+                <!-- 8. DPIB -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4">🏗️</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">DPIB</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Desain Pemodelan & Info Bangunan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Menggambar arsitektur digital, perhitungan RAB, dan manajemen proyek konstruksi.</p>
+                    <button onclick="showDetail('DPIB', 'Siswa diajarkan cara merancang bangunan, membuat gambar kerja (DED) secara manual maupun menggunakan software (AutoCAD/Revit), serta menghitung biaya pembangunan.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
+                <!-- 9. TEB -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-4">📻</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">TEB</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Elektronika Bisnis</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Integrasi perangkat elektronik dengan manajemen bisnis dan layanan purna jual.</p>
+                    <button onclick="showDetail('TEB', 'Jurusan ini menggabungkan keahlian teknis elektronika dengan kemampuan manajemen bisnis, mencakup pemasaran produk elektronik hingga layanan perbaikan profesional.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
+                <!-- 10. OTOMOTIF -->
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 bg-gray-200 text-gray-700 rounded-2xl flex items-center justify-center text-2xl mb-4">🏍️</div>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase">OTOMOTIF</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Bisnis Sepeda Motor</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Spesialisasi perawatan motor roda dua, sistem injeksi, dan wirausaha bengkel.</p>
+                    <button onclick="showDetail('OTOMOTIF', 'Berfokus pada pemeliharaan sepeda motor, perbaikan komponen mesin, kelistrikan motor, serta manajemen bengkel sebagai bekal untuk bekerja atau berwirausaha.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- FOOTER / LOKASI -->
-    <section id="lokasi" class="py-16 px-4 bg-slate-900 text-white text-center">
-        <h3 class="text-2xl font-black mb-4">Lokasi Sekolah</h3>
-        <p class="text-slate-400 text-sm mb-8">Jl. SKB No.01, Tembilahan, Indragiri Hilir, Riau.</p>
-        <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl h-64 md:h-96">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e293670966f916d%3A0x6734568600f73562!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714394000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <!-- Modal Login -->
-    <div id="login-modal" class="modal">
-        <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl relative">
-            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <h3 class="text-xl font-black text-blue-950 mb-4">Login Admin</h3>
-            <form onsubmit="event.preventDefault();" class="space-y-4">
-                <div><label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase tracking-wider">Username</label><input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <div><label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase tracking-wider">Password</label><input type="password" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <button type="submit" class="w-full bg-blue-900 text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-all text-sm uppercase tracking-widest shadow-lg">Masuk Sistem</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Detail Jurusan -->
+    <!-- Modal Detail -->
     <div id="detail-modal" class="modal">
         <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl relative">
-            <button onclick="toggleModal('detail-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors">
+            <button onclick="toggleModal('detail-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
-            <div id="modal-content-area" class="text-center">
+            <div class="text-center">
                 <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
                     <span id="detail-icon" class="text-4xl">✨</span>
                 </div>
-                <h3 id="detail-title" class="text-3xl font-black text-blue-950 mb-2 uppercase tracking-tight">Nama Jurusan</h3>
+                <h3 id="detail-title" class="text-3xl font-black text-blue-950 mb-2 uppercase">Nama Jurusan</h3>
                 <div class="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-8"></div>
-                <p id="detail-desc" class="text-slate-600 font-medium leading-relaxed text-sm md:text-base">Deskripsi detail akan muncul di sini.</p>
+                <p id="detail-desc" class="text-slate-600 font-medium leading-relaxed"></p>
                 <div class="mt-10">
-                    <button onclick="toggleModal('detail-modal')" class="bg-blue-900 text-white px-8 py-3 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg">Tutup</button>
+                    <button onclick="toggleModal('detail-modal')" class="bg-blue-900 text-white px-8 py-3 rounded-2xl font-bold uppercase tracking-widest shadow-lg">Tutup</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const targetDate = new Date("May 5, 2026 00:00:00").getTime();
-        
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            const container = document.getElementById('countdown-container');
-            const btnDaftar = document.getElementById('btn-daftar');
-
-            if (distance < 0) {
-                container?.classList.add('hidden');
-                if(btnDaftar) {
-                    btnDaftar.classList.remove('opacity-50', 'cursor-not-allowed');
-                    btnDaftar.disabled = false;
-                    btnDaftar.innerText = "DAFTAR SEKARANG";
-                }
-                return;
-            }
-
-            container?.classList.remove('hidden');
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-            if(document.getElementById('days')) {
-                document.getElementById('days').innerText = d.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Slider logic
-        let currentSlide = 0;
-        let slideInterval;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
-
-        function updateSlider() {
-            slides.forEach((s, i) => {
-                s.classList.toggle('active', i === currentSlide);
-                if(dots[i]) {
-                    dots[i].className = i === currentSlide 
-                        ? 'w-6 h-1.5 rounded-full bg-blue-900 slider-dot transition-all' 
-                        : 'w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all';
-                }
-            });
-        }
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
-        function goToSlide(n) { currentSlide = n; updateSlider(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
-        slideInterval = setInterval(nextSlide, 5000);
-
         function toggleModal(id) { 
             const modal = document.getElementById(id);
             if (modal) modal.classList.toggle('active'); 
@@ -413,8 +267,9 @@
 
         function showDetail(title, desc) {
             const icons = {
-                'TJKJ': '💻', 'TKR': '🚗', 'TBSM': '🏍️', 'TP': '⚙️',
-                'TAV': '🔊', 'DPIB': '🏗️', 'TITL': '⚡', 'TE': '🦾'
+                'TAV AUDIO VIDEO': '🔊', 'TJKJ': '💻', 'TET': '🦾', 'ITL LISTRIK': '⚡',
+                'TKR': '🚗', 'PM PEMESINAN': '⚙️', 'GEO': '🌍', 'DPIB': '🏗️',
+                'TEB': '📻', 'OTOMOTIF': '🏍️'
             };
             document.getElementById('detail-title').innerText = title;
             document.getElementById('detail-desc').innerText = desc;
@@ -422,34 +277,12 @@
             toggleModal('detail-modal');
         }
 
-        // AD POPUP LOGIC
-        function showAds() {
-            const adsOverlay = document.getElementById('ads-overlay');
-            const timerText = document.getElementById('ads-timer');
-            let timeLeft = 3;
-            if(!adsOverlay) return;
-            adsOverlay.classList.add('show');
-            const countdown = setInterval(() => {
-                timeLeft--;
-                if (timerText) timerText.innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    closeAds();
-                }
-            }, 1000);
-        }
-
         function closeAds() {
-            const adsOverlay = document.getElementById('ads-overlay');
-            if(!adsOverlay) return;
-            adsOverlay.classList.add('closing');
-            setTimeout(() => {
-                adsOverlay.classList.remove('show', 'closing');
-            }, 500);
+            document.getElementById('ads-overlay').classList.remove('show');
         }
 
         window.onload = () => {
-            setTimeout(showAds, 800);
+            setTimeout(() => document.getElementById('ads-overlay').classList.add('show'), 1000);
         };
     </script>
 </body>
