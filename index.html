@@ -44,25 +44,31 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         .btn-mobile { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+        /* Custom scrollbar untuk menu navigasi di mobile agar lebih rapi */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
 
     <nav class="fixed w-full z-[70] glass-nav">
-        <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-2">
-            <div class="flex items-center gap-2 flex-shrink-0">
-                <img src="smk.jpg" alt="Logo" class="w-8 h-8 md:w-9 md:h-9 object-cover rounded-lg" onerror="this.src='https://placehold.co/100x100?text=SMK'">
-                <div class="flex flex-col">
-                    <span class="text-sm md:text-base font-black text-blue-900 leading-none">SMKN 2</span>
-                    <span class="text-[8px] md:text-[9px] font-bold text-orange-600 uppercase tracking-tighter">Tembilahan</span>
+        <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4 md:gap-2">
+            <!-- Bagian Identitas Sekolah dengan penyesuaian lebar agar tidak menabrak -->
+            <div class="flex items-center gap-2 flex-shrink-0 max-w-[45%] md:max-w-none">
+                <img src="smk.jpg" alt="Logo" class="w-7 h-7 md:w-9 md:h-9 object-cover rounded-lg flex-shrink-0" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                <div class="flex flex-col overflow-hidden">
+                    <span class="text-xs md:text-base font-black text-blue-900 leading-none truncate">SMKN 2</span>
+                    <span class="text-[7px] md:text-[9px] font-bold text-orange-600 uppercase tracking-tighter truncate">Tembilahan</span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar">
-                <a href="#beranda" class="hover:text-blue-900 py-2 whitespace-nowrap">Beranda</a>
-                <a href="#lokasi" class="hover:text-blue-900 py-2 whitespace-nowrap">Lokasi</a>
-                <a href="#jurusan" class="hover:text-blue-900 py-2 whitespace-nowrap">Jurusan</a>
-                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-4 py-2 rounded-full shadow-md text-[9px] md:text-xs whitespace-nowrap">ADMIN</button>
+            <!-- Bagian Menu Navigasi dengan penanganan overflow yang lebih baik -->
+            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[9px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar py-1">
+                <a href="#beranda" class="hover:text-blue-900 py-1 whitespace-nowrap">Beranda</a>
+                <a href="#lokasi" class="hover:text-blue-900 py-1 whitespace-nowrap">Lokasi</a>
+                <a href="#jurusan" class="hover:text-blue-900 py-1 whitespace-nowrap">Jurusan</a>
+                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-[8px] md:text-xs whitespace-nowrap flex-shrink-0">ADMIN</button>
             </div>
         </div>
     </nav>
@@ -101,7 +107,7 @@
         </div>
     </section>
 
-    <!-- BAGIAN LOKASI GOOGLE MAPS - DIPERBARUI -->
+    <!-- BAGIAN LOKASI GOOGLE MAPS -->
     <section id="lokasi" class="py-12 md:py-16 px-4 md:px-12 bg-slate-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8 md:mb-10">
@@ -142,8 +148,38 @@
         </div>
     </section>
 
+    <!-- LOGIN MODAL (Ditambahkan untuk memperbaiki Error) -->
+    <div id="login-modal" class="modal">
+        <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl relative">
+            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h3 class="text-xl font-black text-blue-950 mb-4">Login Admin</h3>
+            <p class="text-slate-500 text-sm mb-6">Silakan masuk menggunakan kredensial admin Anda.</p>
+            <form onsubmit="event.preventDefault();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Username</label>
+                    <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Password</label>
+                    <input type="password" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition-all text-sm">MASUK</button>
+            </form>
+        </div>
+    </div>
+
     <script type="module">
-        // [Logika Firebase, Anti-Spam WA, & Device Lock Anda tetap aman di sini]
+        // Placeholder untuk logika Firebase (User perlu melengkapi sesuai instruksi sebelumnya jika diperlukan)
+        window.checkPendaftaran = function() {
+            if(localStorage.getItem('pendaftar_nama')) {
+                alert('Anda sudah terdaftar!');
+            } else {
+                // Contoh pengalihan atau pembukaan form pendaftaran
+                console.log('Membuka form pendaftaran...');
+            }
+        };
     </script>
 
     <script>
@@ -170,14 +206,23 @@
         function resetTimer() { clearInterval(slideInterval); startTimer(); }
 
         let touchStartX = 0;
-        container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
-        container.addEventListener('touchend', e => {
-            let touchEndX = e.changedTouches[0].screenX;
-            if (touchEndX < touchStartX - 50) { nextSlide(); resetTimer(); }
-            if (touchEndX > touchStartX + 50) { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); resetTimer(); }
-        }, {passive: true});
+        if(container) {
+            container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
+            container.addEventListener('touchend', e => {
+                let touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) { nextSlide(); resetTimer(); }
+                if (touchEndX > touchStartX + 50) { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); resetTimer(); }
+            }, {passive: true});
+        }
 
-        function toggleModal(id) { document.getElementById(id).classList.toggle('active'); }
+        function toggleModal(id) { 
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.toggle('active'); 
+            } else {
+                console.error('Elemen modal dengan id "' + id + '" tidak ditemukan.');
+            }
+        }
         
         window.onload = () => {
             startTimer();
