@@ -146,7 +146,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-3 md:py-4">
                 <div class="flex items-center gap-3">
-                    <img src="smk.jpg" alt="Logo SMKN 2" class="w-10 h-10 md:w-12 md:h-12 object-cover rounded-xl shadow-md" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                    <img src="smk.jpeg" alt="Logo SMKN 2" class="w-10 h-10 md:w-12 md:h-12 object-cover rounded-xl shadow-md" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                     <div>
                         <h1 class="text-base md:text-xl font-bold text-slate-800 leading-tight">SMK Negeri 2 Tembilahan</h1>
                         <p class="text-[10px] md:text-xs text-blue-600 font-semibold">Sistem Penerimaan Siswa Baru 2026</p>
@@ -213,25 +213,25 @@
                     </div>
                 </div>
                 
-                <!-- SLIDER 4 FOTO MPLS 2025 - EKSTENSI .JPEG -->
+                <!-- SLIDER 4 FOTO MPLS 2025 - NAMA FILE SUDAH BENAR: m1.jpeg, m2.jpeg, m3.jpeg, m4.jpeg -->
                 <div class="fade-in-up relative">
                     <div class="slider-container" id="hero-slider">
-                        <!-- SLIDE 1 -->
+                        <!-- SLIDE 1 - m1.jpeg -->
                         <div class="slide active relative">
                             <img src="m1.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 2 -->
+                        <!-- SLIDE 2 - m2.jpeg -->
                         <div class="slide relative">
                             <img src="m2.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 3 -->
+                        <!-- SLIDE 3 - m3.jpeg -->
                         <div class="slide relative">
                             <img src="m3.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 4 -->
+                        <!-- SLIDE 4 - m4.jpeg -->
                         <div class="slide relative">
                             <img src="m4.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
@@ -244,8 +244,9 @@
                         <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot"></button>
                         <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot"></button>
                     </div>
-                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold">‹</button>
-                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold">›</button>
+                    <!-- PANAH KIRI KANAN -->
+                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">‹</button>
+                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">›</button>
                 </div>
             </div>
         </div>
@@ -259,69 +260,80 @@
                 <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-2">Program Keahlian</h2>
                 <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-4"></div>
                 <p class="text-slate-500 text-sm max-w-2xl mx-auto">Pilih program keahlian yang sesuai dengan minat dan bakatmu</p>
-                <button id="btn-lihat-semua" class="mt-5 px-6 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-all shadow-md">📚 Lihat Semua Jurusan</button>
+                
+                <button id="btn-lihat-semua" class="mt-5 px-6 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-all shadow-md">
+                    📚 Lihat Semua Jurusan
+                </button>
             </div>
             
             <div id="jurusan-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                <!-- 9 JURUSAN (sama seperti sebelumnya, tidak diubah) -->
+                <!-- T.PM -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 text-2xl">⚙️</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">⚙️</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.PM</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Pemesinan</p>
                     <p class="text-slate-400 text-xs mb-3">Menguasai mesin bubut, milling, dan teknologi CNC.</p>
                     <button onclick="showDetail('T.PM', 'Mempelajari pengoperasian mesin perkakas presisi, pemrograman CNC, dan teknik produksi manufaktur.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.KR -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🚗</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🚗</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.KR</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Kendaraan Ringan</p>
                     <p class="text-slate-400 text-xs mb-3">Perawatan mesin otomotif & sistem kelistrikan mobil.</p>
                     <button onclick="showDetail('T.KR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.SM -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🏍️</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🏍️</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.SM</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Sepeda Motor</p>
                     <p class="text-slate-400 text-xs mb-3">Servis motor, teknologi injeksi, manajemen bengkel.</p>
                     <button onclick="showDetail('T.SM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.TKJ -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 text-2xl">💻</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">💻</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.TKJ</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Komputer & Jaringan</p>
                     <p class="text-slate-400 text-xs mb-3">Instalasi jaringan, server, keamanan siber, cloud.</p>
                     <button onclick="showDetail('T.TKJ', 'Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.TET -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🦾</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🦾</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.TET</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Elektronika</p>
                     <p class="text-slate-400 text-xs mb-3">Sistem kontrol otomatis, robotika, mikrokontroler.</p>
                     <button onclick="showDetail('T.TET', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.AV -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🔊</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🔊</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.AV</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Audio Video</p>
                     <p class="text-slate-400 text-xs mb-3">Elektronika, sistem audio profesional, perbaikan TV.</p>
                     <button onclick="showDetail('T.AV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga dan sistem audio.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.DPI -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🏗️</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🏗️</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.DPI</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Desain Pemodelan & Informasi Bangunan</p>
                     <p class="text-slate-400 text-xs mb-3">Gambar arsitektur 2D/3D, AutoCAD, Revit.</p>
                     <button onclick="showDetail('T.DPI', 'Fokus pada pembuatan desain bangunan fungsional menggunakan software standar industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.GEOMATIKA -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center mb-3 text-2xl">🗺️</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🗺️</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.GEOMATIKA</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Geomatika</p>
                     <p class="text-slate-400 text-xs mb-3">Pemetaan, GIS, survei, dan penginderaan jauh.</p>
                     <button onclick="showDetail('T.GEOMATIKA', 'Mempelajari teknologi pemetaan digital, SIG, dan survei lahan untuk pembangunan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
                 </div>
+                <!-- T.ITL -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-xl flex items-center justify-center mb-3 text-2xl">⚡</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">⚡</div>
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.ITL</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Instalasi Tenaga Listrik</p>
                     <p class="text-slate-400 text-xs mb-3">Instalasi listrik rumah, industri, kontrol motor PLC.</p>
@@ -342,7 +354,7 @@
                 <div class="grid md:grid-cols-3 gap-6 mb-6">
                     <div>
                         <div class="flex items-center gap-3 mb-3">
-                            <img src="smk.jpg" alt="Logo" class="w-10 h-10 rounded-xl" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                            <img src="smk.jpeg" alt="Logo" class="w-10 h-10 rounded-xl" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                             <div><h3 class="font-bold">SMKN 2 Tembilahan</h3><p class="text-slate-400 text-xs">Sekolah Pusat Keunggulan</p></div>
                         </div>
                         <p class="text-slate-400 text-xs leading-relaxed">Mencetak generasi unggul, berkarakter, dan siap bersaing di era industri 4.0.</p>
@@ -440,7 +452,7 @@
         }
         setInterval(updateCountdown, 1000); updateCountdown();
 
-        // SLIDER 4 FOTO MPLS 2025
+        // SLIDER 4 FOTO MPLS 2025 - SEKARANG PAKAI .jpeg
         let currentSlide = 0, slideInterval;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
@@ -458,8 +470,10 @@
         
         slideInterval = setInterval(nextSlide, 5000);
 
+        // MODAL
         function toggleModal(id) { document.getElementById(id).classList.toggle('active'); }
         
+        // DETAIL JURUSAN
         const jurusanIcons = {
             'T.PM': '⚙️', 'T.KR': '🚗', 'T.SM': '🏍️', 'T.TKJ': '💻',
             'T.TET': '🦾', 'T.AV': '🔊', 'T.DPI': '🏗️', 'T.GEOMATIKA': '🗺️', 'T.ITL': '⚡'
@@ -471,6 +485,7 @@
             toggleModal('detail-modal');
         }
         
+        // LOGIN
         function handleLogin(e) {
             e.preventDefault();
             const u = document.getElementById('login-username').value;
@@ -488,6 +503,7 @@
             showToast("Pendaftaran akan dibuka pada 5 Mei 2026. Siapkan dokumen: Ijazah, KK, Akte Lahir, dan Pas foto.", "info");
         }
         
+        // TOAST NOTIFICATION
         function showToast(msg, type = "success") {
             const toast = document.getElementById('toast-notif');
             const toastMsg = document.getElementById('toast-message');
@@ -507,6 +523,7 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
         
+        // MOBILE MENU
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileMenuBtn) {
@@ -514,16 +531,19 @@
         }
         function closeMobileMenu() { if(mobileMenu) mobileMenu.classList.add('hidden'); }
         
+        // BACK TO TOP
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('show', window.scrollY > 300);
         });
         
+        // BUTTON LIHAT SEMUA JURUSAN
         document.getElementById('btn-lihat-semua').addEventListener('click', () => {
             document.getElementById('jurusan-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
             showToast("✅ 9 Jurusan unggulan SMKN 2 Tembilahan sudah ditampilkan!", "success");
         });
         
+        // WINDOW LOAD
         window.onload = () => {
             showToast("Selamat datang di Portal PPDB SMKN 2 Tembilahan 2026", "info");
         };
