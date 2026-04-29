@@ -40,6 +40,23 @@
         }
         .modal.active { display: flex; }
         
+        /* Animasi untuk Overlay Pengembangan */
+        #dev-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        #dev-overlay.hidden-overlay {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -64,6 +81,24 @@
     </style>
 </head>
 <body class="bg-white text-slate-900">
+
+    <!-- Overlay Tahap Pengembangan -->
+    <div id="dev-overlay">
+        <div class="text-center p-8 max-w-md">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-orange-100 rounded-full mb-6">
+                <span class="text-4xl">🛠️</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black text-blue-950 mb-3 uppercase tracking-tight">Mohon Tunggu</h2>
+            <p class="text-slate-600 font-semibold mb-6">
+                Situs Web Ini Masih Dalam Tahap <span class="text-orange-600">Pengembangan</span>. Mohon maaf atas ketidaknyamanan ini.
+            </p>
+            <!-- Progress Bar Kecil -->
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div id="dev-progress" class="bg-blue-600 h-full w-0 transition-all duration-[4000ms] ease-linear"></div>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-4 font-bold uppercase tracking-widest">Memuat Pratinjau Sistem...</p>
+        </div>
+    </div>
 
     <nav class="fixed w-full z-[70] glass-nav">
         <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4 md:gap-2">
@@ -355,13 +390,34 @@
 
         function checkPendaftaran() {
             if (new Date().getTime() < targetDate) {
-                // Tidak perlu alert karena tombol sudah disabled, tapi untuk jaga-jaga
+                // Tidak perlu alert karena tombol sudah disabled
                 return;
             }
         }
 
+        // Script untuk Menghilangkan Overlay Pengembangan
+        function initDevOverlay() {
+            const overlay = document.getElementById('dev-overlay');
+            const progressBar = document.getElementById('dev-progress');
+            
+            // Mulai animasi progress bar
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+
+            // Hilangkan overlay setelah 4 detik
+            setTimeout(() => {
+                overlay.classList.add('hidden-overlay');
+                // Beri waktu animasi transisi selesai sebelum interaksi penuh
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 800);
+            }, 4000);
+        }
+
         window.onload = () => {
             startTimer();
+            initDevOverlay();
         };
     </script>
 </body>
