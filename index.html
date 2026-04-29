@@ -12,16 +12,15 @@
             background: rgba(255, 255, 255, 0.98); 
             backdrop-filter: blur(15px); 
             border-bottom: 1px solid rgba(226, 232, 240, 1);
-            pointer-events: none; /* Agar tidak menghalangi klik di bawahnya jika ada area kosong */
+            pointer-events: none;
         }
-        .nav-content { pointer-events: auto; } /* Tombol di dalam nav tetap bisa diklik */
+        .nav-content { pointer-events: auto; }
         
         .hero-gradient { 
             background: radial-gradient(circle at top right, rgba(30, 64, 175, 0.05), transparent), 
                         radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.05), transparent); 
         }
         
-        /* SLIDER - Dioptimalkan untuk Sentuhan HP */
         .slider-container { 
             position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; 
             border-radius: 1.5rem; box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1); 
@@ -34,7 +33,6 @@
         .slide.active { opacity: 1; visibility: visible; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* MODAL */
         .modal { 
             display: none; position: fixed; z-index: 100; inset: 0; 
             background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(5px); 
@@ -45,7 +43,6 @@
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Area Klik Tombol di HP lebih besar */
         .btn-mobile { min-height: 44px; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
@@ -102,28 +99,44 @@
         </div>
     </section>
 
-    <!-- BAGIAN LOKASI GOOGLE MAPS -->
+    <!-- BAGIAN LOKASI GOOGLE MAPS - DIPERBARUI -->
     <section id="lokasi" class="py-16 px-5 md:px-12 bg-slate-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10">
                 <h2 class="text-3xl md:text-4xl font-black text-blue-950 mb-2">Lokasi Sekolah Kami</h2>
-                <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+                <div class="w-20 h-1.5 bg-blue-600 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 font-bold text-sm md:text-base">
+                    Jl. SKB No.01, Sei Beringin, Kec. Tembilahan, Kabupaten Indragiri Hilir, Riau 29212
+                </p>
             </div>
             
-            <div class="w-full h-[400px] md:h-[500px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+            <div class="w-full h-[400px] md:h-[550px] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white relative">
+                <!-- Google Maps Embed yang presisi untuk SMKN 2 Tembilahan -->
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.0493863414!2d103.1491763!3d-0.4851214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e29381736b44743%3A0x6e2a2c2069e26214!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714392000000!5m2!1sid!2sid" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.762346585141!2d103.1469145741673!3d-0.4851160352554747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e29381736b44743%3A0x6e2a2c2069e26214!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714500000000!5m2!1sid!2sid" 
                     class="w-full h-full border-0" 
                     allowfullscreen="" 
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
-            <div class="mt-6 text-center">
-                <a href="https://maps.app.goo.gl/UHmq9G6dnTTZFbK99" target="_blank" class="inline-flex items-center gap-2 text-blue-800 font-bold hover:underline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.1,0A254.19,254.19,0,0,0,174,216.25c27.5-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,224a248.29,248.29,0,0,1-38.05-35.3c-25.42-29.19-37.95-58.54-37.95-88.7a72,72,0,0,1,144,0c0,30.16-12.53,59.51-37.95,88.7A248.29,248.29,0,0,1,128,240Z"></path></svg>
-                    Buka di Google Maps
-                </a>
+            
+            <div class="mt-8 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-start gap-4">
+                    <div class="p-3 bg-blue-50 rounded-xl text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.1,0A254.19,254.19,0,0,0,174,216.25c27.5-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,224a248.29,248.29,0,0,1-38.05-35.3c-25.42-29.19-37.95-58.54-37.95-88.7a72,72,0,0,1,144,0c0,30.16-12.53,59.51-37.95,88.7A248.29,248.29,0,0,1,128,240Z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-blue-900">Alamat Lengkap</h4>
+                        <p class="text-sm text-slate-600">Jl. SKB No.01, Sei Beringin, Kec. Tembilahan, Kabupaten Indragiri Hilir, Riau 29212</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center">
+                    <a href="https://maps.app.goo.gl/UHmq9G6dnTTZFbK99" target="_blank" class="bg-blue-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-800 transition-all shadow-lg flex items-center gap-2">
+                        Petunjuk Arah
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -133,7 +146,6 @@
     </script>
 
     <script>
-        // SLIDER LOGIC - Responsif & Gesit
         let currentSlide = 0;
         let slideInterval;
         const slides = document.querySelectorAll('.slide');
@@ -156,7 +168,6 @@
         function startTimer() { slideInterval = setInterval(nextSlide, 5000); }
         function resetTimer() { clearInterval(slideInterval); startTimer(); }
 
-        // SWIPE HP FIX
         let touchStartX = 0;
         container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
         container.addEventListener('touchend', e => {
@@ -165,12 +176,10 @@
             if (touchEndX > touchStartX + 50) { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); resetTimer(); }
         }, {passive: true});
 
-        // MODAL & ADMIN LOGIN (Dengan 60 detik cooldown)
         function toggleModal(id) { document.getElementById(id).classList.toggle('active'); }
         
         window.onload = () => {
             startTimer();
-            // Cek jika sudah terdaftar
             if(localStorage.getItem('pendaftar_nama')) {
                 const statusPendaftaran = document.getElementById('status-pendaftaran');
                 if (statusPendaftaran) {
