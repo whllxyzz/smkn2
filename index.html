@@ -76,6 +76,19 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        .step-number {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -112,7 +125,9 @@
             
             <div class="flex items-center gap-4 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar">
                 <a href="#beranda" class="hover:text-blue-900 whitespace-nowrap">Beranda</a>
+                <a href="#info" class="hover:text-blue-900 whitespace-nowrap">Statistik</a>
                 <a href="#jurusan" class="hover:text-blue-900 whitespace-nowrap">Jurusan</a>
+                <a href="#alur" class="hover:text-blue-900 whitespace-nowrap">Alur</a>
                 <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-4 py-2 rounded-full shadow-md text-[9px] md:text-xs flex-shrink-0">ADMIN</button>
             </div>
         </div>
@@ -163,7 +178,29 @@
         </div>
     </section>
 
-    <!-- Jurusan -->
+    <!-- Statistik Section -->
+    <section id="info" class="py-12 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-6 rounded-3xl text-center shadow-sm border border-slate-100">
+                <span class="block text-2xl md:text-4xl font-black text-blue-900 mb-1">1.2k+</span>
+                <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Siswa Aktif</span>
+            </div>
+            <div class="bg-white p-6 rounded-3xl text-center shadow-sm border border-slate-100">
+                <span class="block text-2xl md:text-4xl font-black text-blue-900 mb-1">8</span>
+                <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Jurusan Unggulan</span>
+            </div>
+            <div class="bg-white p-6 rounded-3xl text-center shadow-sm border border-slate-100">
+                <span class="block text-2xl md:text-4xl font-black text-blue-900 mb-1">50+</span>
+                <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Mitra Industri</span>
+            </div>
+            <div class="bg-white p-6 rounded-3xl text-center shadow-sm border border-slate-100">
+                <span class="block text-2xl md:text-4xl font-black text-blue-900 mb-1">A</span>
+                <span class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">Akreditasi</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jurusan Section -->
     <section id="jurusan" class="py-20 px-4 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -176,18 +213,46 @@
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
                     <div class="text-3xl mb-4">💻</div>
                     <h3 class="text-blue-900 font-extrabold text-sm uppercase">TJKJ</h3>
+                    <p class="text-[10px] text-slate-500 mt-2 font-medium">Teknik Jaringan Komputer & Telekomunikasi</p>
                 </div>
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
                     <div class="text-3xl mb-4">⚙️</div>
                     <h3 class="text-blue-900 font-extrabold text-sm uppercase">Pemesinan</h3>
+                    <p class="text-[10px] text-slate-500 mt-2 font-medium">Teknik Mesin & Produksi</p>
                 </div>
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
                     <div class="text-3xl mb-4">🚗</div>
                     <h3 class="text-blue-900 font-extrabold text-sm uppercase">Otomotif</h3>
+                    <p class="text-[10px] text-slate-500 mt-2 font-medium">Teknik Kendaraan Ringan</p>
                 </div>
                 <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
                     <div class="text-3xl mb-4">🏗️</div>
                     <h3 class="text-blue-900 font-extrabold text-sm uppercase">DPIB</h3>
+                    <p class="text-[10px] text-slate-500 mt-2 font-medium">Desain Pemodelan & Informasi Bangunan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alur Pendaftaran -->
+    <section id="alur" class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black mb-16 text-center">Alur Pendaftaran</h2>
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+                    <div class="step-number">1</div>
+                    <h4 class="font-black text-xl mb-3 uppercase">Registrasi</h4>
+                    <p class="text-slate-400 text-sm">Buat akun siswa menggunakan NISN aktif dan email yang valid.</p>
+                </div>
+                <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+                    <div class="step-number">2</div>
+                    <h4 class="font-black text-xl mb-3 uppercase">Input Data</h4>
+                    <p class="text-slate-400 text-sm">Lengkapi profil, nilai raport, dan upload dokumen pendukung.</p>
+                </div>
+                <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+                    <div class="step-number">3</div>
+                    <h4 class="font-black text-xl mb-3 uppercase">Verifikasi</h4>
+                    <p class="text-slate-400 text-sm">Tim panitia akan memvalidasi berkas fisik dan data online.</p>
                 </div>
             </div>
         </div>
@@ -205,6 +270,12 @@
             <button onclick="toggleModal('login-modal')" class="mt-4 w-full text-slate-400 text-xs font-bold uppercase tracking-widest">Tutup</button>
         </div>
     </div>
+
+    <footer class="bg-white py-12 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 SMKN 2 Tembilahan - Tim IT Developer</p>
+        </div>
+    </footer>
 
     <script>
         const targetDate = new Date("May 5, 2026 00:00:00").getTime();
@@ -242,7 +313,7 @@
         function showDevNotice() {
             setTimeout(() => {
                 document.getElementById('dev-notice').classList.add('show');
-            }, 2000); // Muncul setelah 2 detik agar tidak kaget
+            }, 2000);
         }
 
         function closeDevNotice() {
@@ -253,9 +324,11 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
         }
         setInterval(nextSlide, 5000);
 
