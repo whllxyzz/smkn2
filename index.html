@@ -228,7 +228,7 @@
         </div>
     </section>
 
-    <!-- JURUSAN SECTION (DIKEMBALIKAN LENGKAP) -->
+    <!-- JURUSAN SECTION -->
     <section id="jurusan" class="py-20 px-4 md:px-12 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -237,54 +237,70 @@
                 <p class="text-slate-600 font-medium text-sm md:text-lg max-w-2xl mx-auto">Tersedia berbagai pilihan jurusan unggulan untuk masa depanmu.</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- TJKJ -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">💻</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TJKJ</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Jaringan Komputer & Telekomunikasi</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TJKJ</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Jaringan Komputer & Telekomunikasi</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing terkini.</p>
+                    <button onclick="showDetail('TJKJ', 'Mempelajari cara membangun dan mengelola jaringan komputer, perbaikan perangkat keras, hingga konfigurasi server skala industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TKR -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🚗</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TKR</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Kendaraan Ringan</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TKR</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Kendaraan Ringan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Fokus pada pemeliharaan mesin otomotif, sistem kelistrikan mobil, dan teknologi kendaraan modern.</p>
+                    <button onclick="showDetail('TKR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan sesuai standar industri global.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TBSM -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏍️</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TBSM</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Bisnis Sepeda Motor</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TBSM</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Bisnis Sepeda Motor</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Spesialisasi perawatan sepeda motor, teknologi injeksi, dan manajemen bengkel profesional.</p>
+                    <button onclick="showDetail('TBSM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor modern.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TP -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-slate-200 text-slate-700 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚙️</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TP</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Pemesinan</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TP</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Pemesinan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Menguasai pengoperasian mesin bubut, milling, dan teknologi CNC untuk produksi manufaktur.</p>
+                    <button onclick="showDetail('TP', 'Belajar menggunakan mesin perkakas presisi untuk membuat komponen mesin yang digunakan di berbagai sektor industri manufaktur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TAV -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🔊</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TAV</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Audio Video</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TAV</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Audio Video</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari elektronika dasar, sistem audio profesional, perbaikan TV, dan perangkat video.</p>
+                    <button onclick="showDetail('TAV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga, sistem audio, hingga pemrosesan sinyal digital.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- DPIB -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏗️</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">DPIB</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Desain Pemodelan & Informasi Bangunan</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">DPIB</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Desain Pemodelan & Informasi Bangunan</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Belajar menggambar arsitektur 2D/3D menggunakan AutoCAD dan Revit untuk konstruksi modern.</p>
+                    <button onclick="showDetail('DPIB', 'Fokus pada pembuatan desain bangunan yang fungsional dan estetis menggunakan perangkat lunak standar industri arsitektur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TITL -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚡</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TITL</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Instalasi Tenaga Listrik</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TITL</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Instalasi Tenaga Listrik</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi listrik rumah, industri, dan kontrol motor listrik berbasis PLC.</p>
+                    <button onclick="showDetail('TITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung serta pemeliharaan panel kontrol listrik industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
                 <!-- TE -->
-                <div class="jurusan-card bg-slate-50 p-6 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
+                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
                     <div class="w-14 h-14 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🦾</div>
-                    <h3 class="text-blue-900 font-extrabold text-xs mb-1 uppercase tracking-tight">TE</h3>
-                    <p class="text-[9px] text-slate-500 font-bold uppercase">Teknik Elektronika</p>
+                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TE</h3>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Elektronika</p>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mendalami sistem kontrol otomatis, robotika dasar, dan mikroprosesor dalam industri 4.0.</p>
+                    <button onclick="showDetail('TE', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas untuk masa depan industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
                 </div>
             </div>
         </div>
@@ -314,6 +330,26 @@
         </div>
     </div>
 
+    <!-- Modal Detail Jurusan -->
+    <div id="detail-modal" class="modal">
+        <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl relative">
+            <button onclick="toggleModal('detail-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="modal-content-area" class="text-center">
+                <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                    <span id="detail-icon" class="text-4xl">✨</span>
+                </div>
+                <h3 id="detail-title" class="text-3xl font-black text-blue-950 mb-2 uppercase tracking-tight">Nama Jurusan</h3>
+                <div class="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-8"></div>
+                <p id="detail-desc" class="text-slate-600 font-medium leading-relaxed text-sm md:text-base">Deskripsi detail akan muncul di sini.</p>
+                <div class="mt-10">
+                    <button onclick="toggleModal('detail-modal')" class="bg-blue-900 text-white px-8 py-3 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const targetDate = new Date("May 5, 2026 00:00:00").getTime();
         
@@ -339,10 +375,12 @@
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = d.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            if(document.getElementById('days')) {
+                document.getElementById('days').innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            }
         }
 
         setInterval(updateCountdown, 1000);
@@ -373,11 +411,23 @@
             if (modal) modal.classList.toggle('active'); 
         }
 
+        function showDetail(title, desc) {
+            const icons = {
+                'TJKJ': '💻', 'TKR': '🚗', 'TBSM': '🏍️', 'TP': '⚙️',
+                'TAV': '🔊', 'DPIB': '🏗️', 'TITL': '⚡', 'TE': '🦾'
+            };
+            document.getElementById('detail-title').innerText = title;
+            document.getElementById('detail-desc').innerText = desc;
+            document.getElementById('detail-icon').innerText = icons[title] || '✨';
+            toggleModal('detail-modal');
+        }
+
         // AD POPUP LOGIC
         function showAds() {
             const adsOverlay = document.getElementById('ads-overlay');
             const timerText = document.getElementById('ads-timer');
             let timeLeft = 3;
+            if(!adsOverlay) return;
             adsOverlay.classList.add('show');
             const countdown = setInterval(() => {
                 timeLeft--;
@@ -391,6 +441,7 @@
 
         function closeAds() {
             const adsOverlay = document.getElementById('ads-overlay');
+            if(!adsOverlay) return;
             adsOverlay.classList.add('closing');
             setTimeout(() => {
                 adsOverlay.classList.remove('show', 'closing');
