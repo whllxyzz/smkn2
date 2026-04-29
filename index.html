@@ -3,354 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPMB SMKN 2 Tembilahan 2026</title>
+    <title>SPMB SMKN 2 Tembilahan 2026 - Official</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
-        .glass-nav { 
-            background: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(15px); 
-            border-bottom: 1px solid rgba(226, 232, 240, 1);
+        * { font-family: 'Inter', sans-serif; }
+        body { scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Custom Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Hero Gradient Professional */
+        .hero-pro {
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            position: relative;
+            isolation: isolate;
+        }
+        .hero-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05), transparent 50%);
             pointer-events: none;
-        }
-        .nav-content { pointer-events: auto; }
-        
-        .hero-gradient { 
-            background: radial-gradient(circle at top right, rgba(30, 64, 175, 0.05), transparent), 
-                        radial-gradient(circle at bottom left, rgba(249, 115, 22, 0.05), transparent); 
+            z-index: 0;
         }
         
-        .slider-container { 
-            position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; 
-            border-radius: 1.5rem; box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1); 
-            background-color: #f1f5f9; touch-action: pan-y; z-index: 5;
+        /* Slider Enhancement */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        .slide { 
-            position: absolute; inset: 0; opacity: 0; visibility: hidden; 
-            transition: opacity 0.8s ease-in-out; 
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
         }
         .slide.active { opacity: 1; visibility: visible; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         
-        .modal { 
-            display: none; position: fixed; z-index: 100; inset: 0; 
-            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); 
-            align-items: center; justify-content: center; padding: 1.5rem; 
-        }
-        .modal.active { display: flex; }
-        
-        /* IKLAN POPUP STYLISH */
-        #ads-overlay {
+        /* Modal Styling */
+        .modal {
             display: none;
             position: fixed;
-            inset: 0;
             z-index: 1000;
-            background: rgba(15, 23, 42, 0.6);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            padding: 1rem;
         }
-        #ads-overlay.show { display: flex; opacity: 1; }
-
-        .ads-card {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.3);
-            transform: scale(0.8) translateY(40px);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        #ads-overlay.show .ads-card { transform: scale(1) translateY(0); }
-        #ads-overlay.closing .ads-card { transform: scale(0.9) translateY(20px); opacity: 0; }
-        #ads-overlay.closing { opacity: 0; }
-
-        .ads-gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        }
-
-        .close-ads-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .close-ads-btn:hover { background: rgba(255, 255, 255, 0.3); transform: rotate(90deg); }
-
-        .ads-glow {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: rgba(59, 130, 246, 0.5);
-            filter: blur(60px);
-            border-radius: 50%;
-            top: -50px;
-            left: -50px;
-            pointer-events: none;
-        }
-
-        /* Utils */
-        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .btn-mobile { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .modal.active { display: flex; }
+        
+        /* Countdown Box */
         .countdown-box {
-            background: rgba(30, 58, 138, 0.05);
-            border: 1px solid rgba(30, 58, 138, 0.1);
-            backdrop-filter: blur(4px);
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
         }
-        .jurusan-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .jurusan-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* Card Hover Effects */
+        .jurusan-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .jurusan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+        
+        /* Notification Toast */
+        .toast-notif {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast-notif.show {
+            transform: translateX(0);
+        }
     </style>
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-white text-slate-800">
 
-    <!-- IKLAN POPUP MODERN -->
-    <div id="ads-overlay">
-        <div class="ads-card">
-            <button onclick="closeAds()" class="close-ads-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </button>
-            <div class="ads-gradient-bg p-8 text-center relative overflow-hidden">
-                <div class="ads-glow"></div>
-                <div class="relative z-10">
-                    <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mx-auto mb-4 border border-white/30 shadow-inner">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                        </svg>
+    <!-- NAVBAR - Professional -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3 md:py-4">
+                <div class="flex items-center gap-3">
+                    <img src="smk.jpg" alt="Logo SMKN 2" class="w-10 h-10 md:w-12 md:h-12 object-cover rounded-xl shadow-md" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                    <div>
+                        <h1 class="text-base md:text-xl font-bold text-slate-800 leading-tight">SMK Negeri 2 Tembilahan</h1>
+                        <p class="text-[10px] md:text-xs text-blue-600 font-semibold">Sistem Penerimaan Siswa Baru 2026</p>
                     </div>
-                    <span class="inline-block px-3 py-1 bg-orange-500 text-white text-[10px] font-black rounded-full uppercase tracking-widest mb-2">Pemberitahuan</span>
-                    <h4 class="text-white font-extrabold text-2xl tracking-tight leading-tight">Tahap Pengembangan</h4>
                 </div>
-            </div>
-            <div class="p-8 text-center">
-                <p class="text-slate-500 text-sm font-medium leading-relaxed mb-8">
-                    Halo Calon Siswa! Website ini masih dalam proses penyempurnaan. Punya ide fitur keren? Hubungi admin ya!
-                </p>
-                <a href="https://wa.me/6282293786539" target="_blank" class="flex items-center justify-center gap-3 bg-slate-900 text-white w-full py-4 rounded-2xl font-black text-sm hover:bg-blue-600 transition-all shadow-xl shadow-slate-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-emerald-400" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Kirim Saran via WhatsApp
-                </a>
-                <div class="mt-6 flex items-center justify-center gap-2">
-                    <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Menutup dalam <span id="ads-timer" class="text-blue-500">3</span> detik</span>
+                <div class="hidden md:flex items-center gap-2">
+                    <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Beranda</a>
+                    <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Jurusan</a>
+                    <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Lokasi</a>
+                    <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-lg">
+                        Admin Area
+                    </button>
                 </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-    </div>
-
-    <!-- NAVBAR -->
-    <nav class="fixed w-full z-[70] glass-nav">
-        <div class="nav-content max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
-            <div class="flex items-center gap-3 flex-shrink-0">
-                <img src="smk.jpg" alt="Logo" class="w-9 h-9 md:w-11 md:h-11 object-cover rounded-lg flex-shrink-0 shadow-sm" onerror="this.src='https://placehold.co/100x100?text=SMK'">
-                <div class="flex flex-col">
-                    <span class="text-sm md:text-lg font-extrabold text-blue-900 leading-none tracking-tight">SMKN 2</span>
-                    <span class="text-[9px] md:text-xs font-bold text-orange-600 uppercase tracking-wide">Tembilahan</span>
-                </div>
-            </div>
-            <div class="flex items-center gap-3 md:gap-8 font-extrabold text-[10px] md:text-sm text-slate-700 uppercase tracking-tight overflow-x-auto no-scrollbar py-1">
-                <a href="#beranda" class="hover:text-blue-900 whitespace-nowrap">Beranda</a>
-                <a href="#jurusan" class="hover:text-blue-900 whitespace-nowrap">Jurusan</a>
-                <a href="#lokasi" class="hover:text-blue-900 whitespace-nowrap">Lokasi</a>
-                <button onclick="toggleModal('login-modal')" class="bg-blue-900 text-white px-3 md:px-5 py-1.5 rounded-full shadow-md text-[9px] md:text-xs hover:bg-blue-800 transition-colors">ADMIN</button>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 py-3 px-4">
+            <div class="flex flex-col gap-2">
+                <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Beranda</a>
+                <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Jurusan</a>
+                <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Lokasi</a>
+                <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left">
+                    Admin Area
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="beranda" class="pt-24 md:pt-44 pb-16 px-4 md:px-12 hero-gradient min-h-[90vh] flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
-            <div class="fade-in text-center lg:text-left order-2 lg:order-1">
-                <h1 class="text-3xl md:text-7xl font-black text-blue-950 leading-tight mb-4">Masa Depan <br><span class="text-blue-600">Gemilang</span>.</h1>
-                <p class="text-slate-600 font-medium mb-6 text-xs md:text-lg max-w-xs md:max-w-md mx-auto lg:mx-0">Sistem Pendaftaran Siswa Baru SMKN 2 Tembilahan 2026. Aman, Cepat, dan Terintegrasi.</p>
+    <!-- HERO SECTION - Professional Layout -->
+    <section id="beranda" class="hero-pro pt-28 md:pt-36 pb-16 md:pb-24 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="fade-in-up">
+                    <div class="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-5">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wide">Pendaftaran 2026</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-4">
+                        Masa Depan <br>
+                        <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Gemilang</span>
+                        Dimulai Disini
+                    </h1>
+                    <p class="text-slate-500 text-base md:text-lg mb-8 max-w-lg">
+                        Sistem Penerimaan Siswa Baru SMK Negeri 2 Tembilahan Tahun Ajaran 2026/2027. 
+                        Proses cepat, transparan, dan terintegrasi.
+                    </p>
+                    
+                    <!-- Countdown Timer -->
+                    <div id="countdown-container" class="mb-8 hidden">
+                        <p class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-3">Pendaftaran akan dibuka dalam:</p>
+                        <div class="flex gap-3">
+                            <div class="countdown-box rounded-xl p-3 min-w-[70px] text-center">
+                                <span id="days" class="block text-2xl md:text-3xl font-black text-slate-800">00</span>
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase">Hari</span>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 min-w-[70px] text-center">
+                                <span id="hours" class="block text-2xl md:text-3xl font-black text-slate-800">00</span>
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase">Jam</span>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 min-w-[70px] text-center">
+                                <span id="minutes" class="block text-2xl md:text-3xl font-black text-slate-800">00</span>
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase">Menit</span>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 min-w-[70px] text-center">
+                                <span id="seconds" class="block text-2xl md:text-3xl font-black text-slate-800">00</span>
+                                <span class="text-[10px] font-semibold text-slate-400 uppercase">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div id="status-pendaftaran" class="flex flex-wrap gap-4">
+                        <button id="btn-daftar" disabled class="btn-primary px-8 py-3 bg-slate-300 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed">
+                            ⏳ Pendaftaran Belum Dibuka
+                        </button>
+                        <button onclick="showInfoPendaftaran()" class="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all">
+                            📋 Info Pendaftaran
+                        </button>
+                    </div>
+                </div>
                 
-                <div id="countdown-container" class="mb-8 hidden">
-                    <p class="text-blue-900 font-bold text-[10px] md:text-xs uppercase tracking-widest mb-3">Pendaftaran Dibuka Dalam:</p>
-                    <div class="flex justify-center lg:justify-start gap-2 md:gap-4">
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="days" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Hari</span>
+                <!-- Right Slider -->
+                <div class="fade-in-up relative">
+                    <div class="slider-container" id="hero-slider">
+                        <div class="slide active"><img src="mpls1.jpg.jpeg" alt="Kegiatan Siswa" onerror="this.src='https://placehold.co/800x450?text=SMKN+2+Tembilahan'"></div>
+                        <div class="slide"><img src="mpls2.jpg.jpeg" alt="Fasilitas Sekolah" onerror="this.src='https://placehold.co/800x450?text=Fasilitas+Modern'"></div>
+                        <div class="slide"><img src="mpls3.jpg.jpeg" alt="Praktik Siswa" onerror="this.src='https://placehold.co/800x450?text=Praktik+Industri'"></div>
+                        <div class="slide"><img src="mpls4.jpg.jpeg" alt="Prestasi Sekolah" onerror="this.src='https://placehold.co/800x450?text=Prestasi+Gemilang'"></div>
+                    </div>
+                    <!-- Slider Dots -->
+                    <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
+                        <button onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-blue-600 slider-dot transition-all duration-300"></button>
+                        <button onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition-all duration-300"></button>
+                        <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition-all duration-300"></button>
+                        <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition-all duration-300"></button>
+                    </div>
+                    <!-- Slider Navigation -->
+                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JURUSAN SECTION - Enhanced -->
+    <section id="jurusan" class="py-20 md:py-28 px-4 md:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold text-sm uppercase tracking-wider bg-blue-50 px-4 py-1 rounded-full inline-block mb-4">Kompetensi Keahlian</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Program Unggulan</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-500 text-base max-w-2xl mx-auto">Pilih program keahlian yang sesuai dengan minat dan bakatmu untuk masa depan yang cerah.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- TJKJ -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TJKJ', 'Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing terkini.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">💻</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TJKJ</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Jaringan Komputer & Telekomunikasi</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Mempelajari instalasi jaringan, server, keamanan siber...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TKR -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TKR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan sesuai standar industri global.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">🚗</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TKR</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Kendaraan Ringan</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Fokus pada pemeliharaan mesin otomotif, sistem kelistrikan...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TBSM -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TBSM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor modern.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">🏍️</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TBSM</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Bisnis Sepeda Motor</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Spesialisasi perawatan sepeda motor, teknologi injeksi...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TP -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TP', 'Belajar menggunakan mesin perkakas presisi untuk membuat komponen mesin yang digunakan di berbagai sektor industri manufaktur.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-slate-500 to-slate-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">⚙️</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TP</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Pemesinan</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Menguasai pengoperasian mesin bubut, milling, dan CNC...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TAV -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TAV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga, sistem audio, hingga pemrosesan sinyal digital.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">🔊</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TAV</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Audio Video</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Mempelajari elektronika dasar, sistem audio profesional...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- DPIB -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('DPIB', 'Fokus pada pembuatan desain bangunan yang fungsional dan estetis menggunakan perangkat lunak standar industri arsitektur.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">🏗️</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">DPIB</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Desain Pemodelan & Informasi Bangunan</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Belajar menggambar arsitektur 2D/3D menggunakan AutoCAD...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TITL -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung serta pemeliharaan panel kontrol listrik industri.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">⚡</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TITL</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Instalasi Tenaga Listrik</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Mempelajari instalasi listrik rumah, industri, dan kontrol...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+                <!-- TE -->
+                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-xl transition-all cursor-pointer group" onclick="showDetail('TE', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas untuk masa depan industri.')">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">🦾</div>
+                    <h3 class="text-slate-800 font-bold text-lg mb-1">TE</h3>
+                    <p class="text-xs text-blue-600 font-semibold mb-3">Teknik Elektronika</p>
+                    <p class="text-slate-400 text-sm mb-4 line-clamp-2">Mendalami sistem kontrol otomatis, robotika dasar...</p>
+                    <button class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">Lihat Selengkapnya →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOKASI & FOOTER SECTION -->
+    <section id="lokasi" class="relative">
+        <!-- Map Section -->
+        <div class="h-96 w-full">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e293670966f916d%3A0x6734568600f73562!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714394000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-white py-12 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="smk.jpg" alt="Logo" class="w-12 h-12 rounded-xl" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                            <div>
+                                <h3 class="font-bold text-lg">SMKN 2 Tembilahan</h3>
+                                <p class="text-slate-400 text-xs">Sekolah Pusat Keunggulan</p>
+                            </div>
                         </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="hours" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Jam</span>
-                        </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="minutes" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Menit</span>
-                        </div>
-                        <div class="countdown-box p-2 md:p-4 rounded-xl min-w-[50px] md:min-w-[80px] text-center">
-                            <span id="seconds" class="block text-lg md:text-3xl font-black text-blue-900">00</span>
-                            <span class="text-[8px] md:text-[10px] font-bold text-slate-500 uppercase">Detik</span>
+                        <p class="text-slate-400 text-sm leading-relaxed">Mencetak generasi unggul, berkarakter, dan siap bersaing di era industri 4.0.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-slate-300">Kontak</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li>📞 (0768) 123456</li>
+                            <li>✉️ info@smkn2-tembilahan.sch.id</li>
+                            <li>📍 Jl. SKB No.01, Tembilahan</li>
+                            <li>🌐 Indragiri Hilir, Riau</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-slate-300">Link Terkait</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Kemendikbudristek</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Disdik Kab. Inhil</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-colors">PPDB Online 2026</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-slate-300">Ikuti Kami</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">📘</a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">📷</a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">▶️</a>
                         </div>
                     </div>
                 </div>
-
-                <div id="status-pendaftaran" class="flex justify-center lg:justify-start">
-                    <button id="btn-daftar" disabled class="btn-mobile opacity-50 cursor-not-allowed bg-blue-800 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-black shadow-xl text-sm md:text-base">PENDAFTARAN BELUM DIBUKA</button>
+                <div class="border-t border-slate-800 pt-6 text-center text-slate-500 text-xs">
+                    <p>&copy; 2026 SMK Negeri 2 Tembilahan. All Rights Reserved.</p>
                 </div>
             </div>
-            
-            <div class="fade-in order-1 lg:order-2 relative">
-                <div class="slider-container" id="hero-slider">
-                    <div class="slide active"><img src="mpls1.jpg.jpeg" alt="Siswa 1" onerror="this.src='https://placehold.co/800x450?text=SMKN2+1'"></div>
-                    <div class="slide"><img src="mpls2.jpg.jpeg" alt="Siswa 2" onerror="this.src='https://placehold.co/800x450?text=SMKN2+2'"></div>
-                    <div class="slide"><img src="mpls3.jpg.jpeg" alt="Siswa 3" onerror="this.src='https://placehold.co/800x450?text=SMKN2+3'"></div>
-                    <div class="slide"><img src="mpls4.jpg.jpeg" alt="Siswa 4" onerror="this.src='https://placehold.co/800x450?text=SMKN2+4'"></div>
-                </div>
-                <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-                    <button onclick="goToSlide(0)" class="w-6 h-1.5 rounded-full bg-blue-900 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(1)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(2)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
-                    <button onclick="goToSlide(3)" class="w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all"></button>
-                </div>
-            </div>
-        </div>
+        </footer>
     </section>
 
-    <!-- JURUSAN SECTION -->
-    <section id="jurusan" class="py-20 px-4 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black text-blue-950 mb-4">Program Keahlian</h2>
-                <div class="w-24 h-1.5 bg-orange-500 mx-auto rounded-full mb-6"></div>
-                <p class="text-slate-600 font-medium text-sm md:text-lg max-w-2xl mx-auto">Tersedia berbagai pilihan jurusan unggulan untuk masa depanmu.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- TJKJ -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">💻</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TJKJ</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Jaringan Komputer & Telekomunikasi</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing terkini.</p>
-                    <button onclick="showDetail('TJKJ', 'Mempelajari cara membangun dan mengelola jaringan komputer, perbaikan perangkat keras, hingga konfigurasi server skala industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TKR -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🚗</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TKR</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Kendaraan Ringan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Fokus pada pemeliharaan mesin otomotif, sistem kelistrikan mobil, dan teknologi kendaraan modern.</p>
-                    <button onclick="showDetail('TKR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan sesuai standar industri global.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TBSM -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏍️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TBSM</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Bisnis Sepeda Motor</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Spesialisasi perawatan sepeda motor, teknologi injeksi, dan manajemen bengkel profesional.</p>
-                    <button onclick="showDetail('TBSM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor modern.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TP -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-slate-200 text-slate-700 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚙️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TP</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Pemesinan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Menguasai pengoperasian mesin bubut, milling, dan teknologi CNC untuk produksi manufaktur.</p>
-                    <button onclick="showDetail('TP', 'Belajar menggunakan mesin perkakas presisi untuk membuat komponen mesin yang digunakan di berbagai sektor industri manufaktur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TAV -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🔊</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TAV</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Audio Video</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari elektronika dasar, sistem audio profesional, perbaikan TV, dan perangkat video.</p>
-                    <button onclick="showDetail('TAV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga, sistem audio, hingga pemrosesan sinyal digital.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- DPIB -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🏗️</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">DPIB</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Desain Pemodelan & Informasi Bangunan</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Belajar menggambar arsitektur 2D/3D menggunakan AutoCAD dan Revit untuk konstruksi modern.</p>
-                    <button onclick="showDetail('DPIB', 'Fokus pada pembuatan desain bangunan yang fungsional dan estetis menggunakan perangkat lunak standar industri arsitektur.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TITL -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">⚡</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TITL</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Instalasi Tenaga Listrik</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mempelajari instalasi listrik rumah, industri, dan kontrol motor listrik berbasis PLC.</p>
-                    <button onclick="showDetail('TITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung serta pemeliharaan panel kontrol listrik industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-                <!-- TE -->
-                <div class="jurusan-card bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-cyan-100 text-cyan-600 rounded-2xl flex items-center justify-center text-2xl mb-4 font-bold">🦾</div>
-                    <h3 class="text-blue-900 font-extrabold text-sm mb-1 uppercase tracking-tight">TE</h3>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase mb-4">Teknik Elektronika</p>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Mendalami sistem kontrol otomatis, robotika dasar, dan mikroprosesor dalam industri 4.0.</p>
-                    <button onclick="showDetail('TE', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas untuk masa depan industri.')" class="mt-auto text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-800 transition-colors">Baca Detail →</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER / LOKASI -->
-    <section id="lokasi" class="py-16 px-4 bg-slate-900 text-white text-center">
-        <h3 class="text-2xl font-black mb-4">Lokasi Sekolah</h3>
-        <p class="text-slate-400 text-sm mb-8">Jl. SKB No.01, Tembilahan, Indragiri Hilir, Riau.</p>
-        <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl h-64 md:h-96">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e293670966f916d%3A0x6734568600f73562!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714394000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <!-- Modal Login -->
+    <!-- MODAL LOGIN -->
     <div id="login-modal" class="modal">
-        <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl relative">
-            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative animate-fade-in">
+            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <h3 class="text-xl font-black text-blue-950 mb-4">Login Admin</h3>
-            <form onsubmit="event.preventDefault();" class="space-y-4">
-                <div><label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase tracking-wider">Username</label><input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <div><label class="block text-[10px] font-bold text-slate-700 mb-1 uppercase tracking-wider">Password</label><input type="password" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <button type="submit" class="w-full bg-blue-900 text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-all text-sm uppercase tracking-widest shadow-lg">Masuk Sistem</button>
-            </form>
+            <div class="p-8">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">🔐</div>
+                    <h3 class="text-2xl font-bold text-slate-800">Login Admin</h3>
+                    <p class="text-slate-500 text-sm mt-1">Akses khusus panitia PPDB</p>
+                </div>
+                <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Username</label>
+                        <input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Masukkan username">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Password</label>
+                        <input type="password" id="login-password" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="Masukkan password">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition-all shadow-md">
+                        Masuk Dashboard
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Modal Detail Jurusan -->
+    <!-- MODAL DETAIL JURUSAN -->
     <div id="detail-modal" class="modal">
-        <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl relative">
-            <button onclick="toggleModal('detail-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl relative p-8">
+            <button onclick="toggleModal('detail-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <div id="modal-content-area" class="text-center">
-                <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                    <span id="detail-icon" class="text-4xl">✨</span>
-                </div>
-                <h3 id="detail-title" class="text-3xl font-black text-blue-950 mb-2 uppercase tracking-tight">Nama Jurusan</h3>
-                <div class="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-8"></div>
-                <p id="detail-desc" class="text-slate-600 font-medium leading-relaxed text-sm md:text-base">Deskripsi detail akan muncul di sini.</p>
-                <div class="mt-10">
-                    <button onclick="toggleModal('detail-modal')" class="bg-blue-900 text-white px-8 py-3 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg">Tutup</button>
-                </div>
+            <div class="text-center">
+                <div id="detail-icon" class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 text-5xl shadow-lg">💻</div>
+                <h3 id="detail-title" class="text-2xl font-bold text-slate-800 mb-2">Nama Jurusan</h3>
+                <div class="w-16 h-1 bg-blue-600 mx-auto rounded-full mb-6"></div>
+                <p id="detail-desc" class="text-slate-600 leading-relaxed">Deskripsi jurusan akan muncul disini</p>
+                <button onclick="toggleModal('detail-modal')" class="mt-8 px-6 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notif" class="toast-notif bg-white rounded-xl shadow-xl border border-slate-200 p-4 min-w-[280px]">
+        <div class="flex items-center gap-3">
+            <div id="toast-icon" class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">✓</div>
+            <div>
+                <p id="toast-message" class="text-sm font-semibold text-slate-700">Notifikasi</p>
             </div>
         </div>
     </div>
 
     <script>
+        // ========== COUNTDOWN TIMER ==========
         const targetDate = new Date("May 5, 2026 00:00:00").getTime();
         
         function updateCountdown() {
@@ -362,94 +459,193 @@
             if (distance < 0) {
                 container?.classList.add('hidden');
                 if(btnDaftar) {
-                    btnDaftar.classList.remove('opacity-50', 'cursor-not-allowed');
                     btnDaftar.disabled = false;
-                    btnDaftar.innerText = "DAFTAR SEKARANG";
+                    btnDaftar.className = "btn-primary px-8 py-3 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl";
+                    btnDaftar.innerText = "📝 DAFTAR SEKARANG";
+                    btnDaftar.onclick = () => showToast("Pendaftaran akan segera dibuka! Silahkan hubungi panitia.", "info");
                 }
                 return;
             }
 
             container?.classList.remove('hidden');
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if(document.getElementById('days')) {
-                document.getElementById('days').innerText = d.toString().padStart(2, '0');
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            }
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            if(daysEl) daysEl.innerText = days.toString().padStart(2, '0');
+            if(hoursEl) hoursEl.innerText = hours.toString().padStart(2, '0');
+            if(minutesEl) minutesEl.innerText = minutes.toString().padStart(2, '0');
+            if(secondsEl) secondsEl.innerText = seconds.toString().padStart(2, '0');
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Slider logic
+        // ========== SLIDER LOGIC ==========
         let currentSlide = 0;
         let slideInterval;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
 
         function updateSlider() {
-            slides.forEach((s, i) => {
-                s.classList.toggle('active', i === currentSlide);
-                if(dots[i]) {
-                    dots[i].className = i === currentSlide 
-                        ? 'w-6 h-1.5 rounded-full bg-blue-900 slider-dot transition-all' 
-                        : 'w-2 h-1.5 rounded-full bg-slate-300 slider-dot transition-all';
+            slides.forEach((slide, index) => {
+                if(index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            dots.forEach((dot, index) => {
+                if(index === currentSlide) {
+                    dot.className = "w-6 h-2 rounded-full bg-blue-600 slider-dot transition-all duration-300";
+                } else {
+                    dot.className = "w-2 h-2 rounded-full bg-slate-300 slider-dot transition-all duration-300";
                 }
             });
         }
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
-        function goToSlide(n) { currentSlide = n; updateSlider(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
-        slideInterval = setInterval(nextSlide, 5000);
 
-        function toggleModal(id) { 
-            const modal = document.getElementById(id);
-            if (modal) modal.classList.toggle('active'); 
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
         }
 
-        function showDetail(title, desc) {
-            const icons = {
-                'TJKJ': '💻', 'TKR': '🚗', 'TBSM': '🏍️', 'TP': '⚙️',
-                'TAV': '🔊', 'DPIB': '🏗️', 'TITL': '⚡', 'TE': '🦾'
-            };
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        slideInterval = setInterval(nextSlide, 5000);
+
+        // ========== MODAL FUNCTIONS ==========
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) modal.classList.toggle('active');
+        }
+
+        // ========== DETAIL JURUSAN ==========
+        const jurusanIcons = {
+            'TJKJ': '💻', 'TKR': '🚗', 'TBSM': '🏍️', 'TP': '⚙️',
+            'TAV': '🔊', 'DPIB': '🏗️', 'TITL': '⚡', 'TE': '🦾'
+        };
+
+        function showDetail(title, description) {
             document.getElementById('detail-title').innerText = title;
-            document.getElementById('detail-desc').innerText = desc;
-            document.getElementById('detail-icon').innerText = icons[title] || '✨';
+            document.getElementById('detail-desc').innerHTML = description;
+            const iconDiv = document.getElementById('detail-icon');
+            if(iconDiv) iconDiv.innerText = jurusanIcons[title] || '✨';
             toggleModal('detail-modal');
         }
 
-        // AD POPUP LOGIC
-        function showAds() {
-            const adsOverlay = document.getElementById('ads-overlay');
-            const timerText = document.getElementById('ads-timer');
-            let timeLeft = 3;
-            if(!adsOverlay) return;
-            adsOverlay.classList.add('show');
-            const countdown = setInterval(() => {
-                timeLeft--;
-                if (timerText) timerText.innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    closeAds();
-                }
-            }, 1000);
+        // ========== LOGIN HANDLER ==========
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            if(username === "admin" && password === "smkn2tembilahan") {
+                showToast("Login berhasil! Selamat datang Admin.", "success");
+                toggleModal('login-modal');
+                setTimeout(() => {
+                    window.open("https://wa.me/6282293786539?text=Halo%20Admin%20SMKN%202%20Tembilahan", "_blank");
+                }, 1000);
+            } else {
+                showToast("Username atau password salah. Hubungi admin jika lupa.", "error");
+            }
         }
 
-        function closeAds() {
-            const adsOverlay = document.getElementById('ads-overlay');
-            if(!adsOverlay) return;
-            adsOverlay.classList.add('closing');
+        // ========== INFO PENDAFTARAN ==========
+        function showInfoPendaftaran() {
+            showToast("Pendaftaran akan dibuka pada 5 Mei 2026. Siapkan dokumen: Ijazah, KK, Akte Lahir, dan Pas foto.", "info");
+        }
+
+        // ========== TOAST NOTIFICATION SYSTEM ==========
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast-notif');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+            
+            toastMessage.innerText = message;
+            
+            if(type === "success") {
+                toastIcon.innerHTML = "✓";
+                toastIcon.className = "w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold";
+            } else if(type === "error") {
+                toastIcon.innerHTML = "✗";
+                toastIcon.className = "w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold";
+            } else {
+                toastIcon.innerHTML = "ℹ️";
+                toastIcon.className = "w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold";
+            }
+            
+            toast.classList.add('show');
             setTimeout(() => {
-                adsOverlay.classList.remove('show', 'closing');
-            }, 500);
+                toast.classList.remove('show');
+            }, 3000);
         }
 
+        // ========== MOBILE MENU ==========
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        function closeMobileMenu() {
+            if(mobileMenu) mobileMenu.classList.add('hidden');
+        }
+
+        // ========== SCROLL REVEAL ANIMATION ==========
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "all 0.6s ease-out";
+            observer.observe(el);
+        });
+        
+        // Apply to jurusan cards
+        document.querySelectorAll('.jurusan-card').forEach((card, index) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = `all 0.6s ease-out ${index * 0.05}s`;
+            observer.observe(card);
+        });
+
+        // ========== WINDOW LOAD ==========
         window.onload = () => {
-            setTimeout(showAds, 800);
+            // Show ad popup - disabled for better UX, uncomment if needed
+            // setTimeout(() => { if(document.getElementById('ads-overlay')) showAds(); }, 800);
+            showToast("Selamat datang di Portal PPDB SMKN 2 Tembilahan 2026", "info");
         };
     </script>
 </body>
