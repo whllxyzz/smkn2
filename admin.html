@@ -3,60 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMKN 2 Tembilahan</title>
+    <title>Master Control - WahyuMC</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        body { margin: 0; font-family: sans-serif; }
-        #running-bar { display:none; background: #ffcc00; color: #000; position: fixed; top: 0; width: 100%; z-index: 9999; padding: 10px 0; font-weight: bold; }
-        #popup-wahyu { display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
-        .box-msg { background: white; color: black; padding: 30px; border-radius: 20px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .btn-close { background: #3ecf8e; color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; margin-top: 20px; font-weight: bold; width: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #121212; color: white; padding: 20px; display: flex; justify-content: center; }
+        .panel { background: #1e1e1e; padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { text-align: center; color: #3ecf8e; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-size: 14px; color: #bbb; }
+        
+        /* Ini biar kotak inputnya muncul dan kelihatan */
+        input[type="text"], textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 10px; 
+            border: 1px solid #444; 
+            background: #2a2a2a; 
+            color: white; 
+            box-sizing: border-box; 
+            display: block;
+        }
+
+        .sw-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #2a2a2a; 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+        }
+
+        /* Ini tombol utamanya */
+        .btn-update { 
+            width: 100%; 
+            padding: 15px; 
+            background: #3ecf8e; 
+            color: #121212; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 16px; 
+            margin-top: 10px;
+        }
+        .btn-update:active { transform: scale(0.98); }
+        #status-msg { text-align: center; color: #3ecf8e; margin-top: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
+    <div class="panel">
+        <h2>🎮 WahyuMC Remote</h2>
+        
+        <label>Teks Jalan (Running Text):</label>
+        <input type="text" id="runInput" placeholder="Ketik info untuk baris jalan...">
+        
+        <label>Pesan Pop-Up (Muncul di tengah):</label>
+        <textarea id="popInput" rows="4" placeholder="Ketik pesan pengumuman..."></textarea>
 
-    <div id="running-bar"><marquee id="txt-siaran"></marquee></div>
-    
-    <div id="popup-wahyu">
-        <div class="box-msg">
-            <h2 style="color: #3ecf8e; margin: 0 0 15px 0;">PENGUMUMAN</h2>
-            <p id="pesan-admin" style="font-size: 16px; line-height: 1.6;"></p>
-            <button class="btn-close" onclick="document.getElementById('popup-wahyu').style.display='none'">OKE, PAHAM!</button>
+        <div class="sw-row">
+            <span>Aktifkan Pop-Up?</span>
+            <input type="checkbox" id="popCheck" style="width: 25px; height: 25px;">
         </div>
-    </div>
 
-    <div style="margin-top: 100px; text-align: center; padding: 20px;">
-        <h1>Portal Resmi SMKN 2 Tembilahan</h1>
-        <p>Website ini dikelola oleh WahyuMC.</p>
-        <img src="smk.jpg" alt="SMK" style="max-width: 80%; border-radius: 10px;">
+        <button class="btn-update" onclick="kirimData()">TERBITKAN KE WEBSITE</button>
+        <p id="status-msg"></p>
     </div>
 
     <script>
-        const S_URL = 'https://nrgiawgyqhxqjrqqzsei.supabase.co';
-        const S_KEY = 'sb_publishable_o0o13NZ83V4qgrYxFWJBjg_BWaneVf0'; 
-        const supabaseClient = supabase.createClient(S_URL, S_KEY);
+        // PENTING: Ganti dengan data kamu sendiri
+        const SUPA_URL = 'https://nrgiawgyqhxqjrqqzsei.supabase.co';
+        const SUPA_KEY = 'MASUKKAN_ANON_KEY_PANJANG_KAMU_DISINI'; 
+        
+        const supabase = window.supabase.createClient(SUPA_URL, SUPA_KEY);
 
-        async function cekData() {
-            const { data } = await supabaseClient.from('kontrol_admin').select('*').eq('id', 1).single();
-            if (data) {
-                if (data.running_text) {
-                    document.getElementById('running-bar').style.display = 'block';
-                    document.getElementById('txt-siaran').innerText = data.running_text;
-                }
-                if (data.status_popup) {
-                    document.getElementById('popup-wahyu').style.display = 'flex';
-                    document.getElementById('pesan-admin').innerText = data.pesan_popup;
-                } else {
-                    document.getElementById('popup-wahyu').style.display = 'none';
-                }
+        async function kirimData() {
+            const statusLabel = document.getElementById('status-msg');
+            statusLabel.innerText = "⏳ Sedang memproses...";
+
+            const { error } = await supabase
+                .from('kontrol_admin')
+                .update({ 
+                    pesan_popup: document.getElementById('popInput').value,
+                    running_text: document.getElementById('runInput').value,
+                    status_popup: document.getElementById('popCheck').checked
+                })
+                .eq('id', 1);
+
+            if (!error) {
+                statusLabel.innerText = "✅ BERHASIL DIUPDATE!";
+                setTimeout(() => { statusLabel.innerText = ""; }, 3000);
+            } else {
+                alert("Gagal: " + error.message);
+                statusLabel.innerText = "❌ Gagal mengupdate.";
             }
         }
-        cekData();
-
-        // Realtime refresh
-        supabaseClient.channel('public:kontrol_admin').on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'kontrol_admin' }, () => {
-            location.reload();
-        }).subscribe();
     </script>
 </body>
 </html>
