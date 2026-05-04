@@ -8,16 +8,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
-        body { scroll-behavior: smooth; overflow-x: hidden; }
+        body { scroll-behavior: smooth; overflow-x: hidden; background: #f0f9ff; }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         
         .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .hero-pro {
             background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-img {
+            animation: float 5s ease-in-out infinite;
         }
         
         .slider-container {
@@ -27,32 +45,42 @@
             overflow: hidden;
             border-radius: 1.5rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .slider-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+        }
+        
         .slide {
             position: absolute;
             inset: 0;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .slide.active { opacity: 1; visibility: visible; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 8s ease; }
+        .slide.active img { transform: scale(1.05); }
         
-        /* Style untuk slider jurusan */
         .jurusan-slider-container {
             position: relative;
             width: 100%;
             aspect-ratio: 16/9;
             overflow: hidden;
             border-radius: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .jurusan-slider-container:hover {
+            box-shadow: 0 35px 50px -15px rgba(37, 99, 235, 0.25);
         }
         .jurusan-slide {
             position: absolute;
             inset: 0;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .jurusan-slide.active {
             opacity: 1;
@@ -62,7 +90,11 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: #1e293b;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            transition: transform 0.5s ease;
+        }
+        .jurusan-slide.active img {
+            transform: scale(1.02);
         }
         
         .modal {
@@ -70,29 +102,37 @@
             position: fixed;
             z-index: 1000;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            animation: fadeIn 0.2s ease;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal.active { display: flex; }
         
         .countdown-box {
             background: white;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(37, 99, 235, 0.2);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .countdown-box:hover {
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+            border-color: rgba(37, 99, 235, 0.5);
+            transform: translateY(-2px);
         }
         
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
         
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 4px; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 10px; }
         
         .toast-notif {
             position: fixed;
@@ -101,23 +141,34 @@
             z-index: 1000;
             transform: translateX(400px);
             transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-left: 4px solid #3b82f6;
         }
         .toast-notif.show { transform: translateX(0); }
         
-        .compact-section { padding-top: 2rem; padding-bottom: 2rem; }
+        .btn-hover-scale {
+            transition: all 0.2s ease;
+        }
+        .btn-hover-scale:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+        }
+        
         .mpls-caption {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             color: white;
             font-size: 12px;
             font-weight: 600;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 30px;
             position: absolute;
             bottom: 15px;
             left: 15px;
-            backdrop-filter: blur(5px);
             z-index: 10;
             letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .floating-wa {
@@ -132,38 +183,38 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .floating-wa:hover { transform: scale(1.05); }
+        .floating-wa:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
         
         .back-to-top {
             position: fixed;
             bottom: 24px;
             right: 96px;
             z-index: 100;
-            background: #1e40af;
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
             width: 48px;
             height: 48px;
             border-radius: 50%;
             display: none;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .back-to-top:hover { background: #1e3a8a; transform: scale(1.05); }
+        .back-to-top:hover { transform: scale(1.08); background: linear-gradient(135deg, #1d4ed8, #1e40af); }
         .back-to-top.show { display: flex; }
 
         .logo-navbar {
             width: 48px;
             height: 48px;
             object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid white;
         }
 
         @media (max-width: 768px) {
@@ -172,9 +223,25 @@
                 height: 40px;
             }
         }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            border-radius: 3px;
+        }
     </style>
 </head>
-<body class="bg-white text-slate-800">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 text-slate-800">
 
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 glass-nav">
@@ -183,15 +250,15 @@
                 <div class="flex items-center gap-3">
                     <img src="smk.jpg" alt="Logo SMKN 2" class="logo-navbar" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                     <div>
-                        <h1 class="text-base md:text-xl font-bold text-slate-800 leading-tight">SMK Negeri 2 Tembilahan</h1>
+                        <h1 class="text-base md:text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">SMK Negeri 2 Tembilahan</h1>
                         <p class="text-[10px] md:text-xs text-blue-600 font-semibold">Sistem Penerimaan Siswa Baru 2026</p>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center gap-2">
-                    <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Beranda</a>
-                    <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Jurusan</a>
-                    <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Lokasi</a>
-                    <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 shadow-md transition">
+                    <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Beranda</a>
+                    <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Jurusan</a>
+                    <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Lokasi</a>
+                    <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-md transition-all btn-hover-scale">
                         Admin Area
                     </button>
                 </div>
@@ -202,12 +269,12 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 py-3 px-4">
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 py-3 px-4">
             <div class="flex flex-col gap-2">
                 <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Beranda</a>
                 <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Jurusan</a>
                 <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Lokasi</a>
-                <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left hover:bg-blue-700 transition">
+                <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold rounded-xl text-left hover:from-blue-700 hover:to-blue-800 transition">
                     Admin Area
                 </button>
             </div>
@@ -219,13 +286,13 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-8 items-center">
                 <div class="fade-in-up">
-                    <div class="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-4">
+                    <div class="inline-flex items-center gap-2 bg-blue-100/80 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-blue-200">
                         <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
                         <span class="text-xs font-bold text-blue-700 uppercase tracking-wide">Pendaftaran 2026</span>
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-3">
                         Masa Depan <br>
-                        <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Gemilang</span>
+                        <span class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 bg-clip-text text-transparent">Gemilang</span>
                         Dimulai Disini
                     </h1>
                     <p class="text-slate-500 text-base mb-6 max-w-lg">
@@ -235,36 +302,36 @@
                     <div id="countdown-container" class="mb-6 hidden">
                         <p class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-2">Pendaftaran dibuka dalam:</p>
                         <div class="flex gap-2">
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="days" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">HARI</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="hours" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">JAM</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="minutes" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">MENIT</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="seconds" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">DETIK</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="days" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">HARI</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="hours" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">JAM</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="minutes" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">MENIT</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="seconds" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">DETIK</span></div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-3">
-                        <button id="btn-daftar" disabled class="px-7 py-2.5 bg-slate-300 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed transition">⏳ Pendaftaran Belum Dibuka</button>
-                        <button onclick="showInfoPendaftaran()" class="px-7 py-2.5 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition">📋 Info Pendaftaran</button>
+                        <button id="btn-daftar" disabled class="px-7 py-2.5 bg-gradient-to-r from-slate-400 to-slate-500 text-white rounded-xl font-bold text-sm cursor-not-allowed transition">⏳ Pendaftaran Belum Dibuka</button>
+                        <button onclick="showInfoPendaftaran()" class="px-7 py-2.5 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all btn-hover-scale">📋 Info Pendaftaran</button>
                     </div>
                 </div>
                 
-                <!-- SLIDER 4 FOTO MPLS 2025 -->
-                <div class="fade-in-up relative">
+                <!-- SLIDER HERO MPLS - 4 FOTO dari folder jurusan/ (m1.jpeg - m4.jpeg) -->
+                <div class="fade-in-up relative floating-img">
                     <div class="slider-container" id="hero-slider">
                         <div class="slide active relative">
-                            <img src="m1.jpeg" alt="Kegiatan MPLS 2025">
+                            <img src="jurusan/m1.jpeg" alt="Dokumentasi MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
                         <div class="slide relative">
-                            <img src="m2.jpeg" alt="Kegiatan MPLS 2025">
+                            <img src="jurusan/m2.jpeg" alt="Dokumentasi MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
                         <div class="slide relative">
-                            <img src="m3.jpeg" alt="Kegiatan MPLS 2025">
+                            <img src="jurusan/m3.jpeg" alt="Dokumentasi MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
                         <div class="slide relative">
-                            <img src="m4.jpeg" alt="Kegiatan MPLS 2025">
+                            <img src="jurusan/m4.jpeg" alt="Dokumentasi MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
                     </div>
@@ -274,73 +341,71 @@
                         <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                         <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                     </div>
-                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">‹</button>
-                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">›</button>
+                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-lg font-bold transition w-8 h-8 flex items-center justify-center">‹</button>
+                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-lg font-bold transition w-8 h-8 flex items-center justify-center">›</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- JURUSAN SECTION - SLIDER 10 FOTO DARI GITHUB -->
-    <section id="jurusan" class="py-12 px-4 md:px-8 bg-gradient-to-b from-white to-slate-100">
+    <!-- JURUSAN SECTION - SLIDER 10 FOTO dari folder mpls2025/ (a (1).png - a (10).png) -->
+    <section id="jurusan" class="py-12 px-4 md:px-8">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-8">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-3 py-1 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-2">Program Keahlian</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-500 text-sm max-w-2xl mx-auto">Geser untuk melihat 10 program keahlian unggulan SMK Negeri 2 Tembilahan</p>
+            <div class="text-center mb-10">
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-4 py-1.5 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 section-title inline-block">Program Keahlian</h2>
+                <p class="text-slate-500 text-sm max-w-2xl mx-auto mt-4">Geser untuk melihat 10 program keahlian unggulan SMK Negeri 2 Tembilahan</p>
             </div>
 
-            <div class="relative">
+            <div class="relative group">
                 <div class="jurusan-slider-container" id="jurusan-slider">
                     <!-- 10 slide akan diisi JavaScript -->
                 </div>
 
-                <!-- Dots Navigation -->
                 <div id="jurusan-dots" class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10">
                 </div>
 
-                <!-- Panah Kiri Kanan -->
-                <button id="jurusan-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10 w-10 h-10 flex items-center justify-center">‹</button>
-                <button id="jurusan-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10 w-10 h-10 flex items-center justify-center">›</button>
+                <button id="jurusan-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-110">‹</button>
+                <button id="jurusan-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-110">›</button>
             </div>
         </div>
     </section>
 
     <!-- LOKASI & FOOTER -->
     <section id="lokasi">
-        <div class="h-64 w-full">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2a3d2d8f8d8d8d%3A0x8d8d8d8d8d8d8d8d!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="h-80 w-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent z-10 pointer-events-none"></div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2a3d2d8f8d8d8d%3A0x8d8d8d8d8d8d8d8d!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="grayscale-[0.2] hover:grayscale-0 transition-all duration-500"></iframe>
         </div>
         
-        <footer class="bg-slate-900 text-white py-8 px-4">
+        <footer class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-10 px-4">
             <div class="max-w-7xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
                     <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <img src="smk.jpg" alt="Logo" class="w-10 h-10 rounded-lg" onerror="this.src='https://placehold.co/100x100?text=SMK'">
-                            <div><h3 class="font-bold">SMKN 2 Tembilahan</h3><p class="text-slate-400 text-xs">Sekolah Pusat Keunggulan</p></div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="smk.jpg" alt="Logo" class="w-12 h-12 rounded-xl shadow-lg" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                            <div><h3 class="font-bold text-lg">SMKN 2 Tembilahan</h3><p class="text-slate-400 text-xs">Sekolah Pusat Keunggulan</p></div>
                         </div>
-                        <p class="text-slate-400 text-xs leading-relaxed">Mencetak generasi unggul, berkarakter, dan siap bersaing di era industri 4.0.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Mencetak generasi unggul, berkarakter, dan siap bersaing di era industri 4.0.</p>
                     </div>
                     <div>
-                        <h4 class="font-bold text-xs uppercase tracking-wider mb-3 text-slate-300">Kontak</h4>
-                        <ul class="space-y-1 text-xs text-slate-400">
-                            <li>📞 (0768) 123456</li>
-                            <li>✉️ info@smkn2-tembilahan.sch.id</li>
-                            <li>📍 Jl. SKB No.01, Tembilahan, Inhil, Riau</li>
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-slate-300">Kontak</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li class="flex items-center gap-2">📞 <span>(0768) 123456</span></li>
+                            <li class="flex items-center gap-2">✉️ <span>info@smkn2-tembilahan.sch.id</span></li>
+                            <li class="flex items-center gap-2">📍 <span>Jl. SKB No.01, Tembilahan, Inhil, Riau</span></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold text-xs uppercase tracking-wider mb-3 text-slate-300">Link Terkait</h4>
-                        <ul class="space-y-1 text-xs">
-                            <li><a href="#" class="text-slate-400 hover:text-white transition">Kemendikbudristek</a></li>
-                            <li><a href="#" class="text-slate-400 hover:text-white transition">Disdik Kab. Inhil</a></li>
-                            <li><a href="https://pmb.riau.go.id" target="_blank" class="text-slate-400 hover:text-white transition">SPMB Online 2026</a></li>
+                        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-slate-300">Link Terkait</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-all hover:pl-1">Kemendikbudristek</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition-all hover:pl-1">Disdik Kab. Inhil</a></li>
+                            <li><a href="https://pmb.riau.go.id" target="_blank" class="text-slate-400 hover:text-white transition-all hover:pl-1">SPMB Online 2026</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="border-t border-slate-800 pt-4 text-center text-slate-500 text-[10px]">
+                <div class="border-t border-slate-700/50 pt-6 text-center text-slate-500 text-[11px]">
                     <p>&copy; 2026 SMK Negeri 2 Tembilahan. All Rights Reserved.</p>
                 </div>
             </div>
@@ -356,22 +421,22 @@
 
     <!-- Back to Top -->
     <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Kembali ke atas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </div>
 
     <!-- MODAL LOGIN -->
     <div id="login-modal" class="modal">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative p-6">
-            <button onclick="toggleModal('login-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition">✕</button>
+            <button onclick="toggleModal('login-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition text-xl">✕</button>
             <div class="text-center mb-5">
-                <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">🔐</div>
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg text-3xl">🔐</div>
                 <h3 class="text-xl font-bold text-slate-800">Login Admin</h3>
                 <p class="text-slate-500 text-xs mt-1">Akses khusus panitia SPMB</p>
             </div>
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
-                <div><label class="block text-xs font-bold text-slate-600 mb-1">Username</label><input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 outline-none" required></div>
-                <div><label class="block text-xs font-bold text-slate-600 mb-1">Password</label><input type="password" id="login-password" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 outline-none" required></div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl hover:bg-blue-700 transition">Masuk Dashboard</button>
+                <div><label class="block text-xs font-bold text-slate-600 mb-1">Username</label><input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" required></div>
+                <div><label class="block text-xs font-bold text-slate-600 mb-1">Password</label><input type="password" id="login-password" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" required></div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-2.5 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all btn-hover-scale">Masuk Dashboard</button>
             </form>
         </div>
     </div>
@@ -382,27 +447,24 @@
     </div>
 
     <script>
-        // ======================== URL FOTO JURUSAN (RAW GITHUB) ========================
-        // URL RAW yang benar dari GitHub Anda
+        // ======================== SLIDER JURUSAN - 10 FOTO dari folder mpls2025/ ========================
         const fotoJurusan = [
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(1).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(2).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(3).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(4).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(5).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(6).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(7).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(8).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(9).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(10).png"
+            "mpls2025/a%20(1).png",
+            "mpls2025/a%20(2).png",
+            "mpls2025/a%20(3).png",
+            "mpls2025/a%20(4).png",
+            "mpls2025/a%20(5).png",
+            "mpls2025/a%20(6).png",
+            "mpls2025/a%20(7).png",
+            "mpls2025/a%20(8).png",
+            "mpls2025/a%20(9).png",
+            "mpls2025/a%20(10).png"
         ];
 
-        // ======================== SLIDER JURUSAN 10 FOTO ========================
         let jurusanCurrentSlide = 0;
         let jurusanInterval;
         const totalJurusanSlides = 10;
 
-        // Membuat elemen slide dan dots
         function buildJurusanSlider() {
             const container = document.getElementById('jurusan-slider');
             const dotsContainer = document.getElementById('jurusan-dots');
@@ -411,7 +473,6 @@
             container.innerHTML = '';
             dotsContainer.innerHTML = '';
             
-            // Buat 10 slide
             for (let i = 0; i < totalJurusanSlides; i++) {
                 const slideDiv = document.createElement('div');
                 slideDiv.className = i === 0 ? 'jurusan-slide active' : 'jurusan-slide';
@@ -425,7 +486,6 @@
                 slideDiv.appendChild(img);
                 container.appendChild(slideDiv);
                 
-                // Buat dot
                 const dot = document.createElement('button');
                 dot.className = i === 0 ? 'w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer' : 'w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer';
                 dot.setAttribute('data-index', i);
@@ -479,9 +539,7 @@
             jurusanInterval = setInterval(nextJurusanSlide, 4000);
         }
 
-        // ======================== SCRIPT LAMA (TIDAK BERUBAH) ========================
-        
-        // COUNTDOWN TIMER - TANGGAL 14 JUNI 2026
+        // ======================== COUNTDOWN 14 JUNI 2026 ========================
         const targetDate = new Date(2026, 5, 14, 0, 0, 0).getTime();
         
         function updateCountdown() {
@@ -493,7 +551,7 @@
                 container?.classList.add('hidden');
                 if(btnDaftar) { 
                     btnDaftar.disabled = false; 
-                    btnDaftar.className = "px-7 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 shadow-md transition"; 
+                    btnDaftar.className = "px-7 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-bold text-sm hover:from-blue-700 hover:to-blue-800 shadow-md transition-all btn-hover-scale"; 
                     btnDaftar.innerText = "🚀 Daftar Sekarang";
                     btnDaftar.onclick = () => window.open("https://wa.me/6282293786539", "_blank");
                 }
@@ -508,7 +566,7 @@
         setInterval(updateCountdown, 1000); 
         updateCountdown();
 
-        // SLIDER 4 FOTO MPLS 2025
+        // ======================== SLIDER MPLS (HERO) ========================
         let currentSlide = 0, slideInterval;
         const slides = document.querySelectorAll('#hero-slider .slide');
         const dots = document.querySelectorAll('#hero-slider + div button');
@@ -526,10 +584,9 @@
         
         if(slides.length > 0) slideInterval = setInterval(nextSlide, 5000);
 
-        // MODAL
+        // ======================== FUNGSI LAINNYA ========================
         window.toggleModal = function(id) { document.getElementById(id).classList.toggle('active'); }
         
-        // LOGIN
         window.handleLogin = function(e) {
             e.preventDefault();
             const u = document.getElementById('login-username').value;
@@ -567,7 +624,6 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
         
-        // MOBILE MENU
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileMenuBtn) {
@@ -576,13 +632,11 @@
         function closeMobileMenu() { if(mobileMenu) mobileMenu.classList.add('hidden'); }
         window.closeMobileMenu = closeMobileMenu;
         
-        // BACK TO TOP
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('show', window.scrollY > 300);
         });
         
-        // WINDOW LOAD
         window.onload = () => {
             startJurusanSlider();
             showToast("🎓 Selamat datang di Portal SPMB SMKN 2 Tembilahan 2026", "info");
