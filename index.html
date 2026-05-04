@@ -14,55 +14,47 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .hero-pro {
             background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
         }
         
-        .slider-container, .mpls-slider-container, .jurusan-slider-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .slide, .mpls-slide, .jurusan-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s ease;
-        }
-        .slide.active, .mpls-slide.active, .jurusan-slide.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .slide img, .mpls-slide img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-        .jurusan-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #0f172a;
-        }
-        
-        .modal {
+        /* MODAL POP UP */
+        .modal-popup {
             display: none;
             position: fixed;
             z-index: 1000;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
         }
-        .modal.active { display: flex; }
+        .modal-popup.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            max-width: 450px;
+            width: 90%;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-popup.active .popup-card {
+            transform: scale(1);
+        }
         
         .countdown-box {
             background: white;
@@ -96,19 +88,8 @@
         }
         .toast-notif.show { transform: translateX(0); }
         
-        .slide-caption {
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 30px;
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            z-index: 10;
-        }
+        .btn-hover-scale { transition: all 0.2s ease; }
+        .btn-hover-scale:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4); }
         
         .floating-wa {
             position: fixed;
@@ -191,7 +172,6 @@
                 <div class="hidden md:flex items-center gap-2">
                     <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Beranda</a>
                     <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Jurusan</a>
-                    <a href="#mpls" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">MPLS</a>
                     <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all hover:bg-blue-50 rounded-xl">Lokasi</a>
                     <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-md transition-all">
                         Admin Area
@@ -208,7 +188,6 @@
             <div class="flex flex-col gap-2">
                 <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Beranda</a>
                 <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Jurusan</a>
-                <a href="#mpls" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">MPLS</a>
                 <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Lokasi</a>
                 <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold rounded-xl text-left hover:from-blue-700 hover:to-blue-800 transition">
                     Admin Area
@@ -220,8 +199,8 @@
     <!-- HERO SECTION -->
     <section id="beranda" class="hero-pro pt-28 md:pt-32 pb-12 md:pb-16 px-4 md:px-8">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                <div class="fade-in-up">
+            <div class="flex justify-center">
+                <div class="fade-in-up text-center max-w-3xl mx-auto">
                     <div class="inline-flex items-center gap-2 bg-blue-100/80 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-blue-200">
                         <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
                         <span class="text-xs font-bold text-blue-700 uppercase tracking-wide">Pendaftaran 2026</span>
@@ -231,13 +210,13 @@
                         <span class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 bg-clip-text text-transparent">Gemilang</span>
                         Dimulai Disini
                     </h1>
-                    <p class="text-slate-500 text-base mb-6 max-w-lg">
+                    <p class="text-slate-500 text-base mb-6 max-w-lg mx-auto">
                         Sistem Penerimaan Siswa Baru SMK Negeri 2 Tembilahan Tahun Ajaran 2026/2027.
                     </p>
                     
                     <div id="countdown-container" class="mb-6 hidden">
                         <p class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-2">Pendaftaran dibuka dalam:</p>
-                        <div class="flex gap-2">
+                        <div class="flex gap-2 justify-center">
                             <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="days" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">HARI</span></div>
                             <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="hours" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">JAM</span></div>
                             <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="minutes" class="block text-xl md:text-2xl font-black bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">00</span><span class="text-[9px] font-semibold text-slate-500">MENIT</span></div>
@@ -245,101 +224,24 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap gap-3">
+                    <div class="flex flex-wrap gap-3 justify-center">
                         <button id="btn-daftar" disabled class="px-7 py-2.5 bg-gradient-to-r from-slate-400 to-slate-500 text-white rounded-xl font-bold text-sm cursor-not-allowed transition">⏳ Pendaftaran Belum Dibuka</button>
                         <button onclick="showInfoPendaftaran()" class="px-7 py-2.5 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all">📋 Info Pendaftaran</button>
                     </div>
                 </div>
-                
-                <!-- SLIDER HERO - 4 FOTO (bisa ganti nanti) -->
-                <div class="fade-in-up relative">
-                    <div class="slider-container" id="hero-slider">
-                        <div class="slide active relative">
-                            <img src="mpls2025/a%20(1).png" alt="Kegiatan Sekolah">
-                            <div class="slide-caption">📸 Kegiatan SMKN 2 Tembilahan</div>
-                        </div>
-                        <div class="slide relative">
-                            <img src="mpls2025/a%20(2).png" alt="Kegiatan Sekolah">
-                            <div class="slide-caption">📸 Kegiatan SMKN 2 Tembilahan</div>
-                        </div>
-                        <div class="slide relative">
-                            <img src="mpls2025/a%20(3).png" alt="Kegiatan Sekolah">
-                            <div class="slide-caption">📸 Kegiatan SMKN 2 Tembilahan</div>
-                        </div>
-                        <div class="slide relative">
-                            <img src="mpls2025/a%20(4).png" alt="Kegiatan Sekolah">
-                            <div class="slide-caption">📸 Kegiatan SMKN 2 Tembilahan</div>
-                        </div>
-                    </div>
-                    <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
-                        <button onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-blue-600 slider-dot transition"></button>
-                        <button onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
-                        <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
-                        <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
-                    </div>
-                    <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-lg font-bold transition w-8 h-8 flex items-center justify-center">‹</button>
-                    <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-lg font-bold transition w-8 h-8 flex items-center justify-center">›</button>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- JURUSAN SECTION - SLIDER 10 FOTO (PNG) dari folder mpls2025/ -->
+    <!-- JURUSAN SECTION -->
     <section id="jurusan" class="py-12 px-4 md:px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-10">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-4 py-1.5 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 section-title inline-block">✨ Program Keahlian Unggulan</h2>
-                <p class="text-slate-500 text-sm max-w-2xl mx-auto mt-4">10 program keahlian unggulan SMK Negeri 2 Tembilahan</p>
-            </div>
-
-            <div class="relative">
-                <div class="jurusan-slider-container" id="jurusan-slider"></div>
-                <div id="jurusan-dots" class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10"></div>
-                <button id="jurusan-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center">‹</button>
-                <button id="jurusan-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center">›</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION MPLS - 4 FOTO (JPEG) dari folder jurusan/ -->
-    <section id="mpls" class="py-12 px-4 md:px-8 bg-gradient-to-b from-slate-50 to-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-10">
-                <span class="text-orange-500 font-bold text-xs uppercase tracking-wider bg-orange-100 px-4 py-1.5 rounded-full inline-block mb-3">Kenangan Tak Terlupakan</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 section-title inline-block">🎉 Momen MPLS 2025</h2>
-                <p class="text-slate-500 text-sm max-w-2xl mx-auto mt-4">Masa Pengenalan Lingkungan Sekolah yang penuh kebersamaan dan semangat baru</p>
-            </div>
-
-            <div class="relative">
-                <div class="mpls-slider-container" id="mpls-slider">
-                    <div class="mpls-slide active relative">
-                        <img src="jurusan/m1.jpeg" alt="MPLS 2025">
-                        <div class="slide-caption">📸 Hari Pertama MPLS 2025</div>
-                    </div>
-                    <div class="mpls-slide relative">
-                        <img src="jurusan/m2.jpeg" alt="MPLS 2025">
-                        <div class="slide-caption">📸 Kegiatan Perkenalan</div>
-                    </div>
-                    <div class="mpls-slide relative">
-                        <img src="jurusan/m3.jpeg" alt="MPLS 2025">
-                        <div class="slide-caption">📸 Pembentukan Karakter</div>
-                    </div>
-                    <div class="mpls-slide relative">
-                        <img src="jurusan/m4.jpeg" alt="MPLS 2025">
-                        <div class="slide-caption">📸 Penutupan MPLS 2025</div>
-                    </div>
-                </div>
-
-                <div id="mpls-dots" class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10">
-                    <button class="w-6 h-2 rounded-full bg-blue-600 transition"></button>
-                    <button class="w-2 h-2 rounded-full bg-slate-300 transition"></button>
-                    <button class="w-2 h-2 rounded-full bg-slate-300 transition"></button>
-                    <button class="w-2 h-2 rounded-full bg-slate-300 transition"></button>
-                </div>
-
-                <button id="mpls-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center">‹</button>
-                <button id="mpls-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition-all z-10 w-10 h-10 flex items-center justify-center">›</button>
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-4 py-1.5 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 section-title inline-block">✨ Program Keahlian Unggulan</h2>
+            <p class="text-slate-500 text-sm max-w-2xl mx-auto mt-4">10 program keahlian unggulan SMK Negeri 2 Tembilahan</p>
+            
+            <div class="mt-8 p-8 bg-slate-100 rounded-2xl">
+                <p class="text-slate-400 text-sm">👨‍💻 Informasi jurusan akan segera ditampilkan</p>
             </div>
         </div>
     </section>
@@ -384,6 +286,43 @@
         </footer>
     </section>
 
+    <!-- POP UP MODAL 5 DETIK -->
+    <div id="popup-modal" class="modal-popup">
+        <div class="popup-card p-6 relative">
+            <!-- Tombol X -->
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition text-2xl font-light">✕</button>
+            
+            <!-- Icon -->
+            <div class="text-center mt-2">
+                <div class="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span class="text-4xl">🚧</span>
+                </div>
+                
+                <!-- Judul -->
+                <h3 class="text-2xl font-extrabold text-slate-800 mb-2">Sedang dalam Pengembangan</h3>
+                
+                <!-- Garis pemisah -->
+                <div class="w-12 h-1 bg-gradient-to-r from-amber-400 to-orange-500 mx-auto rounded-full mb-4"></div>
+                
+                <!-- Pesan -->
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    Website ini masih dalam tahap penyempurnaan. Mohon maaf jika terdapat kendala atau gangguan saat mengakses informasi.
+                </p>
+                
+                <div class="bg-amber-50 rounded-xl p-3 mb-5 border border-amber-200">
+                    <p class="text-amber-700 text-xs font-semibold flex items-center justify-center gap-2">
+                        <span>📢</span> Butuh bantuan? Segera laporkan ke Admin!
+                    </p>
+                </div>
+                
+                <!-- Tombol Tutup -->
+                <button onclick="closePopup()" class="w-full bg-gradient-to-r from-slate-700 to-slate-800 text-white font-semibold py-2.5 rounded-xl hover:from-slate-800 hover:to-slate-900 transition-all btn-hover-scale">
+                    Mengerti, Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating WhatsApp -->
     <div class="floating-wa" onclick="window.open('https://wa.me/6282293786539', '_blank')">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
@@ -396,8 +335,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </div>
 
-    <!-- MODAL LOGIN -->
-    <div id="login-modal" class="modal">
+    <!-- MODAL LOGIN ADMIN -->
+    <div id="login-modal" class="modal-popup" style="background: rgba(0, 0, 0, 0.6);">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative p-6">
             <button onclick="toggleModal('login-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition text-xl">✕</button>
             <div class="text-center mb-5">
@@ -419,110 +358,25 @@
     </div>
 
     <script>
-        // ======================== DATA FOTO ========================
-        // Jurusan: 10 file PNG dari folder mpls2025/ (pakai nama asli dengan spasi dan kurung)
-        const fotoJurusan = [
-            "mpls2025/a%20(1).png",
-            "mpls2025/a%20(2).png",
-            "mpls2025/a%20(3).png",
-            "mpls2025/a%20(4).png",
-            "mpls2025/a%20(5).png",
-            "mpls2025/a%20(6).png",
-            "mpls2025/a%20(7).png",
-            "mpls2025/a%20(8).png",
-            "mpls2025/a%20(9).png",
-            "mpls2025/a%20(10).png"
-        ];
-
-        // ======================== SLIDER JURUSAN ========================
-        let jurusanCurrentSlide = 0;
-        let jurusanInterval;
-        const totalJurusan = 10;
-
-        function buildJurusanSlider() {
-            const container = document.getElementById('jurusan-slider');
-            const dotsContainer = document.getElementById('jurusan-dots');
-            if (!container) return;
-            container.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            
-            for (let i = 0; i < totalJurusan; i++) {
-                const slide = document.createElement('div');
-                slide.className = i === 0 ? 'jurusan-slide active' : 'jurusan-slide';
-                const img = document.createElement('img');
-                img.src = fotoJurusan[i];
-                img.alt = `Jurusan ${i+1}`;
-                img.onerror = () => { img.src = 'https://placehold.co/1920x1080/1e293b/ffffff?text=Gambar+Error'; };
-                slide.appendChild(img);
-                container.appendChild(slide);
-                
-                const dot = document.createElement('button');
-                dot.className = i === 0 ? 'w-6 h-2 rounded-full bg-blue-600 transition' : 'w-2 h-2 rounded-full bg-slate-300 transition';
-                dot.onclick = () => goToJurusanSlide(i);
-                dotsContainer.appendChild(dot);
+        // ======================== POP UP 5 DETIK ========================
+        let popupTimeout;
+        
+        function showPopup() {
+            const popup = document.getElementById('popup-modal');
+            if (popup) {
+                popup.classList.add('active');
             }
         }
         
-        function updateJurusanSlider() {
-            const slides = document.querySelectorAll('.jurusan-slide');
-            const dots = document.querySelectorAll('#jurusan-dots button');
-            slides.forEach((s, i) => s.classList.toggle('active', i === jurusanCurrentSlide));
-            dots.forEach((d, i) => {
-                d.className = i === jurusanCurrentSlide ? 'w-6 h-2 rounded-full bg-blue-600 transition' : 'w-2 h-2 rounded-full bg-slate-300 transition';
-            });
+        function closePopup() {
+            const popup = document.getElementById('popup-modal');
+            if (popup) {
+                popup.classList.remove('active');
+            }
+            if (popupTimeout) {
+                clearTimeout(popupTimeout);
+            }
         }
-        
-        function nextJurusan() { jurusanCurrentSlide = (jurusanCurrentSlide + 1) % totalJurusan; updateJurusanSlider(); }
-        function prevJurusan() { jurusanCurrentSlide = (jurusanCurrentSlide - 1 + totalJurusan) % totalJurusan; updateJurusanSlider(); }
-        function goToJurusanSlide(i) { jurusanCurrentSlide = i; updateJurusanSlider(); if (jurusanInterval) { clearInterval(jurusanInterval); jurusanInterval = setInterval(nextJurusan, 4000); } }
-        
-        function startJurusan() {
-            buildJurusanSlider();
-            document.getElementById('jurusan-prev').onclick = () => { prevJurusan(); clearInterval(jurusanInterval); jurusanInterval = setInterval(nextJurusan, 4000); };
-            document.getElementById('jurusan-next').onclick = () => { nextJurusan(); clearInterval(jurusanInterval); jurusanInterval = setInterval(nextJurusan, 4000); };
-            jurusanInterval = setInterval(nextJurusan, 4000);
-        }
-
-        // ======================== SLIDER MPLS (4 foto JPEG) ========================
-        let mplsCurrentSlide = 0;
-        let mplsInterval;
-        const totalMpls = 4;
-
-        function updateMplsSlider() {
-            const slides = document.querySelectorAll('#mpls-slider .mpls-slide');
-            const dots = document.querySelectorAll('#mpls-dots button');
-            slides.forEach((s, i) => s.classList.toggle('active', i === mplsCurrentSlide));
-            dots.forEach((d, i) => {
-                d.className = i === mplsCurrentSlide ? 'w-6 h-2 rounded-full bg-blue-600 transition' : 'w-2 h-2 rounded-full bg-slate-300 transition';
-            });
-        }
-        
-        function nextMpls() { mplsCurrentSlide = (mplsCurrentSlide + 1) % totalMpls; updateMplsSlider(); }
-        function prevMpls() { mplsCurrentSlide = (mplsCurrentSlide - 1 + totalMpls) % totalMpls; updateMplsSlider(); }
-        
-        function startMpls() {
-            document.getElementById('mpls-prev').onclick = () => { prevMpls(); clearInterval(mplsInterval); mplsInterval = setInterval(nextMpls, 4000); };
-            document.getElementById('mpls-next').onclick = () => { nextMpls(); clearInterval(mplsInterval); mplsInterval = setInterval(nextMpls, 4000); };
-            mplsInterval = setInterval(nextMpls, 4000);
-        }
-
-        // ======================== SLIDER HERO ========================
-        let heroCurrentSlide = 0;
-        let heroInterval;
-        const totalHero = 4;
-        
-        function updateHeroSlider() {
-            const slides = document.querySelectorAll('#hero-slider .slide');
-            const dots = document.querySelectorAll('#hero-slider + div button');
-            slides.forEach((s, i) => s.classList.toggle('active', i === heroCurrentSlide));
-            dots.forEach((d, i) => {
-                d.className = i === heroCurrentSlide ? 'w-6 h-2 rounded-full bg-blue-600 transition' : 'w-2 h-2 rounded-full bg-slate-300 transition';
-            });
-        }
-        
-        window.nextSlide = function() { heroCurrentSlide = (heroCurrentSlide + 1) % totalHero; updateHeroSlider(); };
-        window.prevSlide = function() { heroCurrentSlide = (heroCurrentSlide - 1 + totalHero) % totalHero; updateHeroSlider(); };
-        window.goToSlide = function(n) { heroCurrentSlide = n; updateHeroSlider(); clearInterval(heroInterval); heroInterval = setInterval(nextSlide, 5000); };
         
         // ======================== COUNTDOWN 14 JUNI 2026 ========================
         const targetDate = new Date(2026, 5, 14, 0, 0, 0).getTime();
@@ -593,14 +447,22 @@
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => backToTop.classList.toggle('show', window.scrollY > 300));
         
-        // ======================== START ALL ========================
+        // ======================== START ========================
         setInterval(updateCountdown, 1000);
         updateCountdown();
-        heroInterval = setInterval(nextSlide, 5000);
-        startJurusan();
-        startMpls();
+        
+        // Pop up muncul setelah 5 detik
+        setTimeout(showPopup, 5000);
         
         window.onload = () => showToast("🎓 Selamat datang di Portal SPMB SMKN 2 Tembilahan 2026", "info");
+        
+        // Klik di luar popup untuk menutup (opsional)
+        window.onclick = (event) => {
+            const popup = document.getElementById('popup-modal');
+            if (event.target === popup) {
+                closePopup();
+            }
+        }
     </script>
 </body>
 </html>
