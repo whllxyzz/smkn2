@@ -153,6 +153,45 @@
                 height: 40px;
             }
         }
+
+        /* TAMBAHAN SLIDER 9 FOTO */
+        .galeri-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .galeri-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .galeri-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .galeri-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .galeri-caption {
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 30px;
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -171,6 +210,7 @@
                 <div class="hidden md:flex items-center gap-2">
                     <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Beranda</a>
                     <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Jurusan</a>
+                    <a href="#galeri" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Galeri</a>
                     <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Lokasi</a>
                     <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 shadow-md transition">
                         Admin Area
@@ -187,6 +227,7 @@
             <div class="flex flex-col gap-2">
                 <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Beranda</a>
                 <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Jurusan</a>
+                <a href="#galeri" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Galeri</a>
                 <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Lokasi</a>
                 <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left hover:bg-blue-700 transition">
                     Admin Area
@@ -359,6 +400,78 @@
         </div>
     </section>
 
+    <!-- ========== TAMBAHAN SLIDER 9 FOTO DARI GITHUB ========== -->
+    <section id="galeri" class="py-8 px-4 md:px-8 bg-slate-50 compact-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-3 py-1 rounded-full inline-block mb-3">Dokumentasi</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-2">Galeri Kegiatan Sekolah</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-500 text-sm max-w-2xl mx-auto">Momen kebersamaan dan kegiatan seru di SMK Negeri 2 Tembilahan</p>
+            </div>
+
+            <div class="relative">
+                <div class="galeri-slider-container" id="galeri-slider">
+                    <!-- SLIDE 1 -->
+                    <div class="galeri-slide active">
+                        <img id="galeri-img-0" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 1</div>
+                    </div>
+                    <!-- SLIDE 2 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-1" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 2</div>
+                    </div>
+                    <!-- SLIDE 3 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-2" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 3</div>
+                    </div>
+                    <!-- SLIDE 4 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-3" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 4</div>
+                    </div>
+                    <!-- SLIDE 5 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-4" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 5</div>
+                    </div>
+                    <!-- SLIDE 6 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-5" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 6</div>
+                    </div>
+                    <!-- SLIDE 7 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-6" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 7</div>
+                    </div>
+                    <!-- SLIDE 8 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-7" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 8</div>
+                    </div>
+                    <!-- SLIDE 9 -->
+                    <div class="galeri-slide">
+                        <img id="galeri-img-8" alt="Kegiatan SMKN 2 Tembilahan">
+                        <div class="galeri-caption">📸 Kegiatan 9</div>
+                    </div>
+                </div>
+
+                <!-- DOTS NAVIGATION -->
+                <div id="galeri-dots" class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10">
+                    <!-- dots akan dibuat oleh javascript -->
+                </div>
+
+                <!-- PANAH KIRI KANAN -->
+                <button id="galeri-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10">‹</button>
+                <button id="galeri-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10">›</button>
+            </div>
+        </div>
+    </section>
+    <!-- ========== AKHIR TAMBAHAN SLIDER 9 FOTO ========== -->
+
     <!-- LOKASI & FOOTER -->
     <section id="lokasi">
         <div class="h-64 w-full">
@@ -448,8 +561,111 @@
     </div>
 
     <script>
+        // ======================== KONFIGURASI URL FOTO GITHUB ========================
+        // ⚠️ GANTI URL DI BAWAH INI DENGAN RAW URL GITHUB ANDA ⚠️
+        // Format: https://raw.githubusercontent.com/username/repo/branch/nama_foto.png
+        
+        const fotoUrls = [
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(1).png",   // foto 1
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(2).png",   // foto 2
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(3).png",   // foto 3
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(4).png",   // foto 4
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(5).png",   // foto 5
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(6).png",   // foto 6
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(7).png",   // foto 7
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(8).png",   // foto 8
+            "https://raw.githubusercontent.com/whllxyz/main/a%20(9).png"    // foto 9
+        ];
+        
+        // ======================== SCRIPT SLIDER 9 FOTO ========================
+        let galeriCurrentSlide = 0;
+        let galeriInterval;
+        const totalGaleriSlides = 9;
+        
+        function updateGaleriSlider() {
+            const slides = document.querySelectorAll('.galeri-slide');
+            const dots = document.querySelectorAll('.galeri-dot');
+            
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === galeriCurrentSlide);
+            });
+            
+            dots.forEach((dot, i) => {
+                if (i === galeriCurrentSlide) {
+                    dot.className = "galeri-dot w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer";
+                } else {
+                    dot.className = "galeri-dot w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer";
+                }
+            });
+        }
+        
+        function nextGaleriSlide() {
+            galeriCurrentSlide = (galeriCurrentSlide + 1) % totalGaleriSlides;
+            updateGaleriSlider();
+        }
+        
+        function prevGaleriSlide() {
+            galeriCurrentSlide = (galeriCurrentSlide - 1 + totalGaleriSlides) % totalGaleriSlides;
+            updateGaleriSlider();
+        }
+        
+        function goToGaleriSlide(index) {
+            galeriCurrentSlide = index;
+            updateGaleriSlider();
+            // reset auto slide timer
+            if (galeriInterval) {
+                clearInterval(galeriInterval);
+                galeriInterval = setInterval(nextGaleriSlide, 4000);
+            }
+        }
+        
+        // load foto ke img elements
+        function loadGaleriImages() {
+            for (let i = 0; i < totalGaleriSlides; i++) {
+                const imgElement = document.getElementById(`galeri-img-${i}`);
+                if (imgElement && fotoUrls[i]) {
+                    imgElement.src = fotoUrls[i];
+                    imgElement.onerror = function() {
+                        this.src = "https://placehold.co/1920x1080?text=Gambar+Tidak+Tersedia";
+                        this.alt = "Gambar gagal dimuat";
+                    };
+                }
+            }
+        }
+        
+        // buat dots navigation
+        function createDots() {
+            const dotsContainer = document.getElementById('galeri-dots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalGaleriSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = i === 0 ? "galeri-dot w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer" : "galeri-dot w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer";
+                dot.setAttribute('data-index', i);
+                dot.onclick = () => goToGaleriSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        // setup event listeners
+        function setupGaleriEvents() {
+            const prevBtn = document.getElementById('galeri-prev');
+            const nextBtn = document.getElementById('galeri-next');
+            if (prevBtn) prevBtn.onclick = () => { prevGaleriSlide(); clearInterval(galeriInterval); galeriInterval = setInterval(nextGaleriSlide, 4000); };
+            if (nextBtn) nextBtn.onclick = () => { nextGaleriSlide(); clearInterval(galeriInterval); galeriInterval = setInterval(nextGaleriSlide, 4000); };
+        }
+        
+        // start slider
+        function startGaleriSlider() {
+            createDots();
+            loadGaleriImages();
+            setupGaleriEvents();
+            galeriInterval = setInterval(nextGaleriSlide, 4000);
+        }
+        
+        // ======================== SCRIPT LAMA (TIDAK BERUBAH) ========================
+        
         // COUNTDOWN TIMER - TANGGAL 14 JUNI 2026
-        // Format: Bulan (0-11), jadi 5 = Juni
         const targetDate = new Date(2026, 5, 14, 0, 0, 0).getTime();
         
         function updateCountdown() {
@@ -524,7 +740,6 @@
             }
         }
         
-        // INFO PENDAFTARAN - BUKA LINK PMB RIAU
         function showInfoPendaftaran() {
             window.open("https://pmb.riau.go.id", "_blank");
         }
@@ -569,8 +784,9 @@
             showToast("✅ 9 Jurusan unggulan SMKN 2 Tembilahan ditampilkan!", "success");
         });
         
-        // WINDOW LOAD
+        // WINDOW LOAD - jalankan slider galeri dan toast
         window.onload = () => {
+            startGaleriSlider();
             showToast("🎓 Selamat datang di Portal SPMB SMKN 2 Tembilahan 2026", "info");
         };
     </script>
