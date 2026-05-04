@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMKN 2 Tembilahan</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+        #running-bar { display:none; background: #ffcc00; color: #000; position: fixed; top: 0; width: 100%; z-index: 9999; padding: 10px 0; font-weight: bold; }
+        #popup-wahyu { display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
+        .box-msg { background: white; color: black; padding: 30px; border-radius: 20px; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .btn-close { background: #3ecf8e; color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; margin-top: 20px; font-weight: bold; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <div id="running-bar"><marquee id="txt-siaran"></marquee></div>
+    
+    <div id="popup-wahyu">
+        <div class="box-msg">
+            <h2 style="color: #3ecf8e; margin: 0 0 15px 0;">PENGUMUMAN</h2>
+            <p id="pesan-admin" style="font-size: 16px; line-height: 1.6;"></p>
+            <button class="btn-close" onclick="document.getElementById('popup-wahyu').style.display='none'">OKE, PAHAM!</button>
+        </div>
+    </div>
+
+    <div style="margin-top: 100px; text-align: center; padding: 20px;">
+        <h1>Portal Resmi SMKN 2 Tembilahan</h1>
+        <p>Website ini dikelola oleh WahyuMC.</p>
+        <img src="smk.jpg" alt="SMK" style="max-width: 80%; border-radius: 10px;">
+    </div>
+
+    <script>
+        const S_URL = 'https://nrgiawgyqhxqjrqqzsei.supabase.co';
+        const S_KEY = 'sb_publishable_o0o13NZ83V4qgrYxFWJBjg_BWaneVf0'; 
+        const supabaseClient = supabase.createClient(S_URL, S_KEY);
+
+        async function cekData() {
+            const { data } = await supabaseClient.from('kontrol_admin').select('*').eq('id', 1).single();
+            if (data) {
+                if (data.running_text) {
+                    document.getElementById('running-bar').style.display = 'block';
+                    document.getElementById('txt-siaran').innerText = data.running_text;
+                }
+                if (data.status_popup) {
+                    document.getElementById('popup-wahyu').style.display = 'flex';
+                    document.getElementById('pesan-admin').innerText = data.pesan_popup;
+                } else {
+                    document.getElementById('popup-wahyu').style.display = 'none';
+                }
+            }
+        }
+        cekData();
+
+        // Realtime refresh
+        supabaseClient.channel('public:kontrol_admin').on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'kontrol_admin' }, () => {
+            location.reload();
+        }).subscribe();
+    </script>
+</body>
+</html>
