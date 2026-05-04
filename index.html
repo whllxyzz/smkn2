@@ -137,6 +137,22 @@
         }
         .back-to-top:hover { background: #1e3a8a; transform: scale(1.05); }
         .back-to-top.show { display: flex; }
+
+        .logo-navbar {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .logo-navbar {
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -146,21 +162,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-3 md:py-4">
                 <div class="flex items-center gap-3">
-                    <img src="smk.jpeg" alt="Logo SMKN 2" class="w-10 h-10 md:w-12 md:h-12 object-cover rounded-xl shadow-md" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                    <img src="smk.jpeg" alt="Logo SMKN 2" class="logo-navbar" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                     <div>
                         <h1 class="text-base md:text-xl font-bold text-slate-800 leading-tight">SMK Negeri 2 Tembilahan</h1>
                         <p class="text-[10px] md:text-xs text-blue-600 font-semibold">Sistem Penerimaan Siswa Baru 2026</p>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center gap-2">
-                    <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600">Beranda</a>
-                    <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600">Jurusan</a>
-                    <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600">Lokasi</a>
-                    <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 shadow-md">
+                    <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Beranda</a>
+                    <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Jurusan</a>
+                    <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Lokasi</a>
+                    <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 shadow-md transition">
                         Admin Area
                     </button>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition">
                     <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -169,10 +185,10 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 py-3 px-4">
             <div class="flex flex-col gap-2">
-                <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600" onclick="closeMobileMenu()">Beranda</a>
-                <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600" onclick="closeMobileMenu()">Jurusan</a>
-                <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600" onclick="closeMobileMenu()">Lokasi</a>
-                <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left">
+                <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Beranda</a>
+                <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Jurusan</a>
+                <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Lokasi</a>
+                <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left hover:bg-blue-700 transition">
                     Admin Area
                 </button>
             </div>
@@ -200,20 +216,20 @@
                     <div id="countdown-container" class="mb-6 hidden">
                         <p class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-2">Pendaftaran dibuka dalam:</p>
                         <div class="flex gap-2">
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="days" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-400">Hari</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="hours" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-400">Jam</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="minutes" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-400">Menit</span></div>
-                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="seconds" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-400">Detik</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="days" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">Hari</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="hours" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">Jam</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="minutes" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">Menit</span></div>
+                            <div class="countdown-box rounded-xl p-2 min-w-[60px] text-center"><span id="seconds" class="block text-xl md:text-2xl font-black">00</span><span class="text-[9px] font-semibold text-slate-500">Detik</span></div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-3">
-                        <button id="btn-daftar" disabled class="px-7 py-2.5 bg-slate-300 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed">⏳ Pendaftaran Belum Dibuka</button>
-                        <button onclick="showInfoPendaftaran()" class="px-7 py-2.5 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50">📋 Info Pendaftaran</button>
+                        <button id="btn-daftar" disabled class="px-7 py-2.5 bg-slate-300 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed transition">⏳ Pendaftaran Belum Dibuka</button>
+                        <button onclick="showInfoPendaftaran()" class="px-7 py-2.5 bg-white border-2 border-blue-600 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition">📋 Info Pendaftaran</button>
                     </div>
                 </div>
                 
-                <!-- SLIDER 4 FOTO MPLS 2025 - NAMA FILE SUDAH BENAR: m1.jpeg, m2.jpeg, m3.jpeg, m4.jpeg -->
+                <!-- SLIDER 4 FOTO MPLS 2025 -->
                 <div class="fade-in-up relative">
                     <div class="slider-container" id="hero-slider">
                         <!-- SLIDE 1 - m1.jpeg -->
@@ -239,10 +255,10 @@
                     </div>
                     <!-- DOTS NAVIGATION -->
                     <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
-                        <button onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-blue-600 slider-dot"></button>
-                        <button onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot"></button>
-                        <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot"></button>
-                        <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot"></button>
+                        <button onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-blue-600 slider-dot transition"></button>
+                        <button onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
+                        <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
+                        <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                     </div>
                     <!-- PANAH KIRI KANAN -->
                     <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">‹</button>
@@ -273,7 +289,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.PM</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Pemesinan</p>
                     <p class="text-slate-400 text-xs mb-3">Menguasai mesin bubut, milling, dan teknologi CNC.</p>
-                    <button onclick="showDetail('T.PM', 'Mempelajari pengoperasian mesin perkakas presisi, pemrograman CNC, dan teknik produksi manufaktur.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.PM', 'Mempelajari pengoperasian mesin perkakas presisi, pemrograman CNC, dan teknik produksi manufaktur.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.KR -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -281,7 +297,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.KR</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Kendaraan Ringan</p>
                     <p class="text-slate-400 text-xs mb-3">Perawatan mesin otomotif & sistem kelistrikan mobil.</p>
-                    <button onclick="showDetail('T.KR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.KR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.SM -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -289,7 +305,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.SM</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Sepeda Motor</p>
                     <p class="text-slate-400 text-xs mb-3">Servis motor, teknologi injeksi, manajemen bengkel.</p>
-                    <button onclick="showDetail('T.SM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.SM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.TKJ -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -297,7 +313,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.TKJ</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Komputer & Jaringan</p>
                     <p class="text-slate-400 text-xs mb-3">Instalasi jaringan, server, keamanan siber, cloud.</p>
-                    <button onclick="showDetail('T.TKJ', 'Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.TKJ', 'Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.TET -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -305,7 +321,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.TET</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Elektronika</p>
                     <p class="text-slate-400 text-xs mb-3">Sistem kontrol otomatis, robotika, mikrokontroler.</p>
-                    <button onclick="showDetail('T.TET', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.TET', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.AV -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -313,7 +329,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.AV</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Audio Video</p>
                     <p class="text-slate-400 text-xs mb-3">Elektronika, sistem audio profesional, perbaikan TV.</p>
-                    <button onclick="showDetail('T.AV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga dan sistem audio.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.AV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga dan sistem audio.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.DPI -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -321,7 +337,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.DPI</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Desain Pemodelan & Informasi Bangunan</p>
                     <p class="text-slate-400 text-xs mb-3">Gambar arsitektur 2D/3D, AutoCAD, Revit.</p>
-                    <button onclick="showDetail('T.DPI', 'Fokus pada pembuatan desain bangunan fungsional menggunakan software standar industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.DPI', 'Fokus pada pembuatan desain bangunan fungsional menggunakan software standar industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.GEOMATIKA -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -329,7 +345,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.GEOMATIKA</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Geomatika</p>
                     <p class="text-slate-400 text-xs mb-3">Pemetaan, GIS, survei, dan penginderaan jauh.</p>
-                    <button onclick="showDetail('T.GEOMATIKA', 'Mempelajari teknologi pemetaan digital, SIG, dan survei lahan untuk pembangunan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.GEOMATIKA', 'Mempelajari teknologi pemetaan digital, SIG, dan survei lahan untuk pembangunan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
                 <!-- T.ITL -->
                 <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
@@ -337,7 +353,7 @@
                     <h3 class="text-slate-800 font-bold text-base mb-1">T.ITL</h3>
                     <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Instalasi Tenaga Listrik</p>
                     <p class="text-slate-400 text-xs mb-3">Instalasi listrik rumah, industri, kontrol motor PLC.</p>
-                    <button onclick="showDetail('T.ITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung dan panel kontrol industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-800">Lihat Detail →</button>
+                    <button onclick="showDetail('T.ITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung dan panel kontrol industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
                 </div>
             </div>
         </div>
@@ -346,7 +362,7 @@
     <!-- LOKASI & FOOTER -->
     <section id="lokasi">
         <div class="h-64 w-full">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e293670966f916d%3A0x6734568600f73562!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1714394000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2a3d4d4d4d4d4d%3A0x4d4d4d4d4d4d4d4d!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         
         <footer class="bg-slate-900 text-white py-8 px-4">
@@ -354,7 +370,7 @@
                 <div class="grid md:grid-cols-3 gap-6 mb-6">
                     <div>
                         <div class="flex items-center gap-3 mb-3">
-                            <img src="smk.jpeg" alt="Logo" class="w-10 h-10 rounded-xl" onerror="this.src='https://placehold.co/100x100?text=SMK'">
+                            <img src="smk.jpeg" alt="Logo" class="w-10 h-10 rounded-lg" onerror="this.src='https://placehold.co/100x100?text=SMK'">
                             <div><h3 class="font-bold">SMKN 2 Tembilahan</h3><p class="text-slate-400 text-xs">Sekolah Pusat Keunggulan</p></div>
                         </div>
                         <p class="text-slate-400 text-xs leading-relaxed">Mencetak generasi unggul, berkarakter, dan siap bersaing di era industri 4.0.</p>
@@ -370,9 +386,9 @@
                     <div>
                         <h4 class="font-bold text-xs uppercase tracking-wider mb-3 text-slate-300">Link Terkait</h4>
                         <ul class="space-y-1 text-xs">
-                            <li><a href="#" class="text-slate-400 hover:text-white">Kemendikbudristek</a></li>
-                            <li><a href="#" class="text-slate-400 hover:text-white">Disdik Kab. Inhil</a></li>
-                            <li><a href="#" class="text-slate-400 hover:text-white">PPDB Online 2026</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition">Kemendikbudristek</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition">Disdik Kab. Inhil</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-white transition">PPDB Online 2026</a></li>
                         </ul>
                     </div>
                 </div>
@@ -384,30 +400,30 @@
     </section>
 
     <!-- Floating WhatsApp -->
-    <div class="floating-wa" onclick="window.open('https://wa.me/6282293786539', '_blank')">
+    <div class="floating-wa" onclick="window.open('https://wa.me/6282293786539', '_blank')" title="Chat WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 00-3.429.823l-.235.136-2.436-.64.652 2.38-.153.245a6.961 6.961 0 001.07 3.233c.711 1.227 1.72 2.267 2.914 2.964 1.194.697 2.51 1.066 3.839 1.066a6.96 6.96 0 003.5-.893c1.035-.604 1.966-1.479 2.708-2.555a6.96 6.96 0 001.032-3.66 6.97 6.97 0 00-1.983-4.879 6.977 6.977 0 00-4.848-2.261z"/>
         </svg>
     </div>
 
     <!-- Back to Top -->
-    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Kembali ke atas">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </div>
 
     <!-- MODAL LOGIN -->
     <div id="login-modal" class="modal">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative p-6">
-            <button onclick="toggleModal('login-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600">✕</button>
+            <button onclick="toggleModal('login-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition">✕</button>
             <div class="text-center mb-5">
                 <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">🔐</div>
                 <h3 class="text-xl font-bold text-slate-800">Login Admin</h3>
                 <p class="text-slate-500 text-xs mt-1">Akses khusus panitia PPDB</p>
             </div>
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
-                <div><label class="block text-xs font-bold text-slate-600 mb-1">Username</label><input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan username"></div>
-                <div><label class="block text-xs font-bold text-slate-600 mb-1">Password</label><input type="password" id="login-password" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan password"></div>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl hover:bg-blue-700">Masuk Dashboard</button>
+                <div><label class="block text-xs font-bold text-slate-600 mb-1">Username</label><input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Masukkan username" required></div>
+                <div><label class="block text-xs font-bold text-slate-600 mb-1">Password</label><input type="password" id="login-password" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" placeholder="Masukkan password" required></div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl hover:bg-blue-700 transition">Masuk Dashboard</button>
             </form>
         </div>
     </div>
@@ -415,20 +431,20 @@
     <!-- MODAL DETAIL JURUSAN -->
     <div id="detail-modal" class="modal">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative p-6">
-            <button onclick="toggleModal('detail-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600">✕</button>
+            <button onclick="toggleModal('detail-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition">✕</button>
             <div class="text-center">
                 <div id="detail-icon" class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg">💻</div>
                 <h3 id="detail-title" class="text-xl font-bold text-slate-800 mb-1">Nama Jurusan</h3>
                 <div class="w-12 h-1 bg-blue-600 mx-auto rounded-full mb-4"></div>
                 <p id="detail-desc" class="text-slate-600 text-sm leading-relaxed">Deskripsi jurusan akan muncul disini</p>
-                <button onclick="toggleModal('detail-modal')" class="mt-5 px-5 py-2 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700">Tutup</button>
+                <button onclick="toggleModal('detail-modal')" class="mt-5 px-5 py-2 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 transition">Tutup</button>
             </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast-notif" class="toast-notif bg-white rounded-xl shadow-xl border p-3 min-w-[240px]">
-        <div class="flex items-center gap-2"><div id="toast-icon" class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-xs">✓</div><p id="toast-message" class="text-xs font-semibold text-slate-700">Notifikasi</p></div>
+        <div class="flex items-center gap-2"><div id="toast-icon" class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-xs">✓</div><p id="toast-message" class="text-xs font-semibold text-slate-700">Pesan notifikasi</p></div>
     </div>
 
     <script>
@@ -441,7 +457,12 @@
             const btnDaftar = document.getElementById('btn-daftar');
             if (distance < 0) {
                 container?.classList.add('hidden');
-                if(btnDaftar) { btnDaftar.disabled = false; btnDaftar.className = "px-7 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 shadow-md"; btnDaftar.innerText = "📝 DAFTAR SEKARANG"; btnDaftar.onclick = () => showToast("Pendaftaran akan segera dibuka!", "info"); }
+                if(btnDaftar) { 
+                    btnDaftar.disabled = false; 
+                    btnDaftar.className = "px-7 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 shadow-md transition"; 
+                    btnDaftar.innerText = "🚀 Daftar Sekarang";
+                    btnDaftar.onclick = () => window.open("https://wa.me/6282293786539", "_blank");
+                }
                 return;
             }
             container?.classList.remove('hidden');
@@ -450,9 +471,10 @@
             document.getElementById('minutes').innerText = Math.floor((distance % (1000*60*60)) / (1000*60)).toString().padStart(2,'0');
             document.getElementById('seconds').innerText = Math.floor((distance % (1000*60)) / 1000).toString().padStart(2,'0');
         }
-        setInterval(updateCountdown, 1000); updateCountdown();
+        setInterval(updateCountdown, 1000); 
+        updateCountdown();
 
-        // SLIDER 4 FOTO MPLS 2025 - SEKARANG PAKAI .jpeg
+        // SLIDER 4 FOTO MPLS 2025
         let currentSlide = 0, slideInterval;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.slider-dot');
@@ -460,7 +482,7 @@
         function updateSlider() {
             slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
             dots.forEach((d, i) => {
-                d.className = i === currentSlide ? "w-6 h-2 rounded-full bg-blue-600 slider-dot" : "w-2 h-2 rounded-full bg-slate-300 slider-dot";
+                d.className = i === currentSlide ? "w-6 h-2 rounded-full bg-blue-600 slider-dot transition" : "w-2 h-2 rounded-full bg-slate-300 slider-dot transition";
             });
         }
         
@@ -491,16 +513,17 @@
             const u = document.getElementById('login-username').value;
             const p = document.getElementById('login-password').value;
             if(u === "admin" && p === "smkn2tembilahan") {
-                showToast("Login berhasil! Selamat datang Admin.", "success");
+                showToast("✅ Login berhasil! Selamat datang Admin.", "success");
                 toggleModal('login-modal');
+                document.getElementById('login-form').reset();
                 setTimeout(() => window.open("https://wa.me/6282293786539", "_blank"), 1000);
             } else {
-                showToast("Username atau password salah! Hubungi admin jika lupa.", "error");
+                showToast("❌ Username atau password salah! Hubungi admin jika lupa.", "error");
             }
         }
         
         function showInfoPendaftaran() {
-            showToast("Pendaftaran akan dibuka pada 5 Mei 2026. Siapkan dokumen: Ijazah, KK, Akte Lahir, dan Pas foto.", "info");
+            showToast("📝 Pendaftaran dibuka 5 Mei 2026. Siapkan: Ijazah, KK, Akte Lahir, Pas Foto", "info");
         }
         
         // TOAST NOTIFICATION
@@ -540,12 +563,12 @@
         // BUTTON LIHAT SEMUA JURUSAN
         document.getElementById('btn-lihat-semua').addEventListener('click', () => {
             document.getElementById('jurusan-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            showToast("✅ 9 Jurusan unggulan SMKN 2 Tembilahan sudah ditampilkan!", "success");
+            showToast("✅ 9 Jurusan unggulan SMKN 2 Tembilahan ditampilkan!", "success");
         });
         
         // WINDOW LOAD
         window.onload = () => {
-            showToast("Selamat datang di Portal PPDB SMKN 2 Tembilahan 2026", "info");
+            showToast("🎓 Selamat datang di Portal PPDB SMKN 2 Tembilahan 2026", "info");
         };
     </script>
 </body>
