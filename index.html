@@ -388,7 +388,7 @@
                         <ul class="space-y-1 text-xs">
                             <li><a href="#" class="text-slate-400 hover:text-white transition">Kemendikbudristek</a></li>
                             <li><a href="#" class="text-slate-400 hover:text-white transition">Disdik Kab. Inhil</a></li>
-                            <li><a href="#" class="text-slate-400 hover:text-white transition">PPDB Online 2026</a></li>
+                            <li><a href="https://pmb.riau.go.id" target="_blank" class="text-slate-400 hover:text-white transition">SPMB Online 2026</a></li>
                         </ul>
                     </div>
                 </div>
@@ -402,7 +402,7 @@
     <!-- Floating WhatsApp -->
     <div class="floating-wa" onclick="window.open('https://wa.me/6282293786539', '_blank')" title="Chat WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76[...]
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76[...]"/>
         </svg>
     </div>
 
@@ -418,7 +418,7 @@
             <div class="text-center mb-5">
                 <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">🔐</div>
                 <h3 class="text-xl font-bold text-slate-800">Login Admin</h3>
-                <p class="text-slate-500 text-xs mt-1">Akses khusus panitia PPDB</p>
+                <p class="text-slate-500 text-xs mt-1">Akses khusus panitia SPMB</p>
             </div>
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
                 <div><label class="block text-xs font-bold text-slate-600 mb-1">Username</label><input type="text" id="login-username" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-500 outline-none" required></div>
@@ -448,8 +448,10 @@
     </div>
 
     <script>
-        // COUNTDOWN TIMER
-        const targetDate = new Date("May 5, 2026 00:00:00").getTime();
+        // COUNTDOWN TIMER - TANGGAL 14 JUNI 2026
+        // Format: Bulan (0-11), jadi 5 = Juni
+        const targetDate = new Date(2026, 5, 14, 0, 0, 0).getTime();
+        
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
@@ -522,8 +524,9 @@
             }
         }
         
+        // INFO PENDAFTARAN - BUKA LINK PMB RIAU
         function showInfoPendaftaran() {
-            showToast("📝 Pendaftaran dibuka 5 Mei 2026. Siapkan: Ijazah, KK, Akte Lahir, Pas Foto", "info");
+            window.open("https://pmb.riau.go.id", "_blank");
         }
         
         // TOAST NOTIFICATION
@@ -568,7 +571,7 @@
         
         // WINDOW LOAD
         window.onload = () => {
-            showToast("🎓 Selamat datang di Portal PPDB SMKN 2 Tembilahan 2026", "info");
+            showToast("🎓 Selamat datang di Portal SPMB SMKN 2 Tembilahan 2026", "info");
         };
     </script>
 </body>
