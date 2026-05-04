@@ -38,6 +38,33 @@
         .slide.active { opacity: 1; visibility: visible; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         
+        /* Style untuk slider jurusan */
+        .jurusan-slider-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .jurusan-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .jurusan-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .jurusan-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #1e293b;
+        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -55,14 +82,6 @@
             background: white;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-        
-        .jurusan-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .jurusan-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.12);
         }
         
         @keyframes fadeInUp {
@@ -153,45 +172,6 @@
                 height: 40px;
             }
         }
-
-        /* TAMBAHAN SLIDER 9 FOTO */
-        .galeri-slider-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        .galeri-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .galeri-slide.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .galeri-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .galeri-caption {
-            background: rgba(0,0,0,0.6);
-            color: white;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 6px 14px;
-            border-radius: 30px;
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            backdrop-filter: blur(5px);
-            z-index: 10;
-        }
     </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -210,7 +190,6 @@
                 <div class="hidden md:flex items-center gap-2">
                     <a href="#beranda" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Beranda</a>
                     <a href="#jurusan" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Jurusan</a>
-                    <a href="#galeri" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Galeri</a>
                     <a href="#lokasi" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Lokasi</a>
                     <button onclick="toggleModal('login-modal')" class="ml-2 px-5 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 shadow-md transition">
                         Admin Area
@@ -227,7 +206,6 @@
             <div class="flex flex-col gap-2">
                 <a href="#beranda" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Beranda</a>
                 <a href="#jurusan" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Jurusan</a>
-                <a href="#galeri" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Galeri</a>
                 <a href="#lokasi" class="py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition" onclick="closeMobileMenu()">Lokasi</a>
                 <button onclick="toggleModal('login-modal'); closeMobileMenu();" class="py-2 px-4 bg-blue-600 text-white text-sm font-bold rounded-xl text-left hover:bg-blue-700 transition">
                     Admin Area
@@ -273,35 +251,29 @@
                 <!-- SLIDER 4 FOTO MPLS 2025 -->
                 <div class="fade-in-up relative">
                     <div class="slider-container" id="hero-slider">
-                        <!-- SLIDE 1 - m1.jpeg -->
                         <div class="slide active relative">
-                            <img src="m1.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
+                            <img src="m1.jpeg" alt="Kegiatan MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 2 - m2.jpeg -->
                         <div class="slide relative">
-                            <img src="m2.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
+                            <img src="m2.jpeg" alt="Kegiatan MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 3 - m3.jpeg -->
                         <div class="slide relative">
-                            <img src="m3.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
+                            <img src="m3.jpeg" alt="Kegiatan MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
-                        <!-- SLIDE 4 - m4.jpeg -->
                         <div class="slide relative">
-                            <img src="m4.jpeg" alt="Kegiatan MPLS 2025 SMKN 2 Tembilahan">
+                            <img src="m4.jpeg" alt="Kegiatan MPLS 2025">
                             <div class="mpls-caption">📸 Dokumentasi MPLS Tahun 2025</div>
                         </div>
                     </div>
-                    <!-- DOTS NAVIGATION -->
                     <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md">
                         <button onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-blue-600 slider-dot transition"></button>
                         <button onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                         <button onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                         <button onclick="goToSlide(3)" class="w-2 h-2 rounded-full bg-slate-300 slider-dot transition"></button>
                     </div>
-                    <!-- PANAH KIRI KANAN -->
                     <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">‹</button>
                     <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 p-1.5 rounded-full shadow-md text-lg font-bold hover:bg-white transition">›</button>
                 </div>
@@ -309,168 +281,31 @@
         </div>
     </section>
 
-    <!-- JURUSAN SECTION -->
-    <section id="jurusan" class="py-8 px-4 md:px-8 bg-white compact-section">
-        <div class="max-w-7xl mx-auto">
+    <!-- JURUSAN SECTION - SLIDER 10 FOTO DARI GITHUB -->
+    <section id="jurusan" class="py-12 px-4 md:px-8 bg-gradient-to-b from-white to-slate-100">
+        <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-3 py-1 rounded-full inline-block mb-3">Kompetensi Keahlian</span>
                 <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-2">Program Keahlian</h2>
                 <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-500 text-sm max-w-2xl mx-auto">Pilih program keahlian yang sesuai dengan minat dan bakatmu</p>
-                
-                <button id="btn-lihat-semua" class="mt-5 px-6 py-2 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-all shadow-md">
-                    📚 Lihat Semua Jurusan
-                </button>
-            </div>
-            
-            <div id="jurusan-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                <!-- T.PM -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">⚙️</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.PM</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Pemesinan</p>
-                    <p class="text-slate-400 text-xs mb-3">Menguasai mesin bubut, milling, dan teknologi CNC.</p>
-                    <button onclick="showDetail('T.PM', 'Mempelajari pengoperasian mesin perkakas presisi, pemrograman CNC, dan teknik produksi manufaktur.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.KR -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🚗</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.KR</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Kendaraan Ringan</p>
-                    <p class="text-slate-400 text-xs mb-3">Perawatan mesin otomotif & sistem kelistrikan mobil.</p>
-                    <button onclick="showDetail('T.KR', 'Mendalami mesin otomotif roda empat, sistem EFI, hingga perawatan berkala kendaraan ringan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.SM -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🏍️</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.SM</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Sepeda Motor</p>
-                    <p class="text-slate-400 text-xs mb-3">Servis motor, teknologi injeksi, manajemen bengkel.</p>
-                    <button onclick="showDetail('T.SM', 'Mempelajari servis rutin, perbaikan mesin, kelistrikan, dan manajemen bisnis bengkel sepeda motor.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.TKJ -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">💻</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.TKJ</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Komputer & Jaringan</p>
-                    <p class="text-slate-400 text-xs mb-3">Instalasi jaringan, server, keamanan siber, cloud.</p>
-                    <button onclick="showDetail('T.TKJ', 'Mempelajari instalasi jaringan, server, keamanan siber, dan infrastruktur cloud computing.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.TET -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🦾</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.TET</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Elektronika</p>
-                    <p class="text-slate-400 text-xs mb-3">Sistem kontrol otomatis, robotika, mikrokontroler.</p>
-                    <button onclick="showDetail('T.TET', 'Mempelajari cara kerja sensor, pemrograman mikrokontroler, dan sistem robotika cerdas.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.AV -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🔊</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.AV</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Audio Video</p>
-                    <p class="text-slate-400 text-xs mb-3">Elektronika, sistem audio profesional, perbaikan TV.</p>
-                    <button onclick="showDetail('T.AV', 'Menguasai perakitan dan perbaikan peralatan elektronik rumah tangga dan sistem audio.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.DPI -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🏗️</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.DPI</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Desain Pemodelan & Informasi Bangunan</p>
-                    <p class="text-slate-400 text-xs mb-3">Gambar arsitektur 2D/3D, AutoCAD, Revit.</p>
-                    <button onclick="showDetail('T.DPI', 'Fokus pada pembuatan desain bangunan fungsional menggunakan software standar industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.GEOMATIKA -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">🗺️</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.GEOMATIKA</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Geomatika</p>
-                    <p class="text-slate-400 text-xs mb-3">Pemetaan, GIS, survei, dan penginderaan jauh.</p>
-                    <button onclick="showDetail('T.GEOMATIKA', 'Mempelajari teknologi pemetaan digital, SIG, dan survei lahan untuk pembangunan.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-                <!-- T.ITL -->
-                <div class="jurusan-card bg-gradient-to-br from-white to-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-200 shadow-sm">
-                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-xl flex items-center justify-center mb-3 shadow-md text-2xl">⚡</div>
-                    <h3 class="text-slate-800 font-bold text-base mb-1">T.ITL</h3>
-                    <p class="text-xs text-blue-600 font-semibold mb-2">Teknik Instalasi Tenaga Listrik</p>
-                    <p class="text-slate-400 text-xs mb-3">Instalasi listrik rumah, industri, kontrol motor PLC.</p>
-                    <button onclick="showDetail('T.ITL', 'Menguasai perancangan dan pemasangan sistem kelistrikan gedung dan panel kontrol industri.')" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 transition">Lihat Detail →</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== TAMBAHAN SLIDER 9 FOTO DARI GITHUB ========== -->
-    <section id="galeri" class="py-8 px-4 md:px-8 bg-slate-50 compact-section">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-8">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-wider bg-blue-100 px-3 py-1 rounded-full inline-block mb-3">Dokumentasi</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-2">Galeri Kegiatan Sekolah</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-800 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-500 text-sm max-w-2xl mx-auto">Momen kebersamaan dan kegiatan seru di SMK Negeri 2 Tembilahan</p>
+                <p class="text-slate-500 text-sm max-w-2xl mx-auto">Geser untuk melihat 10 program keahlian unggulan SMK Negeri 2 Tembilahan</p>
             </div>
 
             <div class="relative">
-                <div class="galeri-slider-container" id="galeri-slider">
-                    <!-- SLIDE 1 -->
-                    <div class="galeri-slide active">
-                        <img id="galeri-img-0" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 1</div>
-                    </div>
-                    <!-- SLIDE 2 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-1" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 2</div>
-                    </div>
-                    <!-- SLIDE 3 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-2" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 3</div>
-                    </div>
-                    <!-- SLIDE 4 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-3" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 4</div>
-                    </div>
-                    <!-- SLIDE 5 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-4" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 5</div>
-                    </div>
-                    <!-- SLIDE 6 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-5" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 6</div>
-                    </div>
-                    <!-- SLIDE 7 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-6" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 7</div>
-                    </div>
-                    <!-- SLIDE 8 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-7" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 8</div>
-                    </div>
-                    <!-- SLIDE 9 -->
-                    <div class="galeri-slide">
-                        <img id="galeri-img-8" alt="Kegiatan SMKN 2 Tembilahan">
-                        <div class="galeri-caption">📸 Kegiatan 9</div>
-                    </div>
+                <div class="jurusan-slider-container" id="jurusan-slider">
+                    <!-- 10 slide akan diisi JavaScript -->
                 </div>
 
-                <!-- DOTS NAVIGATION -->
-                <div id="galeri-dots" class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10">
-                    <!-- dots akan dibuat oleh javascript -->
+                <!-- Dots Navigation -->
+                <div id="jurusan-dots" class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md z-10">
                 </div>
 
-                <!-- PANAH KIRI KANAN -->
-                <button id="galeri-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10">‹</button>
-                <button id="galeri-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10">›</button>
+                <!-- Panah Kiri Kanan -->
+                <button id="jurusan-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10 w-10 h-10 flex items-center justify-center">‹</button>
+                <button id="jurusan-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md text-xl font-bold transition z-10 w-10 h-10 flex items-center justify-center">›</button>
             </div>
         </div>
     </section>
-    <!-- ========== AKHIR TAMBAHAN SLIDER 9 FOTO ========== -->
 
     <!-- LOKASI & FOOTER -->
     <section id="lokasi">
@@ -541,128 +376,109 @@
         </div>
     </div>
 
-    <!-- MODAL DETAIL JURUSAN -->
-    <div id="detail-modal" class="modal">
-        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative p-6">
-            <button onclick="toggleModal('detail-modal')" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 transition">✕</button>
-            <div class="text-center">
-                <div id="detail-icon" class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-3xl shadow-lg">💻</div>
-                <h3 id="detail-title" class="text-xl font-bold text-slate-800 mb-1">Nama Jurusan</h3>
-                <div class="w-12 h-1 bg-blue-600 mx-auto rounded-full mb-4"></div>
-                <p id="detail-desc" class="text-slate-600 text-sm leading-relaxed">Deskripsi jurusan akan muncul disini</p>
-                <button onclick="toggleModal('detail-modal')" class="mt-5 px-5 py-2 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 transition">Tutup</button>
-            </div>
-        </div>
-    </div>
-
     <!-- TOAST NOTIFICATION -->
     <div id="toast-notif" class="toast-notif bg-white rounded-xl shadow-xl border p-3 min-w-[240px]">
         <div class="flex items-center gap-2"><div id="toast-icon" class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-xs">✓</div><p id="toast-message" class="text-xs font-semibold text-slate-700"></p></div>
     </div>
 
     <script>
-        // ======================== KONFIGURASI URL FOTO GITHUB ========================
-        // ⚠️ GANTI URL DI BAWAH INI DENGAN RAW URL GITHUB ANDA ⚠️
-        // Format: https://raw.githubusercontent.com/username/repo/branch/nama_foto.png
-        
-        const fotoUrls = [
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(1).png",   // foto 1
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(2).png",   // foto 2
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(3).png",   // foto 3
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(4).png",   // foto 4
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(5).png",   // foto 5
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(6).png",   // foto 6
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(7).png",   // foto 7
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(8).png",   // foto 8
-            "https://raw.githubusercontent.com/whllxyz/main/a%20(9).png"    // foto 9
+        // ======================== URL FOTO JURUSAN (RAW GITHUB) ========================
+        // URL RAW yang benar dari GitHub Anda
+        const fotoJurusan = [
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(1).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(2).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(3).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(4).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(5).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(6).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(7).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(8).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(9).png",
+            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/a%20(10).png"
         ];
-        
-        // ======================== SCRIPT SLIDER 9 FOTO ========================
-        let galeriCurrentSlide = 0;
-        let galeriInterval;
-        const totalGaleriSlides = 9;
-        
-        function updateGaleriSlider() {
-            const slides = document.querySelectorAll('.galeri-slide');
-            const dots = document.querySelectorAll('.galeri-dot');
+
+        // ======================== SLIDER JURUSAN 10 FOTO ========================
+        let jurusanCurrentSlide = 0;
+        let jurusanInterval;
+        const totalJurusanSlides = 10;
+
+        // Membuat elemen slide dan dots
+        function buildJurusanSlider() {
+            const container = document.getElementById('jurusan-slider');
+            const dotsContainer = document.getElementById('jurusan-dots');
+            if (!container) return;
             
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === galeriCurrentSlide);
-            });
-            
-            dots.forEach((dot, i) => {
-                if (i === galeriCurrentSlide) {
-                    dot.className = "galeri-dot w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer";
-                } else {
-                    dot.className = "galeri-dot w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer";
-                }
-            });
-        }
-        
-        function nextGaleriSlide() {
-            galeriCurrentSlide = (galeriCurrentSlide + 1) % totalGaleriSlides;
-            updateGaleriSlider();
-        }
-        
-        function prevGaleriSlide() {
-            galeriCurrentSlide = (galeriCurrentSlide - 1 + totalGaleriSlides) % totalGaleriSlides;
-            updateGaleriSlider();
-        }
-        
-        function goToGaleriSlide(index) {
-            galeriCurrentSlide = index;
-            updateGaleriSlider();
-            // reset auto slide timer
-            if (galeriInterval) {
-                clearInterval(galeriInterval);
-                galeriInterval = setInterval(nextGaleriSlide, 4000);
-            }
-        }
-        
-        // load foto ke img elements
-        function loadGaleriImages() {
-            for (let i = 0; i < totalGaleriSlides; i++) {
-                const imgElement = document.getElementById(`galeri-img-${i}`);
-                if (imgElement && fotoUrls[i]) {
-                    imgElement.src = fotoUrls[i];
-                    imgElement.onerror = function() {
-                        this.src = "https://placehold.co/1920x1080?text=Gambar+Tidak+Tersedia";
-                        this.alt = "Gambar gagal dimuat";
-                    };
-                }
-            }
-        }
-        
-        // buat dots navigation
-        function createDots() {
-            const dotsContainer = document.getElementById('galeri-dots');
-            if (!dotsContainer) return;
+            container.innerHTML = '';
             dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalGaleriSlides; i++) {
+            
+            // Buat 10 slide
+            for (let i = 0; i < totalJurusanSlides; i++) {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = i === 0 ? 'jurusan-slide active' : 'jurusan-slide';
+                const img = document.createElement('img');
+                img.src = fotoJurusan[i];
+                img.alt = `Jurusan ${i+1} SMKN 2 Tembilahan`;
+                img.onerror = function() {
+                    this.src = 'https://placehold.co/1920x1080/1e293b/ffffff?text=Gambar+Jurusan+Tidak+Tersedia';
+                    this.alt = 'Gambar gagal dimuat';
+                };
+                slideDiv.appendChild(img);
+                container.appendChild(slideDiv);
+                
+                // Buat dot
                 const dot = document.createElement('button');
-                dot.className = i === 0 ? "galeri-dot w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer" : "galeri-dot w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer";
+                dot.className = i === 0 ? 'w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer' : 'w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer';
                 dot.setAttribute('data-index', i);
-                dot.onclick = () => goToGaleriSlide(i);
+                dot.onclick = () => goToJurusanSlide(i);
                 dotsContainer.appendChild(dot);
             }
         }
         
-        // setup event listeners
-        function setupGaleriEvents() {
-            const prevBtn = document.getElementById('galeri-prev');
-            const nextBtn = document.getElementById('galeri-next');
-            if (prevBtn) prevBtn.onclick = () => { prevGaleriSlide(); clearInterval(galeriInterval); galeriInterval = setInterval(nextGaleriSlide, 4000); };
-            if (nextBtn) nextBtn.onclick = () => { nextGaleriSlide(); clearInterval(galeriInterval); galeriInterval = setInterval(nextGaleriSlide, 4000); };
+        function updateJurusanSlider() {
+            const slides = document.querySelectorAll('.jurusan-slide');
+            const dots = document.querySelectorAll('#jurusan-dots button');
+            
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === jurusanCurrentSlide);
+            });
+            
+            dots.forEach((dot, i) => {
+                if (i === jurusanCurrentSlide) {
+                    dot.className = 'w-6 h-2 rounded-full bg-blue-600 transition cursor-pointer';
+                } else {
+                    dot.className = 'w-2 h-2 rounded-full bg-slate-300 transition cursor-pointer';
+                }
+            });
         }
         
-        // start slider
-        function startGaleriSlider() {
-            createDots();
-            loadGaleriImages();
-            setupGaleriEvents();
-            galeriInterval = setInterval(nextGaleriSlide, 4000);
+        function nextJurusanSlide() {
+            jurusanCurrentSlide = (jurusanCurrentSlide + 1) % totalJurusanSlides;
+            updateJurusanSlider();
         }
         
+        function prevJurusanSlide() {
+            jurusanCurrentSlide = (jurusanCurrentSlide - 1 + totalJurusanSlides) % totalJurusanSlides;
+            updateJurusanSlider();
+        }
+        
+        function goToJurusanSlide(index) {
+            jurusanCurrentSlide = index;
+            updateJurusanSlider();
+            if (jurusanInterval) {
+                clearInterval(jurusanInterval);
+                jurusanInterval = setInterval(nextJurusanSlide, 4000);
+            }
+        }
+        
+        function startJurusanSlider() {
+            buildJurusanSlider();
+            const prevBtn = document.getElementById('jurusan-prev');
+            const nextBtn = document.getElementById('jurusan-next');
+            if (prevBtn) prevBtn.onclick = () => { prevJurusanSlide(); clearInterval(jurusanInterval); jurusanInterval = setInterval(nextJurusanSlide, 4000); };
+            if (nextBtn) nextBtn.onclick = () => { nextJurusanSlide(); clearInterval(jurusanInterval); jurusanInterval = setInterval(nextJurusanSlide, 4000); };
+            jurusanInterval = setInterval(nextJurusanSlide, 4000);
+        }
+
         // ======================== SCRIPT LAMA (TIDAK BERUBAH) ========================
         
         // COUNTDOWN TIMER - TANGGAL 14 JUNI 2026
@@ -694,8 +510,8 @@
 
         // SLIDER 4 FOTO MPLS 2025
         let currentSlide = 0, slideInterval;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
+        const slides = document.querySelectorAll('#hero-slider .slide');
+        const dots = document.querySelectorAll('#hero-slider + div button');
         
         function updateSlider() {
             slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
@@ -704,29 +520,17 @@
             });
         }
         
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); }
-        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); }
-        function goToSlide(n) { currentSlide = n; updateSlider(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
+        window.nextSlide = function() { currentSlide = (currentSlide + 1) % slides.length; updateSlider(); };
+        window.prevSlide = function() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateSlider(); };
+        window.goToSlide = function(n) { currentSlide = n; updateSlider(); clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); };
         
-        slideInterval = setInterval(nextSlide, 5000);
+        if(slides.length > 0) slideInterval = setInterval(nextSlide, 5000);
 
         // MODAL
-        function toggleModal(id) { document.getElementById(id).classList.toggle('active'); }
-        
-        // DETAIL JURUSAN
-        const jurusanIcons = {
-            'T.PM': '⚙️', 'T.KR': '🚗', 'T.SM': '🏍️', 'T.TKJ': '💻',
-            'T.TET': '🦾', 'T.AV': '🔊', 'T.DPI': '🏗️', 'T.GEOMATIKA': '🗺️', 'T.ITL': '⚡'
-        };
-        function showDetail(title, desc) {
-            document.getElementById('detail-title').innerText = title;
-            document.getElementById('detail-desc').innerHTML = desc;
-            document.getElementById('detail-icon').innerText = jurusanIcons[title] || '✨';
-            toggleModal('detail-modal');
-        }
+        window.toggleModal = function(id) { document.getElementById(id).classList.toggle('active'); }
         
         // LOGIN
-        function handleLogin(e) {
+        window.handleLogin = function(e) {
             e.preventDefault();
             const u = document.getElementById('login-username').value;
             const p = document.getElementById('login-password').value;
@@ -740,11 +544,10 @@
             }
         }
         
-        function showInfoPendaftaran() {
+        window.showInfoPendaftaran = function() {
             window.open("https://pmb.riau.go.id", "_blank");
         }
         
-        // TOAST NOTIFICATION
         function showToast(msg, type = "success") {
             const toast = document.getElementById('toast-notif');
             const toastMsg = document.getElementById('toast-message');
@@ -771,6 +574,7 @@
             mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         }
         function closeMobileMenu() { if(mobileMenu) mobileMenu.classList.add('hidden'); }
+        window.closeMobileMenu = closeMobileMenu;
         
         // BACK TO TOP
         const backToTop = document.getElementById('backToTop');
@@ -778,15 +582,9 @@
             backToTop.classList.toggle('show', window.scrollY > 300);
         });
         
-        // BUTTON LIHAT SEMUA JURUSAN
-        document.getElementById('btn-lihat-semua').addEventListener('click', () => {
-            document.getElementById('jurusan-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            showToast("✅ 9 Jurusan unggulan SMKN 2 Tembilahan ditampilkan!", "success");
-        });
-        
-        // WINDOW LOAD - jalankan slider galeri dan toast
+        // WINDOW LOAD
         window.onload = () => {
-            startGaleriSlider();
+            startJurusanSlider();
             showToast("🎓 Selamat datang di Portal SPMB SMKN 2 Tembilahan 2026", "info");
         };
     </script>
