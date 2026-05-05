@@ -3,305 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SPMB SMKN 2 Tembilahan 2026 — MPLS 2025</title>
+    <title>SPMB SMKN 2 Tembilahan 2026 — NextGen Admission</title>
+    <!-- Google Fonts & Tailwind + advanced styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            scroll-behavior: smooth;
+            background: #f5f9ff;
+            overflow-x: hidden;
         }
-        h1, h2, h3, .font-heading {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: -0.02em;
+        h1, h2, h3, h4, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+        
+        /* custom glassmorphism & animations */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 2rem;
         }
-        .card-light {
-            background: white;
-            border-radius: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            border: 1px solid #eef2ff;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
         }
-        .card-light:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.12);
+        .hero-gradient {
+            background: radial-gradient(ellipse 80% 60% at 20% 40%, #0a1a3a, #030a1e);
+            position: relative;
+            isolation: isolate;
         }
-        .btn-primary {
-            background: linear-gradient(105deg, #2563eb, #1d4ed8);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+        .glow-orbe {
+            position: absolute;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(245,158,11,0) 80%);
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
-        .countdown-box {
-            background: white;
-            border-radius: 1rem;
-            border: 1px solid #e2e8f0;
+        .btn-3d {
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
-        .timeline-item {
-            background: white;
-            border-left: 4px solid #2563eb;
-            transition: 0.2s;
+        .btn-3d:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -8px rgba(0,0,0,0.3);
         }
-        .timeline-item:hover { background: #f1f5f9; transform: translateX(6px); }
-        .gallery-mpls {
+        .jur-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform-style: preserve-3d;
+        }
+        .jur-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 32px 48px -20px rgba(0,0,0,0.25);
+        }
+        .timeline-glow {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border-left: 4px solid #f59e0b;
             transition: all 0.3s;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        .gallery-mpls:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15);
+        .timeline-glow:hover {
+            border-left-width: 8px;
+            transform: translateX(5px);
+        }
+        .floating-shape {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .pulse-slow {
+            animation: pulseGlow 3s infinite;
+        }
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; box-shadow: 0 0 0 0 rgba(245,158,11,0.4);}
+            70% { opacity: 1; box-shadow: 0 0 0 12px rgba(245,158,11,0);}
+            100% { opacity: 0.5; box-shadow: 0 0 0 0 rgba(245,158,11,0);}
         }
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #e2e8f0; }
-        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bg-mesh {
+            background-image: radial-gradient(circle at 10% 20%, rgba(59,130,246,0.03) 0%, transparent 50%);
+        }
+        .countdown-unit {
+            background: rgba(15, 25, 55, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,215,0,0.3);
+            transition: all 0.2s;
+        }
+        .countdown-unit:hover {
+            transform: scale(1.03);
+            border-color: #f59e0b;
+            background: rgba(245,158,11,0.15);
+        }
+        .cursor-glow {
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle, rgba(245,158,11,0.7), rgba(59,130,246,0));
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.05s linear;
+            mix-blend-mode: screen;
+        }
+        @media (max-width: 768px) { .cursor-glow { display: none; } }
+        .nav-blur {
+            background: rgba(3, 10, 30, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .img-hover-zoom {
+            transition: transform 0.5s ease;
+        }
+        .group:hover .img-hover-zoom { transform: scale(1.06); }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="antialiased">
 
-    <!-- NAVBAR CERAH -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-5 py-3 flex justify-between items-center">
+    <!-- custom cursor -->
+    <div class="cursor-glow hidden md:block" id="cursorGlow"></div>
+
+    <!-- navbar premium -->
+    <nav class="fixed w-full z-50 nav-blur transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-md">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 to-blue-600 flex items-center justify-center shadow-xl">
                     <span class="text-white font-black text-xl">2</span>
                 </div>
                 <div>
-                    <h1 class="text-slate-800 font-bold tracking-tight text-lg">SMKN 2 Tembilahan</h1>
-                    <p class="text-[10px] text-blue-600 font-semibold tracking-wide">SPMB 2026 • RESMI</p>
+                    <h1 class="text-lg font-extrabold text-white tracking-tight">SMK Negeri 2 Tembilahan</h1>
+                    <p class="text-[11px] font-medium text-amber-300 tracking-wider">SPMB 2026 • FUTURE READY</p>
                 </div>
             </div>
-            <div class="hidden md:flex items-center gap-1">
-                <a href="#beranda" class="text-slate-600 hover:text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">Beranda</a>
-                <a href="#mpls" class="text-slate-600 hover:text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">MPLS 2025</a>
-                <a href="#jadwal" class="text-slate-600 hover:text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">Jadwal</a>
-                <a href="#galeri" class="text-slate-600 hover:text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">Galeri</a>
-                <a href="#lokasi" class="text-slate-600 hover:text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition">Lokasi</a>
-                <button onclick="toggleModal('login-modal')" class="ml-3 bg-blue-50 border border-blue-200 text-blue-700 px-5 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-100 transition">🔐 Admin</button>
+            <div class="hidden md:flex items-center gap-2">
+                <a href="#beranda" class="text-white/80 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition hover:bg-white/10">Beranda</a>
+                <a href="#jurusan" class="text-white/80 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition hover:bg-white/10">Jurusan</a>
+                <a href="#jadwal" class="text-white/80 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition hover:bg-white/10">Jadwal</a>
+                <a href="#galeri" class="text-white/80 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition hover:bg-white/10">Galeri</a>
+                <a href="#lokasi" class="text-white/80 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition hover:bg-white/10">Lokasi</a>
+                <button onclick="toggleModal('login-modal')" class="ml-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 font-bold px-5 py-2 rounded-full text-sm shadow-lg shadow-amber-500/20 transition hover:scale-105">🔐 Admin Area</button>
             </div>
-            <button id="mobileMenuBtn" class="md:hidden text-slate-600 bg-slate-100 p-2 rounded-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            <button id="mobileMenuBtn" class="md:hidden text-white bg-white/10 p-2 rounded-xl"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
         </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200 px-5 py-4 flex flex-col gap-2 shadow-lg">
-            <a href="#beranda" class="text-slate-700 py-2" onclick="closeMobileMenu()">Beranda</a>
-            <a href="#mpls" class="text-slate-700 py-2" onclick="closeMobileMenu()">MPLS 2025</a>
-            <a href="#jadwal" class="text-slate-700 py-2" onclick="closeMobileMenu()">Jadwal</a>
-            <a href="#galeri" class="text-slate-700 py-2" onclick="closeMobileMenu()">Galeri</a>
-            <a href="#lokasi" class="text-slate-700 py-2" onclick="closeMobileMenu()">Lokasi</a>
-            <button onclick="toggleModal('login-modal'); closeMobileMenu()" class="bg-blue-50 text-blue-700 py-2 rounded-full font-semibold">Admin</button>
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0a1128] border-t border-white/10 px-5 py-4 flex flex-col gap-2">
+            <a href="#beranda" class="text-white/80 py-2" onclick="closeMobileMenu()">Beranda</a><a href="#jurusan" class="text-white/80 py-2" onclick="closeMobileMenu()">Jurusan</a><a href="#jadwal" class="text-white/80 py-2" onclick="closeMobileMenu()">Jadwal</a><a href="#galeri" class="text-white/80 py-2" onclick="closeMobileMenu()">Galeri</a><a href="#lokasi" class="text-white/80 py-2" onclick="closeMobileMenu()">Lokasi</a>
+            <button onclick="toggleModal('login-modal'); closeMobileMenu()" class="mt-2 bg-amber-500 text-slate-900 font-bold py-2 rounded-full">🔐 Admin</button>
         </div>
     </nav>
 
-    <!-- HERO SECTION CERAH -->
-    <section id="beranda" class="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-slate-100 pt-28 pb-16">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
+    <!-- HERO SECTION with canvas particles -->
+    <section id="beranda" class="hero-gradient min-h-screen flex items-center relative overflow-hidden pt-28 pb-20">
+        <canvas id="particleCanvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="glow-orbe top-[-20%] left-[-20%]"></div>
+        <div class="glow-orbe bottom-[-30%] right-[-10%] bg-amber-500/20"></div>
         <div class="max-w-6xl mx-auto px-5 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-blue-200 rounded-full px-5 py-1.5 mb-6">
-                <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
-                <span class="text-[11px] font-bold text-blue-800">PENDAFTARAN 14 JUNI 2026</span>
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-6 animate-pulse">
+                <span class="w-2 h-2 bg-amber-400 rounded-full animate-ping"></span>
+                <span class="text-xs font-bold text-amber-200 tracking-wider">🔥 PENDAFTARAN T.A 2026/2027 dibuka 14 Juni</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight"><span class="bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-500 bg-clip-text text-transparent">Raih Prestasi</span><br><span class="text-slate-800">Bersama SMKN 2</span></h1>
-            <p class="max-w-xl mx-auto mt-6 text-slate-600 text-lg">Sistem Penerimaan Siswa Baru — mencetak generasi unggul, berkarakter, dan siap bersaing di industri 4.0.</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight">Raih Prestasi <br><span class="bg-gradient-to-r from-amber-300 to-yellow-400 bg-clip-text text-transparent">Bersama Kami</span></h1>
+            <p class="text-white/70 max-w-xl mx-auto mt-6 text-lg">Sistem Penerimaan Siswa Baru SMK Negeri 2 Tembilahan — membangun generasi inovatif, siap kerja, dan berkarakter.</p>
             
-            <div id="countdown-container" class="hidden mt-12">
+            <!-- Countdown super wow -->
+            <div id="countdown-container" class="mt-10 hidden">
                 <div class="flex gap-4 justify-center flex-wrap">
-                    <div class="countdown-box px-5 py-3 min-w-[90px]"><span id="days" class="text-4xl font-black text-blue-700 block">00</span><span class="text-[10px] text-slate-500">HARI</span></div>
-                    <div class="countdown-box px-5 py-3 min-w-[90px]"><span id="hours" class="text-4xl font-black text-blue-700 block">00</span><span class="text-[10px] text-slate-500">JAM</span></div>
-                    <div class="countdown-box px-5 py-3 min-w-[90px]"><span id="minutes" class="text-4xl font-black text-blue-700 block">00</span><span class="text-[10px] text-slate-500">MENIT</span></div>
-                    <div class="countdown-box px-5 py-3 min-w-[90px]"><span id="seconds" class="text-4xl font-black text-blue-700 block">00</span><span class="text-[10px] text-slate-500">DETIK</span></div>
+                    <div class="countdown-unit rounded-2xl px-5 py-3 min-w-[90px] text-center"><span id="days" class="text-4xl font-black text-white block">00</span><span class="text-amber-300 text-xs font-bold">HARI</span></div>
+                    <div class="countdown-unit rounded-2xl px-5 py-3 min-w-[90px] text-center"><span id="hours" class="text-4xl font-black text-white block">00</span><span class="text-amber-300 text-xs font-bold">JAM</span></div>
+                    <div class="countdown-unit rounded-2xl px-5 py-3 min-w-[90px] text-center"><span id="minutes" class="text-4xl font-black text-white block">00</span><span class="text-amber-300 text-xs font-bold">MENIT</span></div>
+                    <div class="countdown-unit rounded-2xl px-5 py-3 min-w-[90px] text-center"><span id="seconds" class="text-4xl font-black text-white block">00</span><span class="text-amber-300 text-xs font-bold">DETIK</span></div>
                 </div>
             </div>
-
             <div class="flex flex-wrap gap-4 justify-center mt-10">
-                <button id="btn-daftar" disabled class="bg-slate-300 text-slate-600 px-8 py-3 rounded-full text-sm font-bold cursor-not-allowed">⏳ Pendaftaran Belum Dibuka</button>
-                <button onclick="showInfoPendaftaran()" class="border border-blue-600 text-blue-600 bg-white hover:bg-blue-50 px-8 py-3 rounded-full text-sm font-bold transition">📋 Info Pendaftaran</button>
+                <button id="btn-daftar" disabled class="bg-slate-600 text-white px-8 py-3.5 rounded-full font-bold text-sm cursor-not-allowed opacity-80">⏳ Pendaftaran Belum Dibuka</button>
+                <button onclick="showInfoPendaftaran()" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/20 transition">📋 Info Lengkap</button>
             </div>
-            <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mt-16">
-                <div class="bg-white rounded-2xl py-3 shadow-md border border-slate-100"><p class="text-2xl font-black text-blue-700">10</p><p class="text-[10px] text-slate-500">Program Keahlian</p></div>
-                <div class="bg-white rounded-2xl py-3 shadow-md border border-slate-100"><p class="text-2xl font-black text-blue-700">850+</p><p class="text-[10px] text-slate-500">Kapasitas Siswa</p></div>
-                <div class="bg-white rounded-2xl py-3 shadow-md border border-slate-100"><p class="text-2xl font-black text-blue-700">98%</p><p class="text-[10px] text-slate-500">Terserap Kerja</p></div>
+            <div class="grid grid-cols-3 gap-5 max-w-md mx-auto mt-16">
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-4"><p class="text-2xl font-black text-white">10</p><p class="text-[11px] text-amber-200">Jurusan Unggulan</p></div>
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-4"><p class="text-2xl font-black text-white">850+</p><p class="text-[11px] text-amber-200">Siswa Aktif</p></div>
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-4"><p class="text-2xl font-black text-white">98%</p><p class="text-[11px] text-amber-200">Terserap Kerja</p></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION MPLS 2025 (menggantikan 10 Program Keahlian) -->
-    <section id="mpls" class="py-24 px-5 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-14">
-                <span class="bg-blue-100 text-blue-700 rounded-full px-4 py-1 text-xs font-bold">🎓 MOMEN TAK TERLUPAKAN</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mt-4">MPLS 2025</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-slate-500 mt-3">Masa Pengenalan Lingkungan Sekolah — penuh semangat, kebersamaan, dan inspirasi</p>
+    <!-- JURUSAN SECTION -->
+    <section id="jurusan" class="py-24 bg-white relative bg-mesh">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center mb-14"><div class="inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-1.5 mb-3"><span class="w-2 h-2 bg-blue-600 rounded-full"></span><span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Kompetensi Terbaik</span></div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800">10 Program Keahlian <span class="text-blue-600">#SiapIndustri</span></h2><div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-amber-400 mx-auto mt-4 rounded-full"></div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+                <!-- card data inline 10 jurusan -->
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(1).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=TKJ'"></div><div class="p-5"><h3 class="font-black text-slate-800">Teknik Komputer & Jaringan</h3><p class="text-slate-500 text-sm mt-2">Jaringan, cloud, cybersecurity expert</p><span class="inline-block mt-3 text-[11px] font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Teknologi</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(2).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=DKV'"></div><div class="p-5"><h3 class="font-black text-slate-800">Desain Komunikasi Visual</h3><p class="text-slate-500 text-sm mt-2">Visual branding, multimedia, kreatif</p><span class="inline-block mt-3 text-[11px] font-bold bg-purple-100 text-purple-700 px-3 py-1 rounded-full">Desain</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(3).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=Listrik'"></div><div class="p-5"><h3 class="font-black text-slate-800">Teknik Instalasi Tenaga Listrik</h3><p class="text-slate-500 text-sm mt-2">Sistem kelistrikan industri</p><span class="inline-block mt-3 text-[11px] font-bold bg-amber-100 text-amber-700 px-3 py-1 rounded-full">Energi</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(4).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=Keperawatan'"></div><div class="p-5"><h3 class="font-black text-slate-800">Asisten Keperawatan</h3><p class="text-slate-500 text-sm mt-2">Kesehatan, care, profesional medis</p><span class="inline-block mt-3 text-[11px] font-bold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">Kesehatan</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(5).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=DPIB'"></div><div class="p-5"><h3 class="font-black text-slate-800">DPIB</h3><p class="text-slate-500 text-sm mt-2">Desain bangunan & BIM modern</p><span class="inline-block mt-3 text-[11px] font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full">Konstruksi</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(6).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=Kuliner'"></div><div class="p-5"><h3 class="font-black text-slate-800">Kuliner</h3><p class="text-slate-500 text-sm mt-2">Foodies, pastry, manajemen resto</p><span class="inline-block mt-3 text-[11px] font-bold bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Kuliner</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(7).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=Otomotif'"></div><div class="p-5"><h3 class="font-black text-slate-800">Teknik Kendaraan Ringan</h3><p class="text-slate-500 text-sm mt-2">Otomotif, engine, mobil masa depan</p><span class="inline-block mt-3 text-[11px] font-bold bg-red-100 text-red-700 px-3 py-1 rounded-full">Otomotif</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(8).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=OTKP'"></div><div class="p-5"><h3 class="font-black text-slate-800">OTKP</h3><p class="text-slate-500 text-sm mt-2">Otomatisasi perkantoran & digital</p><span class="inline-block mt-3 text-[11px] font-bold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">Bisnis</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(9).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=Akuntansi'"></div><div class="p-5"><h3 class="font-black text-slate-800">Akuntansi & Keuangan</h3><p class="text-slate-500 text-sm mt-2">Financial, pajak, analisis</p><span class="inline-block mt-3 text-[11px] font-bold bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full">Keuangan</span></div></div>
+                <div class="jur-card bg-white rounded-3xl overflow-hidden shadow-xl"><div class="h-40 overflow-hidden"><img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(10).png" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300?text=BDP'"></div><div class="p-5"><h3 class="font-black text-slate-800">Bisnis Daring & Pemasaran</h3><p class="text-slate-500 text-sm mt-2">E-commerce, digital marketing</p><span class="inline-block mt-3 text-[11px] font-bold bg-pink-100 text-pink-700 px-3 py-1 rounded-full">Marketing</span></div></div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Foto M1 sampai M4 (dengan asumsi file m1.jpeg, m2.jpeg, m3.jpeg, m4.jpeg berada di folder yang sama) -->
-                <div class="card-light overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/m1.jpeg" 
-                         alt="MPLS 2025 - 1" class="w-full h-56 object-cover" 
-                         onerror="this.src='https://placehold.co/600x400?text=M1+MPLS'">
-                    <div class="p-4 text-center">
-                        <h3 class="font-bold text-slate-800">Hari Pertama</h3>
-                        <p class="text-xs text-slate-500">Pembukaan & pengenalan guru</p>
-                    </div>
+        </div>
+    </section>
+
+    <!-- JADWAL & PERSYARATAN dengan efek modern -->
+    <section id="jadwal" class="py-24 bg-slate-50 relative">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="text-center mb-14"><span class="bg-white shadow-sm rounded-full px-5 py-1.5 text-xs font-bold text-blue-700">📌 Timeline Resmi</span><h2 class="text-4xl font-extrabold mt-4">Jadwal & Persyaratan PPDB 2026</h2></div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-6">
+                    <div class="timeline-glow bg-white p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-black text-amber-700">1</div><div><p class="text-xs font-bold text-amber-600">FASE 1</p><h3 class="font-black">Pendaftaran Online</h3><p class="text-sm">14 Juni – 30 Juni 2026</p></div></div></div>
+                    <div class="timeline-glow bg-white p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center font-black text-blue-700">2</div><div><p class="text-xs font-bold text-blue-600">FASE 2</p><h3 class="font-black">Verifikasi Berkas</h3><p class="text-sm">1 Juli – 7 Juli 2026</p></div></div></div>
+                    <div class="timeline-glow bg-white p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center font-black text-emerald-700">3</div><div><p class="text-xs font-bold text-emerald-600">FASE 3</p><h3 class="font-black">Pengumuman Hasil</h3><p class="text-sm">10 Juli 2026</p></div></div></div>
+                    <div class="timeline-glow bg-white p-6 rounded-2xl shadow-md"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center font-black text-purple-700">4</div><div><p class="text-xs font-bold text-purple-600">FASE 4</p><h3 class="font-black">Daftar Ulang</h3><p class="text-sm">14 Juli – 18 Juli 2026</p></div></div></div>
                 </div>
-                <div class="card-light overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/m2.jpeg" 
-                         alt="MPLS 2025 - 2" class="w-full h-56 object-cover"
-                         onerror="this.src='https://placehold.co/600x400?text=M2+MPLS'">
-                    <div class="p-4 text-center">
-                        <h3 class="font-bold text-slate-800">Outdoor Fun</h3>
-                        <p class="text-xs text-slate-500">Permainan & kekompakan tim</p>
-                    </div>
-                </div>
-                <div class="card-light overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/m3.jpeg" 
-                         alt="MPLS 2025 - 3" class="w-full h-56 object-cover"
-                         onerror="this.src='https://placehold.co/600x400?text=M3+MPLS'">
-                    <div class="p-4 text-center">
-                        <h3 class="font-bold text-slate-800">Workshop Karakter</h3>
-                        <p class="text-xs text-slate-500">Materi motivasi & kedisiplinan</p>
-                    </div>
-                </div>
-                <div class="card-light overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/m4.jpeg" 
-                         alt="MPLS 2025 - 4" class="w-full h-56 object-cover"
-                         onerror="this.src='https://placehold.co/600x400?text=M4+MPLS'">
-                    <div class="p-4 text-center">
-                        <h3 class="font-bold text-slate-800">Penutupan</h3>
-                        <p class="text-xs text-slate-500">Pentas seni & kesan pesan</p>
-                    </div>
+                <div class="bg-white rounded-3xl shadow-xl p-7 border border-slate-100">
+                    <h3 class="text-xl font-black flex items-center gap-2">📋 Persyaratan Wajib</h3>
+                    <div class="h-px bg-gradient-to-r from-blue-200 to-transparent my-5"></div>
+                    <ul class="space-y-3"><li class="flex gap-3"><span class="text-blue-500">✓</span> Ijazah / Surat Keterangan Lulus SMP/MTs</li><li class="flex gap-3"><span class="text-blue-500">✓</span> KK & Akta Kelahiran (asli + fotokopi)</li><li class="flex gap-3"><span class="text-blue-500">✓</span> Foto 3x4 (4 lembar)</li><li class="flex gap-3"><span class="text-blue-500">✓</span> NISN & Rapor kelas 7-9 legalisir</li><li class="flex gap-3"><span class="text-blue-500">✓</span> Surat Keterangan Sehat</li><li class="flex gap-3"><span class="text-blue-500">✓</span> Surat Pernyataan Orang Tua (format panitia)</li></ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- JADWAL & PERSYARATAN -->
-    <section id="jadwal" class="py-24 px-5 bg-slate-50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12"><span class="bg-blue-100 text-blue-700 rounded-full px-4 py-1 text-xs font-bold">📅 TIMELINE RESMI</span><h2 class="text-4xl font-bold text-slate-800 mt-3">Jadwal & Persyaratan</h2></div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                    <div class="timeline-item p-5 rounded-xl shadow-sm border border-slate-200"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">1</div><div><p class="text-xs text-blue-600 font-bold">FASE 1</p><h3 class="font-bold text-slate-800">Pendaftaran Online</h3><p class="text-sm text-slate-500">14–30 Juni 2026</p></div></div></div>
-                    <div class="timeline-item p-5 rounded-xl shadow-sm border border-slate-200"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold">2</div><div><p class="text-xs text-indigo-600 font-bold">FASE 2</p><h3 class="font-bold text-slate-800">Verifikasi Berkas</h3><p class="text-sm text-slate-500">1–7 Juli 2026</p></div></div></div>
-                    <div class="timeline-item p-5 rounded-xl shadow-sm border border-slate-200"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-bold">3</div><div><p class="text-xs text-purple-600 font-bold">FASE 3</p><h3 class="font-bold text-slate-800">Pengumuman Hasil</h3><p class="text-sm text-slate-500">10 Juli 2026</p></div></div></div>
-                    <div class="timeline-item p-5 rounded-xl shadow-sm border border-slate-200"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold">4</div><div><p class="text-xs text-amber-600 font-bold">FASE 4</p><h3 class="font-bold text-slate-800">Daftar Ulang</h3><p class="text-sm text-slate-500">14–18 Juli 2026</p></div></div></div>
-                </div>
-                <div class="bg-white p-7 rounded-2xl shadow-md border border-slate-200">
-                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">📋 Persyaratan Wajib</h3>
-                    <ul class="mt-5 space-y-3 text-slate-600 text-sm">
-                        <li class="flex gap-2"><span class="text-blue-500">✓</span> Ijazah / SKL SMP/MTs</li><li class="flex gap-2"><span class="text-blue-500">✓</span> Kartu Keluarga & Akta Kelahiran</li><li class="flex gap-2"><span class="text-blue-500">✓</span> Foto 3x4 (4 lembar)</li><li class="flex gap-2"><span class="text-blue-500">✓</span> NISN & Rapor 7-9 legalisir</li><li class="flex gap-2"><span class="text-blue-500">✓</span> Surat Keterangan Sehat</li><li class="flex gap-2"><span class="text-blue-500">✓</span> Surat pernyataan orang tua</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- GALERI MPLS 2025 dengan lightbox dan efek parallax-->
+    <section id="galeri" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center"><span class="bg-black/5 rounded-full px-5 py-1.5 text-xs font-bold">🎬 MOMENT TERBAIK</span><h2 class="text-4xl font-extrabold mt-3">Galeri MPLS 2025</h2></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-12" id="galleryGrid"></div>
         </div>
     </section>
 
-    <!-- GALERI UMUM (Jurusan Yang Tersedia) -->
-    <section id="galeri" class="py-24 px-5 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center"><span class="bg-blue-100 text-blue-700 rounded-full px-4 py-1 text-xs font-bold">📸 GALLERY</span><h2 class="text-4xl font-bold text-slate-800 mt-3">Jurusan Yang Tersedia</h2><p class="text-slate-500 mt-2">Dokumentasi program keahlian SMK Negeri 2 Tembilahan</p></div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-12" id="galleryGrid"></div>
-        </div>
-    </section>
-
-    <!-- CTA LIGHT -->
-    <section class="py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <div class="max-w-4xl mx-auto text-center px-5">
-            <h2 class="text-4xl font-bold text-slate-800">Mulai Perjalanan <span class="text-blue-700">Karirmu</span></h2>
-            <p class="text-slate-600 mt-4">Daftarkan dirimu di SMK Negeri 2 Tembilahan, wujudkan masa depan gemilang.</p>
-            <div class="flex gap-4 justify-center mt-8">
-                <button onclick="showInfoPendaftaran()" class="btn-primary text-white px-8 py-3 rounded-full font-bold shadow-md">🚀 Info Pendaftaran</button>
-                <a href="https://wa.me/6282293786539" target="_blank" class="bg-white border border-blue-300 text-blue-700 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition">💬 Chat Panitia</a>
-            </div>
-        </div>
+    <!-- CTA Section futuristik -->
+    <section class="relative overflow-hidden bg-gradient-to-r from-indigo-900 via-blue-900 to-slate-900 py-20">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 px-5"><span class="bg-white/20 rounded-full px-4 py-1 text-amber-200 text-xs">🚀 Kesempatan Emas</span><h2 class="text-4xl md:text-5xl font-extrabold text-white mt-4">Mulai Perjalanan Karirmu</h2><p class="text-white/70 mt-4">Daftarkan dirimu di SMK Negeri 2 Tembilahan dan raih masa depan gemilang.</p><div class="flex gap-4 justify-center mt-8"><button onclick="showInfoPendaftaran()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-full shadow-xl transition">Info Pendaftaran</button><a href="https://wa.me/6282293786539" target="_blank" class="bg-white/20 backdrop-blur border border-white/30 text-white px-8 py-3 rounded-full font-bold hover:bg-white/30">💬 Chat Panitia</a></div></div>
     </section>
 
     <!-- MAP & FOOTER -->
-    <section id="lokasi"><div class="h-72 w-full"><iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2a1b4f8d7c3e1d%3A0x1234567890abcdef!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1647890123456!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe></div></section>
-    <footer class="bg-white border-t border-slate-200 py-10 text-center text-slate-400 text-sm"><div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-3"><p>© 2026 SMK Negeri 2 Tembilahan — SPMB Official Portal</p><div class="flex gap-4 justify-center"><a href="#" class="hover:text-blue-600">Kebijakan Privasi</a><a href="#" class="hover:text-blue-600">Kontak</a></div></div></footer>
-
-    <!-- Floating WA -->
-    <div class="fixed bottom-5 right-5 z-50"><a href="https://wa.me/6282293786539" target="_blank" class="bg-gradient-to-r from-green-500 to-emerald-600 p-3 rounded-full shadow-lg hover:scale-105 transition"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z"/></svg></a></div>
+    <section id="lokasi"><div class="h-80 w-full"><iframe class="w-full h-full grayscale-[0.2]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.1717387346853!2d103.14917467406148!3d-0.35483243542036496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2a1b4f8d7c3e1d%3A0x1234567890abcdef!2sSMK%20Negeri%202%20Tembilahan!5e0!3m2!1sid!2sid!4v1647890123456!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe></div></section>
+    <footer class="bg-slate-900 text-white/70 py-12 text-center text-sm"><div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row justify-between"><p>© 2026 SMK Negeri 2 Tembilahan — Official SPMB Portal. All rights reserved.</p><div class="flex gap-4 justify-center mt-3 md:mt-0"><a href="#" class="hover:text-white">Kebijakan Privasi</a><a href="#" class="hover:text-white">Kontak</a></div></div></footer>
 
     <!-- MODALS -->
-    <div id="login-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[1000] hidden items-center justify-center"><div class="bg-white rounded-2xl max-w-md w-full p-7 shadow-xl"><div class="text-center"><div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mx-auto flex items-center justify-center text-2xl">🔐</div><h3 class="text-2xl font-bold text-slate-800 mt-2">Login Admin</h3><form id="loginForm" onsubmit="handleLogin(event)" class="mt-6 space-y-4"><input type="text" id="username" placeholder="Username" class="w-full border border-slate-300 rounded-xl p-3" required><input type="password" id="password" placeholder="Password" class="w-full border border-slate-300 rounded-xl p-3" required><button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700">Login</button></form></div></div></div>
-    <div id="popupModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000] hidden items-center justify-center"><div class="bg-white rounded-2xl max-w-sm p-7 text-center"><div class="text-5xl mb-2">✨</div><h3 class="text-xl font-bold text-slate-800">Portal SPMB 2026</h3><p class="text-slate-500 mt-2">Halaman masih dalam pengembangan. Hubungi panitia via WhatsApp.</p><button onclick="closePopupModal()" class="mt-5 bg-blue-600 text-white px-6 py-2 rounded-full font-bold">Tutup</button></div></div>
+    <div id="login-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-[1000] hidden items-center justify-center"><div class="bg-white rounded-3xl max-w-md w-full p-8 relative"><button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 text-xl">✕</button><div class="text-center"><div class="w-16 h-16 bg-gradient-to-tr from-blue-600 to-amber-500 rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-xl">🔐</div><h3 class="text-2xl font-black mt-4">Login Admin</h3><form id="loginForm" onsubmit="handleLogin(event)" class="mt-6 space-y-4"><input type="text" id="username" placeholder="Username" class="w-full border p-3 rounded-xl" required><input type="password" id="password" placeholder="Password" class="w-full border p-3 rounded-xl" required><button type="submit" class="bg-slate-900 text-white w-full py-3 rounded-xl font-bold">Masuk Dashboard</button></form></div></div></div>
+
+    <div id="popupModal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[1000] hidden items-center justify-center"><div class="bg-white rounded-3xl max-w-sm p-7 text-center"><div class="text-6xl mb-2">✨</div><h3 class="text-xl font-black">Portal SPMB 2026</h3><p class="text-slate-500 mt-2">Website resmi dalam pengembangan, hubungi admin untuk bantuan lebih lanjut.</p><button onclick="closePopupModal()" class="mt-5 bg-amber-500 px-6 py-2 rounded-full font-bold">Tutup</button></div></div>
+
+    <div class="fixed bottom-6 right-6 z-50"><a href="https://wa.me/6282293786539" target="_blank" class="block bg-gradient-to-r from-green-500 to-emerald-600 p-3 rounded-full shadow-2xl animate-bounce"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z"/></svg></a></div>
 
     <script>
-        // Galeri Jurusan Yang Tersedia (foto jurusan)
-        const jurusanImages = [
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(1).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(2).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(3).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(4).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(5).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(6).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(7).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(8).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(9).png",
-            "https://raw.githubusercontent.com/whllxyzz/smkn2/main/jurusan/a%20(10).png"
-        ];
-        const galleryContainer = document.getElementById('galleryGrid');
-        jurusanImages.forEach((url, idx) => {
-            let div = document.createElement('div');
-            div.className = "gallery-mpls cursor-pointer bg-slate-100 aspect-square";
-            div.innerHTML = `<img src="${url}" class="w-full h-full object-cover" loading="lazy"><div class="bg-white/80 text-center text-[10px] text-slate-700 py-1 font-medium">📸 Jurusan</div>`;
-            div.onclick = () => openLightbox(idx, jurusanImages);
-            galleryContainer.appendChild(div);
-        });
-
-        function openLightbox(idx, images) {
-            let lb = document.createElement('div');
-            lb.className = "fixed inset-0 bg-black/90 z-[2000] flex items-center justify-center";
-            lb.innerHTML = `<img src="${images[idx]}" class="max-h-[80vh] max-w-[90vw] rounded-2xl border-4 border-white shadow-2xl"><button class="absolute top-4 right-4 text-white text-3xl bg-black/30 rounded-full w-10 h-10" onclick="this.parentElement.remove()">✕</button><button class="absolute left-4 top-1/2 text-white text-4xl bg-black/30 rounded-full w-12 h-12" onclick="window.changeLb(-1)">‹</button><button class="absolute right-4 top-1/2 text-white text-4xl bg-black/30 rounded-full w-12 h-12" onclick="window.changeLb(1)">›</button>`;
-            document.body.appendChild(lb);
-            window.lbIndex = idx;
-            window.lbImages = images;
-            window.changeLb = (dir) => {
-                window.lbIndex = (window.lbIndex + dir + window.lbImages.length) % window.lbImages.length;
-                lb.querySelector('img').src = window.lbImages[window.lbIndex];
-            };
-        }
-
-        window.toggleModal = (id) => { let modal = document.getElementById(id); modal.classList.toggle('hidden'); modal.classList.toggle('flex'); };
-        window.handleLogin = (e) => { e.preventDefault(); let u = document.getElementById('username').value; let p = document.getElementById('password').value; if(u === 'admin' && p === 'smkn2tembilahan') { alert('✅ Login berhasil! Selamat datang Admin.'); toggleModal('login-modal'); window.open('https://wa.me/6282293786539','_blank'); } else alert('❌ Username atau password salah!'); };
+        // gallery initialization
+        const galleryUrls = ["https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(1).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(2).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(3).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(4).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(5).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(6).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(7).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(8).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(9).png","https://raw.githubusercontent.com/whllxyzz/smkn2/main/mpls2025/a%20(10).png"];
+        const galleryDiv = document.getElementById('galleryGrid');
+        galleryUrls.forEach((url, idx) => { let div = document.createElement('div'); div.className = "rounded-2xl overflow-hidden cursor-pointer shadow-lg group aspect-square"; div.innerHTML = `<img src="${url}" class="w-full h-full object-cover img-hover-zoom transition"><div class="bg-black/30 text-white text-xs p-1 text-center">📸 moment</div>`; div.onclick = () => openLightbox(idx); galleryDiv.appendChild(div); });
+        function openLightbox(idx) { window.lbIndex = idx; window.lightboxImages = galleryUrls; let lightbox = document.createElement('div'); lightbox.id = "customLightbox"; lightbox.className = "fixed inset-0 bg-black/90 z-[2000] flex items-center justify-center"; lightbox.innerHTML = `<img src="${galleryUrls[idx]}" class="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-2xl"><button class="absolute top-4 right-4 text-white text-3xl" onclick="this.parentElement.remove()">✕</button><button class="absolute left-4 top-1/2 text-white text-4xl" onclick="changeLb(-1)">‹</button><button class="absolute right-4 top-1/2 text-white text-4xl" onclick="changeLb(1)">›</button>`; document.body.appendChild(lightbox); window.changeLb = (dir) => { window.lbIndex = (window.lbIndex + dir + galleryUrls.length) % galleryUrls.length; lightbox.querySelector('img').src = galleryUrls[window.lbIndex]; }; }
+        window.toggleModal = (id) => { document.getElementById(id).classList.toggle('hidden'); document.getElementById(id).classList.toggle('flex'); };
+        window.handleLogin = (e) => { e.preventDefault(); let u = document.getElementById('username').value; let p = document.getElementById('password').value; if(u === 'admin' && p === 'smkn2tembilahan') { alert('✅ Login sukses! Selamat datang Admin.'); toggleModal('login-modal'); window.open('https://wa.me/6282293786539','_blank');} else alert('❌ Username atau password salah!'); };
         window.showInfoPendaftaran = () => window.open('https://pmb.riau.go.id','_blank');
         function closePopupModal() { document.getElementById('popupModal').classList.add('hidden'); document.getElementById('popupModal').classList.remove('flex'); }
-        setTimeout(() => { document.getElementById('popupModal').classList.remove('hidden'); document.getElementById('popupModal').classList.add('flex'); }, 4000);
-        
-        const targetDate = new Date(2026,5,14,0,0,0).getTime();
-        function updateCountdown() {
-            let now = Date.now(); let dist = targetDate - now;
-            if(dist<0){
-                document.getElementById('countdown-container').classList.add('hidden');
-                let btn = document.getElementById('btn-daftar');
-                btn.disabled = false;
-                btn.className = "bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full text-sm font-bold shadow-md";
-                btn.innerHTML = "🚀 Daftar Sekarang";
-                btn.onclick = () => window.open('https://wa.me/6282293786539','_blank');
-                return;
-            }
-            document.getElementById('countdown-container').classList.remove('hidden');
-            document.getElementById('days').innerText = Math.floor(dist/(1000*60*60*24)).toString().padStart(2,'0');
-            document.getElementById('hours').innerText = Math.floor((dist%(1000*60*60*24))/(1000*60*60)).toString().padStart(2,'0');
-            document.getElementById('minutes').innerText = Math.floor((dist%(1000*60*60))/(1000*60)).toString().padStart(2,'0');
-            document.getElementById('seconds').innerText = Math.floor((dist%(1000*60))/1000).toString().padStart(2,'0');
-        }
-        setInterval(updateCountdown,1000); updateCountdown();
-
-        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }) }, { threshold:0.1 });
-        document.querySelectorAll('.card-light, .timeline-item').forEach(el => { el.classList.add('scroll-reveal'); observer.observe(el); });
-        
-        document.getElementById('mobileMenuBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
-        window.closeMobileMenu = () => document.getElementById('mobileMenu').classList.add('hidden');
+        setTimeout(() => { let pop = document.getElementById('popupModal'); pop.classList.remove('hidden'); pop.classList.add('flex'); }, 4000);
+        const target = new Date(2026,5,14,0,0,0).getTime();
+        function updateCountdown(){ let now=Date.now(); let d=target-now; if(d<0){document.getElementById('countdown-container').classList.add('hidden'); let btn = document.getElementById('btn-daftar'); btn.disabled=false; btn.className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-3.5 rounded-full font-bold shadow-lg"; btn.innerHTML="🚀 Daftar Sekarang"; btn.onclick=()=>window.open('https://wa.me/6282293786539','_blank'); return;} document.getElementById('countdown-container').classList.remove('hidden'); document.getElementById('days').innerText=Math.floor(d/(1000*60*60*24)).toString().padStart(2,'0'); document.getElementById('hours').innerText=Math.floor((d%(1000*60*60*24))/(1000*60*60)).toString().padStart(2,'0'); document.getElementById('minutes').innerText=Math.floor((d%(1000*60*60))/(1000*60)).toString().padStart(2,'0'); document.getElementById('seconds').innerText=Math.floor((d%(1000*60))/1000).toString().padStart(2,'0'); } setInterval(updateCountdown,1000); updateCountdown();
+        // scroll reveal
+        const reveals = document.querySelectorAll('.scroll-reveal'); const observer = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');})},{threshold:0.1}); document.querySelectorAll('.jur-card, .timeline-glow, .info-card').forEach(el=>{el.classList.add('scroll-reveal'); observer.observe(el);});
+        // canvas particles
+        const canvas = document.getElementById('particleCanvas'); if(canvas){ let ctx=canvas.getContext('2d'); let width=window.innerWidth, height=window.innerHeight; canvas.width=width; canvas.height=height; let particles=[]; for(let i=0;i<80;i++){particles.push({x:Math.random()*width,y:Math.random()*height,radius:Math.random()*2+1,alpha:Math.random()*0.5});} function draw(){ctx.clearRect(0,0,width,height); particles.forEach(p=>{ctx.beginPath(); ctx.arc(p.x,p.y,p.radius,0,Math.PI*2); ctx.fillStyle=`rgba(255,215,0,${p.alpha*0.4})`; ctx.fill();}); requestAnimationFrame(draw);} draw(); window.addEventListener('resize',()=>{width=window.innerWidth; height=window.innerHeight; canvas.width=width; canvas.height=height;}); }
+        // custom cursor
+        const cursor = document.getElementById('cursorGlow'); document.addEventListener('mousemove',(e)=>{ cursor.style.transform = `translate(${e.clientX-16}px, ${e.clientY-16}px)`; });
+        document.getElementById('mobileMenuBtn').onclick=()=>document.getElementById('mobileMenu').classList.toggle('hidden'); window.closeMobileMenu=()=>document.getElementById('mobileMenu').classList.add('hidden');
+        // add floating shapes to hero
+        let hero = document.querySelector('.hero-gradient'); let div = document.createElement('div'); div.className = "floating-shape absolute bottom-10 right-5 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl"; hero.appendChild(div);
     </script>
 </body>
 </html>
