@@ -31,7 +31,7 @@
         .btn-disabled-premium { background: linear-gradient(135deg, #64748b, #475569); color: #cbd5e1; border-radius: 2rem; cursor: not-allowed; font-weight: 700; }
         .card-premium { background: white; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.04); transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1); overflow: hidden; box-shadow: var(--shadow-sm); }
         .card-premium:hover { transform: translateY(-8px); box-shadow: var(--shadow-md), 0 0 20px rgba(193,127,89,0.15); border-color: rgba(193,127,89,0.2); }
-        /* PERBAIKAN: gambar tidak dipotong, ukuran asli terjaga, background gelap agar kontras */
+        /* PERBAIKAN: gambar asli tanpa crop, background gelap */
         .card-premium .card-img {
             width: 100%;
             height: auto;
@@ -47,11 +47,17 @@
         .stat-card-premium:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
         .section-pill-premium { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(193,127,89,0.08); border: 1px solid rgba(193,127,89,0.2); color: #c17f59; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; padding: 0.35rem 1rem; border-radius: 2rem; text-transform: uppercase; }
         .divider-premium { width: 60px; height: 3px; background: linear-gradient(90deg, #c17f59, #e8b88a); border-radius: 3px; margin: 0.75rem auto; }
-        .timeline-premium { position: relative; padding-left: 2rem; }
-        .timeline-premium::before { content: ''; position: absolute; left: 0.5rem; top: 2rem; bottom: 1rem; width: 2px; background: linear-gradient(to bottom, #c17f59, #e2e8f0); }
-        .timeline-dot-premium { position: absolute; left: -0.25rem; top: 0.25rem; width: 1.5rem; height: 1.5rem; background: white; border: 2px solid #c17f59; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .timeline-dot-premium.active { background: #c17f59; border-color: #c17f59; }
-        .timeline-dot-premium.active::after { content: ''; width: 0.5rem; height: 0.5rem; background: white; border-radius: 50%; }
+        /* JADWAL BARU: style list */
+        .step-item { border-left: 2px solid #e2e8f0; padding-left: 1.5rem; margin-bottom: 1.5rem; position: relative; }
+        .step-item:last-child { margin-bottom: 0; }
+        .step-dot { position: absolute; left: -0.6rem; top: 0; width: 1rem; height: 1rem; background: #c17f59; border-radius: 50%; border: 2px solid white; }
+        .step-title { font-weight: 800; font-size: 1rem; color: #0f2b3d; margin-bottom: 0.25rem; }
+        .step-date { font-size: 0.7rem; color: #c17f59; font-weight: 600; margin-bottom: 0.5rem; }
+        .step-desc { font-size: 0.8rem; color: #475569; line-height: 1.4; }
+        /* PERSYARATAN LIST */
+        .req-list { list-style: none; padding: 0; }
+        .req-list li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; font-size: 0.8rem; color: #334155; }
+        .req-num { width: 1.5rem; height: 1.5rem; background: #c17f59; color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; flex-shrink: 0; margin-top: 0.1rem; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .gallery-item { position: relative; border-radius: 1.25rem; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; background: #e2e8f0; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -163,13 +169,40 @@
     </div>
 </section>
 
-<!-- ═══ JADWAL & PERSYARATAN ═══ -->
+<!-- ═══ JADWAL & PERSYARATAN (update sesuai teks) ═══ -->
 <section id="jadwal" class="py-20 px-4 md:px-8" style="background: white;">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-14"><div class="section-pill-premium mb-4"><span class="w-1.5 h-1.5 rounded-full" style="background:#c17f59;"></span>Informasi Penting</div><h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Jadwal &amp; Persyaratan</h2><div class="divider-premium"></div></div>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="info-card-premium p-8"><div class="flex items-center gap-3 mb-7"><div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#fef3e8;">📅</div><h3 class="font-bold text-lg">Jadwal Pendaftaran</h3></div><div class="space-y-5"><div class="timeline-premium pb-5"><div class="timeline-dot-premium active"></div><div class="bg-slate-50 rounded-xl p-4"><p class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#c17f59;">Fase 1</p><p class="font-bold text-slate-800 text-sm">Pendaftaran Online</p><p class="text-xs text-slate-500 mt-1">14 Juni – 30 Juni 2026</p></div></div><div class="timeline-premium pb-5"><div class="timeline-dot-premium"></div><div class="bg-slate-50 rounded-xl p-4"><p class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#94a3b8;">Fase 2</p><p class="font-bold text-slate-800 text-sm">Verifikasi Berkas</p><p class="text-xs text-slate-500 mt-1">1 Juli – 7 Juli 2026</p></div></div><div class="timeline-premium pb-5"><div class="timeline-dot-premium"></div><div class="bg-slate-50 rounded-xl p-4"><p class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#94a3b8;">Fase 3</p><p class="font-bold text-slate-800 text-sm">Pengumuman Hasil</p><p class="text-xs text-slate-500 mt-1">10 Juli 2026</p></div></div><div class="timeline-premium"><div class="timeline-dot-premium"></div><div class="bg-slate-50 rounded-xl p-4"><p class="text-xs font-bold uppercase tracking-wider mb-1" style="color:#94a3b8;">Fase 4</p><p class="font-bold text-slate-800 text-sm">Daftar Ulang</p><p class="text-xs text-slate-500 mt-1">14 Juli – 18 Juli 2026</p></div></div></div></div>
-            <div class="info-card-premium p-8"><div class="flex items-center gap-3 mb-7"><div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#fef3e8;">📋</div><h3 class="font-bold text-lg">Persyaratan Pendaftaran</h3></div><ul class="space-y-3"><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Ijazah / Surat Keterangan Lulus SMP/MTs</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Kartu Keluarga (KK) asli &amp; fotokopi</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Akta Kelahiran asli &amp; fotokopi</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Foto formal terbaru 3×4 (4 lembar)</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">NISN aktif &amp; dapat diverifikasi</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Rapor kelas 7–9 (fotokopi legalisir)</span></li><li class="flex items-start gap-3 py-2 px-1 rounded-lg hover:bg-slate-50"><span class="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white mt-0.5 flex-shrink-0" style="background:#c17f59;">✓</span><span class="text-sm text-slate-600">Surat keterangan sehat dari puskesmas/dokter</span></li></ul></div>
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- JADWAL (gaya baru) -->
+            <div class="info-card-premium p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-6 flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-[#c17f59] text-white flex items-center justify-center text-sm">📅</span> Jadwal Pendaftaran</h3>
+                <div class="space-y-4">
+                    <div class="step-item"><div class="step-dot"></div><div class="step-title">Pra-pendaftaran</div><div class="step-date">24 s/d 29 Juni 2025</div><div class="step-desc">Calon Murid melakukan registrasi akun dan melengkapi persyaratan dokumen umum</div></div>
+                    <div class="step-item"><div class="step-dot"></div><div class="step-title">Pendaftaran</div><div class="step-date">24 s/d 30 Juni 2025</div><div class="step-desc">Calon murid melakukan pendaftaran melalui sistem PMB dengan memilih satuan pendidikan yang diinginkan sesuai dengan jalur/kelompok yang tersedia.</div></div>
+                    <div class="step-item"><div class="step-dot"></div><div class="step-title">Verifikasi</div><div class="step-date">24 s/d 30 Juni 2025</div><div class="step-desc">Satuan pendidikan melakukan verifikasi dokumen yang diunggah oleh calon murid sesuai data pendaftaran.</div></div>
+                    <div class="step-item"><div class="step-dot"></div><div class="step-title">Rekonsiliasi</div><div class="step-date">01 Juli 2025</div><div class="step-desc">Sistem PMB akan melakukan rekonsiliasi hasil pendaftaran untuk memastikan data calon murid telah diverifikasi dan tercatat dengan benar.</div></div>
+                    <div class="step-item"><div class="step-dot"></div><div class="step-title">Pengumuman Hasil</div><div class="step-date">02 Juli 2025</div><div class="step-desc">Pengumuman hasil seleksi pendaftaran akan disampaikan melalui situs resmi PMB. Calon murid dapat melihat status kelulusan dan satuan pendidikan tujuan yang diterima.</div></div>
+                </div>
+            </div>
+
+            <!-- PERSYARATAN (10 item) -->
+            <div class="info-card-premium p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-6 flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-[#c17f59] text-white flex items-center justify-center text-sm">📋</span> Persyaratan Utama</h3>
+                <p class="text-xs text-slate-500 mb-4">Persyaratan yang digunakan untuk semua jalur/kelompok pendaftaran, dapat dipersiapkan sebelum melakukan pendaftaran</p>
+                <ul class="req-list">
+                    <li><span class="req-num">1</span> <span><strong>Ijazah / SKL SMP Sederajat</strong><br>Ijazah SMP/sederajat atau Surat Keterangan yang berpenghargaan sama dengan ijazah SMP/ijazah Program Paket B/Ijazah satuan pendidikan luar yang dinilai/dihargai sama/setingkat dengan SMP Tamatan 3 (tiga) Tahun terakhir</span></li>
+                    <li><span class="req-num">2</span> <span><strong>Rapor Semester I</strong><br>Rapor semester I satuan pendidikan asal</span></li>
+                    <li><span class="req-num">3</span> <span><strong>Rapor Semester II</strong><br>Rapor semester II satuan pendidikan asal</span></li>
+                    <li><span class="req-num">4</span> <span><strong>Rapor Semester III</strong><br>Rapor semester III satuan pendidikan asal</span></li>
+                    <li><span class="req-num">5</span> <span><strong>Rapor Semester IV</strong><br>Rapor semester IV satuan pendidikan asal</span></li>
+                    <li><span class="req-num">6</span> <span><strong>Rapor Semester V</strong><br>Rapor semester V satuan pendidikan asal</span></li>
+                    <li><span class="req-num">7</span> <span><strong>Rata-Rata Nilai Rapor Semester I-V</strong><br>Surat Keterangan Rata-Rata Nilai Rapor Semester IV SMP/sederajat yang diterbitkan oleh satuan pendidikan yang bersangkutan</span></li>
+                    <li><span class="req-num">8</span> <span><strong>Akta Kelahiran</strong><br>Akta kelahiran/ surat keterangan lahir dengan batas usia paling tinggi 21 (dua puluh satu) tahun pada 01 Juli 2025 (tahun berjalan)</span></li>
+                    <li><span class="req-num">9</span> <span><strong>Kartu Keluarga</strong><br>Kartu Keluarga (KK) minimal 1 (satu) tahun terakhir terhitung 01 Juli 2024 hanya dipersyaratkan untuk Jalur/Kelompok Domisili dan Jalur/Kelompok Afirmasi</span></li>
+                    <li><span class="req-num">10</span> <span><strong>Surat Pernyataan Keabsahan Dokumen Materai 10.000</strong><br>Surat pernyataan keabsahan dokumen yang telah di upload sesuai dengan aslinya menggunakan materai 10.000</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
